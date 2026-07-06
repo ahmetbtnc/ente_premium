@@ -56,14 +56,25 @@ Admin paneli Decap CMS kullanır. İçerikler GitHub reposundaki JSON dosyaları
 düzenler. Cloudflare Pages canlı siteyi GitHub'dan otomatik yayınlar.
 
 Cloudflare, Netlify Identity gibi hazır admin giriş sistemi vermediği için adminin
-GitHub'a yazabilmesi adına bir defalık OAuth proxy gerekir. İki yol var:
+GitHub'a yazabilmesi adına bir defalık GitHub OAuth ayarı gerekir. Bu proje içinde
+Cloudflare Pages Function olarak `/api/auth` ve `/api/callback` hazırdır.
 
-1. Kısa yol: Decap Bridge gibi hazır bir OAuth aracı kullanmak.
-2. Tam kontrol: Cloudflare Worker üzerinde GitHub OAuth proxy kurmak.
+GitHub'da OAuth App oluştur:
 
-Hazır örnek backend ayarı `admin/config.cloudflare.example.yml` dosyasında duruyor.
-OAuth adresi hazır olduğunda `admin/config.yml` dosyasının en üstündeki `backend`
-bölümü GitHub backend ile değiştirilir.
+- Homepage URL: `https://ente-premium.pages.dev`
+- Authorization callback URL: `https://ente-premium.pages.dev/api/callback`
+
+Sonra Cloudflare Pages > Settings > Variables and secrets bölümüne ekle:
+
+- `GITHUB_CLIENT_ID`
+- `GITHUB_CLIENT_SECRET`
+
+Kaydettikten sonra yeni deploy başlat. Admin adresi:
+
+- `https://ente-premium.pages.dev/admin/`
+
+Not: Giriş yapan GitHub hesabının `ahmetbtnc/ente_premium` reposuna yazma yetkisi
+olmalıdır.
 
 ## 5. Domain alınca
 

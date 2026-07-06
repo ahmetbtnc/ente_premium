@@ -2,10 +2,9 @@ backend:
   name: github
   repo: ahmetbtnc/ente_premium
   branch: main
-  # Cloudflare'da admin girisi icin GitHub OAuth proxy adresi gerekir.
-  # Hazir olunca asagidaki iki satiri ac:
-  # base_url: https://OAUTH-PROXY-ADRESIN
-  # auth_endpoint: auth
+  site_domain: https://ente-premium.pages.dev
+  base_url: https://ente-premium.pages.dev
+  auth_endpoint: /api/auth
 
 # Yerel geliştirme için: terminalde "npm run cms" çalıştırın (decap-server).
 local_backend: true
@@ -163,7 +162,7 @@ collections:
           # kopyalayıp yapıştırmak gerekiyordu — kod bilmeyen biri için çok
           # karışıktı. Artık sadece adres/konum adı yazmak yeterli, harita
           # otomatik oluşuyor.
-          - { label: "Haritada Görünecek Konum (Firma adı + adres yazmanız yeterli)", name: "firma_konumu", widget: "string", required: false, hint: "Örnek: Muğla Sıtkı Koçman Üniversitesi Teknopark. Google Haritalar linki yapıştırmanıza gerek yok, sadece konum adını/adresini yazın. Boş bırakılırsa yukarıdaki 'Açık Adres' kullanılır." }
+          - { label: "Haritada Görünecek Konum / Google Maps Linki", name: "firma_konumu", widget: "text", required: false, hint: "Adres, konum adı veya Google Maps linki yazabilirsiniz. Boş bırakılırsa yukarıdaki 'Açık Adres' kullanılır." }
           - { label: "Instagram Linki (Boşsa ikon gizlenir)", name: "instagram", widget: "string", required: false }
           - { label: "LinkedIn Linki (Boşsa ikon gizlenir)", name: "linkedin", widget: "string", required: false }
           - { label: "İletişim Bölümü WhatsApp Başlığı", name: "wa_inline_metin", widget: "string" }

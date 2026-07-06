@@ -71,9 +71,24 @@ Admin paneli Decap CMS'tir. Netlify Identity/Git Gateway kolaydı ama Netlify kr
 harcadığı için Cloudflare'a geçişte adminin GitHub'a yazabilmesi adına bir defalık
 GitHub OAuth ayarı gerekir.
 
-`admin/config.cloudflare.example.yml` içinde Cloudflare/GitHub backend örneği
-hazırdır. OAuth adresi hazır olduğunda bu backend ayarı `admin/config.yml` içine
-taşınır.
+Gerçek admin adresi:
+
+- `https://ente-premium.pages.dev/admin/`
+
+GitHub girişini aktif etmek için GitHub'da OAuth App oluştur:
+
+- Homepage URL: `https://ente-premium.pages.dev`
+- Authorization callback URL: `https://ente-premium.pages.dev/api/callback`
+
+GitHub'ın verdiği değerleri Cloudflare Pages > Settings > Variables and secrets
+bölümüne ekle:
+
+- `GITHUB_CLIENT_ID`
+- `GITHUB_CLIENT_SECRET`
+
+Kaydettikten sonra Cloudflare'da yeniden deploy başlat. Sonra `/admin/` adresinden
+GitHub hesabınla giriş yapabilirsin. Giriş yapan GitHub hesabının
+`ahmetbtnc/ente_premium` reposuna yazma yetkisi olmalıdır.
 
 Admin arayüzünü giriş yapmadan gezmek için test paneli vardır:
 
