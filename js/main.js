@@ -571,6 +571,7 @@ function applySiteChrome(s) {
     ['#hizmetler', s.nav_hizmetler],
     ['index.html#hizmetler', s.nav_hizmetler],
     ['urunler.html', s.nav_urunler],
+    ['/urunler/', s.nav_urunler],
     ['#neden-biz', s.nav_neden_biz],
     ['index.html#neden-biz', s.nav_neden_biz],
     ['#iletisim', s.nav_iletisim],
@@ -800,7 +801,7 @@ function renderFeatured(products) {
             </div>
             <div class="spoiler-actions">
               <button class="btn btn-primary js-open-modal" data-id="${esc(p.id)}">${esc((SETTINGS && SETTINGS.urun_detay_btn_metni) || 'Detayları Gör')}</button>
-              <a class="btn btn-ghost" href="urunler.html?id=${encodeURIComponent(p.id)}" ${targetAttr}>${esc((SETTINGS && SETTINGS.urun_katalog_btn_metni) || 'Katalogda Aç')}</a>
+              <a class="btn btn-ghost" href="/urunler/?id=${encodeURIComponent(p.id)}" ${targetAttr}>${esc((SETTINGS && SETTINGS.urun_katalog_btn_metni) || 'Katalogda Aç')}</a>
             </div>
           </div>
         </div>

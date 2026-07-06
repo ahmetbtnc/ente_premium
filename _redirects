@@ -1,4 +1,3 @@
 /admin /admin/index.html 200
 /admin/ /admin/index.html 200
-/urunler /urunler.html 302
-/urunler/ /urunler.html 302
+/urunler /urunler/ 301
