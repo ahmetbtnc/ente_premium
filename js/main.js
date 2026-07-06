@@ -55,15 +55,27 @@ function initNav() {
   const burger = document.getElementById('navBurger');
   const links = document.getElementById('navLinks');
   if (!burger || !links) return;
+
+  if (!links.querySelector('.mobile-nav-cta')) {
+    const mobileCta = document.createElement('button');
+    mobileCta.type = 'button';
+    mobileCta.className = 'mobile-nav-cta js-teklif-tetikleyici';
+    mobileCta.textContent = 'Teklif Al';
+    links.appendChild(mobileCta);
+  }
   
   burger.addEventListener('click', () => {
     const isOpen = links.classList.toggle('open-mobile');
     burger.classList.toggle('active', isOpen);
+    burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.body.classList.toggle('no-scroll', isOpen);
   });
   
-  links.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+  links.querySelectorAll('a, button').forEach(l => l.addEventListener('click', () => {
     links.classList.remove('open-mobile');
     burger.classList.remove('active');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('no-scroll');
   }));
 }
 
