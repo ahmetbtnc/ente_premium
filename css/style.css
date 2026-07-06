@@ -255,16 +255,21 @@ body.has-announcement .catalog-header {
 .brand-logo-wrap {
   display: inline-block;
   vertical-align: middle;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   margin-right: 12px;
   position: relative;
+  border-radius: 11px;
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+  background: #0b0c0e;
 }
 
 .brand-logo-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  display: block;
 }
 
 .brand-logo-svg {
@@ -280,6 +285,7 @@ body.has-announcement .catalog-header {
   vertical-align: middle;
   font-size: 18px;
   letter-spacing: 0.5px;
+  line-height: 1.05;
 }
 
 .brand-text em {
@@ -1399,6 +1405,10 @@ a.logo-strip-item:hover {
   font-size: 20px;
   display: block;
   margin-bottom: 12px;
+}
+
+.footer .brand-text {
+  line-height: 1.15;
 }
 
 .footer-slogan {

@@ -350,7 +350,9 @@ async function loadSettings() {
     const abTitle = document.querySelector('.about-tag h2');
     if (abTitle && (s.hakkimizda_baslik_on || s.hakkimizda_baslik_son)) {
       const yil = new Date().getFullYear() - (s.kurulus_yili || 1998);
-      abTitle.innerHTML = `${esc(s.hakkimizda_baslik_on)} <span id="yearsSpan">${yil}</span> ${esc(s.hakkimizda_baslik_son)}`;
+      const suffix = String(s.hakkimizda_baslik_son || '');
+      const spacer = suffix.trim().startsWith('+') ? '' : ' ';
+      abTitle.innerHTML = `${esc(s.hakkimizda_baslik_on)} <span id="yearsSpan">${yil}</span>${spacer}${esc(suffix)}`;
     }
     const abBody = document.querySelector('.about-body p');
     if (abBody && s.hakkimizda_aciklama) abBody.textContent = s.hakkimizda_aciklama;
@@ -475,8 +477,7 @@ async function loadSettings() {
     // buradan otomatik oluşturuluyor. Konum boşsa, "Açık Adres" alanı kullanılır.
     const mapFrame = document.getElementById('mapFrame');
     if (mapFrame) {
-      const konum = s.firma_konumu || s.adres || "";
-      mapFrame.src = konum ? `https://www.google.com/maps?q=${encodeURIComponent(konum)}&output=embed` : "";
+      mapFrame.src = mapEmbedUrl(s.firma_konumu || s.adres || "");
     }
     applySectionCopy(s);
     renderLogoStrip(s);
@@ -654,6 +655,19 @@ function applyTeklifFormSettings(s) {
 
 function whatsappSvg(size) {
   return `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.6 0-3.1-.42-4.4-1.16l-.31-.18-3.01.79.8-2.93-.2-.3A7.94 7.94 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>`;
+}
+
+function mapEmbedUrl(value) {
+  const konum = String(value || '').trim();
+  if (!konum) return '';
+  if (/google\.[^/]+\/maps/i.test(konum)) {
+    const cidMatch = konum.match(/1s([^?&!]+)/);
+    if (cidMatch && cidMatch[1]) {
+      return `https://www.google.com/maps?output=embed&q=${encodeURIComponent(cidMatch[1])}`;
+    }
+    return konum.includes('output=embed') ? konum : konum.replace('/maps/place/', '/maps/embed?pb=');
+  }
+  return `https://www.google.com/maps?q=${encodeURIComponent(konum)}&output=embed`;
 }
 
 function productDimensions(p) {
