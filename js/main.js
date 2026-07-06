@@ -446,11 +446,13 @@ async function loadSettings() {
     // kalan (harita, animasyon hızı gibi) ayarları hiç uygulamamasına yol açıyordu.
     const infoRowsEl = document.getElementById('infoRows');
     if (infoRowsEl) {
+      const phoneHref = phoneLink(s.whatsapp_numara || s.telefon_goruntu);
+      const mapHref = mapsSearchUrl(s.firma_konumu || s.adres);
       infoRowsEl.innerHTML = `
-        <div class="info-row"><span class="k">Telefon</span><span class="v">${s.telefon_goruntu || ""}</span></div>
-        <div class="info-row"><span class="k">E-posta</span><span class="v">${s.eposta || ""}</span></div>
-        <div class="info-row"><span class="k">Adres</span><span class="v">${s.adres || ""}</span></div>
-        ${s.calisma_saatleri ? `<div class="info-row"><span class="k">Çalışma Saatleri</span><span class="v">${s.calisma_saatleri}</span></div>` : ''}
+        <div class="info-row"><span class="k">Telefon</span><a class="v info-link" href="${phoneHref}">${esc(s.telefon_goruntu || "")}</a></div>
+        <div class="info-row"><span class="k">E-posta</span><a class="v info-link" href="mailto:${esc(s.eposta || "")}">${esc(s.eposta || "")}</a></div>
+        <div class="info-row"><span class="k">Adres</span><a class="v info-link" href="${mapHref}" target="_blank" rel="noopener">${esc(s.adres || "")}</a></div>
+        ${s.calisma_saatleri ? `<div class="info-row"><span class="k">Çalışma Saatleri</span><span class="v">${esc(s.calisma_saatleri)}</span></div>` : ''}
       `;
     }
 
@@ -668,6 +670,20 @@ function mapEmbedUrl(value) {
     return konum.includes('output=embed') ? konum : konum.replace('/maps/place/', '/maps/embed?pb=');
   }
   return `https://www.google.com/maps?q=${encodeURIComponent(konum)}&output=embed`;
+}
+
+function mapsSearchUrl(value) {
+  const konum = String(value || '').trim();
+  if (!konum) return '#';
+  if (/google\.[^/]+\/maps/i.test(konum)) return konum;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(konum)}`;
+}
+
+function phoneLink(value) {
+  const digits = String(value || '').replace(/\D/g, '');
+  if (!digits) return '#';
+  const normalized = digits.startsWith('90') ? digits : `90${digits.replace(/^0/, '')}`;
+  return `tel:+${normalized}`;
 }
 
 function productDimensions(p) {

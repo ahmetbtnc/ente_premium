@@ -1272,6 +1272,18 @@ body.has-announcement .catalog-header {
   font-weight: 500;
 }
 
+.info-link {
+  text-decoration: underline;
+  text-decoration-color: rgba(228, 88, 31, 0.45);
+  text-underline-offset: 4px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.info-link:hover {
+  color: var(--molten);
+  text-decoration-color: var(--molten);
+}
+
 .wa-btn {
   background: #25d366;
   border-color: #25d366;
