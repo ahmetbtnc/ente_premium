@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+  <title id="title">Ente Metal Logo</title>
+  <desc id="desc">Modern ENTE monogram logo</desc>
+  <defs>
+    <linearGradient id="g" x1="54" y1="44" x2="260" y2="278" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff7a3d"/>
+      <stop offset="1" stop-color="#e4581f"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="320" rx="52" fill="#0b0c0e"/>
+  <rect x="22" y="22" width="276" height="276" rx="38" fill="#111419" stroke="#2b323d" stroke-width="6"/>
+  <path d="M78 88h164v42H128v38h94v40h-94v40h118v42H78V88Z" fill="url(#g)"/>
+  <path d="M244 88v42h-50l50 50v58l-70-70v122h-44V88h44v52l52-52h18Z" fill="#24c6b8" opacity=".92"/>
+  <path d="M78 88h164" stroke="#ffffff" stroke-opacity=".16" stroke-width="8"/>
+</svg>

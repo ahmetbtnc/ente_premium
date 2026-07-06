@@ -1,14 +1,12 @@
 {
-  "oneCikanBaslik": "Öne Çıkan Üretimlerimiz",
-  "oneCikanAciklama": "Seçtiğimiz referans projelere göz atın, detay için üzerine tıklayın.",
-  "tum_urunler_buton_metni": "Tüm Ürün Kataloğunu Aç",
+  "oneCikanBaslik": "Öne Çıkan Ürün Başlıkları",
+  "oneCikanAciklama": "Hediyelik eşya, PVC koltuk körüğü ve diğer ürün talepleri için katalogdan hızlıca seçim yapabilirsiniz.",
+  "tum_urunler_buton_metni": "Tüm Kataloğu Aç",
   "nav_teklif_btn_metni": "Teklif Al",
   "urun_kartlari_yeni_pencere": false,
   "kategoriler": [
-    "Plastik Kalıp",
-    "Enjeksiyon Parça",
-    "Otomotiv",
-    "Beyaz Eşya",
-    "Elektronik"
+    "Hediyelik Eşya",
+    "PVC Koltuk Körüğü",
+    "Diğer"
   ]
 }

@@ -1,10 +1,10 @@
 {
-  "firma_logosu": "",
-  "favicon_resmi": "",
-  "slogan": "Hassas Kalıp. Güvenilir Enjeksiyon.",
-  "kurumsal_renk": "#ff5a1f",
-  "teknik_renk": "#00e5ff",
-  "alt_logo_baslik": "Güvenle üretim yaptığımız sektörler",
-  "alt_logo_aciklama": "Referans, sektör veya iş ortaklığı logolarını buradan yönetin.",
+  "firma_logosu": "images/ente-logo.svg",
+  "favicon_resmi": "images/ente-logo.svg",
+  "slogan": "Düzenli ürün seçimi, hızlı iletişim, güvenilir hizmet.",
+  "kurumsal_renk": "#e4581f",
+  "teknik_renk": "#24c6b8",
+  "alt_logo_baslik": "Ente Metal ürün grupları",
+  "alt_logo_aciklama": "Hediyelik eşya, PVC koltuk körüğü ve diğer ürün talepleri için pratik çözümler.",
   "alt_logolar": []
 }

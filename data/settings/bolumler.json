@@ -1,22 +1,22 @@
 {
-  "hero_animasyon_baslik": "Akıllı Kalıp Enjeksiyon Döngüsü",
+  "hero_animasyon_baslik": "Düzenli ürün seçimi ve hızlı teklif akışı",
   "hakkimizda_eyebrow": "Biz Kimiz?",
-  "hizmetler_eyebrow": "Üretim Yeteneklerimiz",
-  "hizmetler_baslik": "Kalıptan parçaya, tek elden yüksek kapasite.",
-  "neden_biz_eyebrow": "Endüstriyel Avantajlarımız",
-  "neden_biz_baslik": "Maksimum kalite, sıfır hata toleransı.",
+  "hizmetler_eyebrow": "Ürün Gruplarımız",
+  "hizmetler_baslik": "İhtiyaca göre sade, ulaşılabilir ve düzenli ürün seçenekleri.",
+  "neden_biz_eyebrow": "Neden Ente Metal?",
+  "neden_biz_baslik": "Net bilgi, hızlı dönüş, düzenli katalog.",
   "neden_biz_maddeler": [
-    { "deger": "±0.02mm", "aciklama": "Mekanik Tolerans Sınırı" },
-    { "deger": "7/24", "aciklama": "Kesintisiz Üretim Vardiyası" },
-    { "deger": "%100", "aciklama": "Numune Analiz Onayı" },
-    { "deger": "600+", "aciklama": "Aktif Kalıp Portföyü" }
+    { "deger": "3", "aciklama": "Ana Ürün Başlığı" },
+    { "deger": "24s", "aciklama": "Hızlı Geri Dönüş Hedefi" },
+    { "deger": "%100", "aciklama": "Net İletişim" },
+    { "deger": "Güncel", "aciklama": "Katalog Yönetimi" }
   ],
-  "urunler_eyebrow": "Katalog Özetimiz",
+  "urunler_eyebrow": "Katalog Özeti",
   "iletisim_eyebrow": "Bize Ulaşın",
-  "iletisim_baslik": "Yeni bir projeye mi başlıyorsunuz?",
-  "katalog_eyebrow": "Gelişmiş Üretim Portföyü",
-  "katalog_baslik": "Ürün ve Kalıp Kataloğu",
-  "katalog_aciklama": "Sektör standartlarında, yüksek hassasiyetle imal ettiğimiz parça ve kalıp referanslarımızı inceleyin.",
-  "arama_placeholder": "Ürün adı, malzeme veya açıklama ara...",
+  "iletisim_baslik": "Ürün bilgisi veya teklif almak ister misiniz?",
+  "katalog_eyebrow": "Güncel Ürün Portföyü",
+  "katalog_baslik": "Ürün Kataloğu",
+  "katalog_aciklama": "Hediyelik eşya, PVC koltuk körüğü ve diğer ürün başlıklarını buradan inceleyebilirsiniz.",
+  "arama_placeholder": "Ürün adı, kategori veya açıklama ara...",
   "katalog_meta_sol": "Katalog Görünümü"
 }

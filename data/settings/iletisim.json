@@ -1,13 +1,13 @@
 {
-  "telefon_goruntu": "0555 000 00 00",
-  "whatsapp_numara": "905550000000",
-  "eposta": "info@entemetalplastik.com",
-  "adres": "Örnek OSB, 5. Cadde No:12, Bursa / Türkiye",
-  "calisma_saatleri": "Pazartesi - Cuma: 08:00 - 18:00 / Cumartesi: 09:00 - 14:00",
-  "firma_konumu": "Örnek OSB, 5. Cadde No:12, Bursa / Türkiye",
+  "telefon_goruntu": "0531 287 85 05",
+  "whatsapp_numara": "905312878505",
+  "eposta": "entemetal@gmail.com",
+  "adres": "Mağaza konumu için haritadaki Ente Metal konumunu inceleyebilirsiniz.",
+  "calisma_saatleri": "Bilgi ve teklif için telefon, WhatsApp veya e-posta üzerinden iletişime geçebilirsiniz.",
+  "firma_konumu": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x14caaf7f724c1c67:0xe0cc225e4bbb9b74?sa=X&ved=1t:8290&ictx=111",
   "instagram": "",
   "linkedin": "",
-  "wa_inline_metin": "WhatsApp'tan hızlı teklif alın",
-  "wa_inline_aciklama": "Teknik çizim, ölçü veya proje detayınızı doğrudan ekibimize iletin.",
+  "wa_inline_metin": "WhatsApp'tan ürün bilgisi alın",
+  "wa_inline_aciklama": "İlgilendiğiniz ürün başlığını, adet bilgisini veya görselinizi paylaşın; size hızlıca dönüş yapalım.",
   "wa_float_metin": "WhatsApp"
 }

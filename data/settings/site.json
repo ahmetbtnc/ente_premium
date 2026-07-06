@@ -1,12 +1,12 @@
 {
   "firma_adi_1": "ENTE",
-  "firma_adi_2": "Metal Plastik",
-  "site_baslik": "Ente Metal Plastik | Plastik Kalıp Üretimi ve Enjeksiyon",
-  "site_aciklama": "Ente Metal Plastik - Uzun yıllardır plastik kalıp üretimi ve enjeksiyon çözümleri. Hassas, güvenilir, seri üretime hazır.",
-  "paylasim_gorseli": "images/pexels-daniel-smyth-83914874-8865187.jpg",
-  "katalog_site_baslik": "Ürün Kataloğu | Ente Metal Plastik",
-  "katalog_site_aciklama": "Ente Metal Plastik ürün ve referans kataloğu. Plastik enjeksiyon ve kalıp üretim çözümlerimiz.",
-  "ana_sayfa_yukleme": "Sistem Motoru Yükleniyor",
+  "firma_adi_2": "Metal",
+  "site_baslik": "Ente Metal | Hediyelik Eşya ve PVC Koltuk Körüğü",
+  "site_aciklama": "Ente Metal; hediyelik eşya, PVC koltuk körüğü ve özel ürün ihtiyaçları için hızlı iletişim ve düzenli ürün katalog deneyimi sunar.",
+  "paylasim_gorseli": "images/ente-logo.svg",
+  "katalog_site_baslik": "Ürün Kataloğu | Ente Metal",
+  "katalog_site_aciklama": "Ente Metal ürün kataloğu: Hediyelik eşya, PVC koltuk körüğü ve diğer ürün başlıklarını inceleyin.",
+  "ana_sayfa_yukleme": "Site Yükleniyor",
   "katalog_yukleme": "Katalog Yükleniyor",
   "nav_hakkimizda": "Hakkımızda",
   "nav_hizmetler": "Hizmetler",
@@ -18,5 +18,5 @@
   "katalog_bos_mesaj": "Arama kriterlerine uygun ürün bulunamadı.",
   "urun_detay_btn_metni": "Detayları Gör",
   "urun_katalog_btn_metni": "Katalogda Aç",
-  "footer_telif": "Ente Metal Plastik. Tüm Hakları Saklıdır."
+  "footer_telif": "Ente Metal. Tüm Hakları Saklıdır."
 }

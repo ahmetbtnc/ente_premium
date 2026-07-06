@@ -656,6 +656,17 @@ function whatsappSvg(size) {
   return `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.6 0-3.1-.42-4.4-1.16l-.31-.18-3.01.79.8-2.93-.2-.3A7.94 7.94 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>`;
 }
 
+function productDimensions(p) {
+  const vals = [p.uzunluk_mm, p.genislik_mm, p.yukseklik_mm].map(Number);
+  if (vals.some(v => !Number.isFinite(v) || v <= 0)) return 'Talebe göre';
+  return `${esc(p.uzunluk_mm)}x${esc(p.genislik_mm)}x${esc(p.yukseklik_mm)} mm`;
+}
+
+function productWeight(p) {
+  const weight = Number(p.agirlik_g);
+  return Number.isFinite(weight) && weight > 0 ? `${esc(p.agirlik_g)} g` : 'Talebe göre';
+}
+
 function renderLogoStrip(s) {
   const wrap = document.getElementById('altLogolar');
   if (!wrap) return;
@@ -748,8 +759,8 @@ function renderFeatured(products) {
             <div class="spoiler-meta">
               <span>Hammadde: ${esc(p.malzeme)}</span>
               <span>Tolerans: ${esc(p.tolerans_mm || '±0.02mm')}</span>
-              <span>Boyutlar: ${esc(p.uzunluk_mm)}x${esc(p.genislik_mm)}x${esc(p.yukseklik_mm)} mm</span>
-              <span>Kalıp Ağırlığı: ${esc(p.agirlik_g || '—')} g</span>
+              <span>Boyutlar: ${productDimensions(p)}</span>
+              <span>Ağırlık: ${productWeight(p)}</span>
             </div>
             <div class="spoiler-actions">
               <button class="btn btn-primary js-open-modal" data-id="${esc(p.id)}">${esc((SETTINGS && SETTINGS.urun_detay_btn_metni) || 'Detayları Gör')}</button>
@@ -844,7 +855,7 @@ function renderProducts(products) {
         <h3>${esc(p.ad)}</h3>
         <p>${esc(p.kisa_aciklama)}</p>
         <div class="product-meta">
-          <span>${esc(p.uzunluk_mm)}×${esc(p.genislik_mm)}×${esc(p.yukseklik_mm)} mm</span>
+          <span>${productDimensions(p)}</span>
           <span>${esc(p.malzeme)}</span>
         </div>
       </div>
@@ -877,9 +888,9 @@ function openModal(id) {
     <h3>${esc(p.ad)}</h3>
     <div class="modal-img"><img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}" loading="lazy"></div>
     <div class="spec-sheet">
-      <div class="spec-cell"><div class="k">Boyutlar</div><div class="v">${esc(p.uzunluk_mm)}x${esc(p.genislik_mm)}x${esc(p.yukseklik_mm)} mm</div></div>
+      <div class="spec-cell"><div class="k">Boyutlar</div><div class="v">${productDimensions(p)}</div></div>
       <div class="spec-cell"><div class="k">Malzeme / Hammadde</div><div class="v">${esc(p.malzeme)}</div></div>
-      <div class="spec-cell"><div class="k">Ürün Ağırlığı</div><div class="v">${esc(p.agirlik_g)} g</div></div>
+      <div class="spec-cell"><div class="k">Ürün Ağırlığı</div><div class="v">${productWeight(p)}</div></div>
       <div class="spec-cell"><div class="k">Üretim Toleransı</div><div class="v">${esc(p.tolerans_mm || '±0.02mm')}</div></div>
     </div>
     <p class="modal-detail-text">${esc(p.detay || p.kisa_aciklama)}</p>
