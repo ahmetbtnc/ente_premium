@@ -839,6 +839,15 @@ a {
   background: rgba(255, 90, 31, 0.05);
 }
 
+.filter-chips-wrap,
+.filter-chips {
+  max-width: 100%;
+  max-height: 148px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--steel) transparent;
+}
+
 .search-wrapper {
   position: relative;
   width: 100%;
@@ -1159,6 +1168,15 @@ a {
   box-shadow: 0 0 0 3px rgba(255, 90, 31, 0.1);
 }
 
+.hidden-field {
+  display: none !important;
+}
+
+.teklif-formu button[disabled] {
+  opacity: 0.7;
+  cursor: wait;
+}
+
 /* İletişim Kataloğu ve Harita */
 .contact-grid {
   display: table;
@@ -1211,8 +1229,13 @@ a {
 .wa-btn {
   background: #25d366;
   border-color: #25d366;
-  gap: 10px;
+  gap: 14px;
   color: #ffffff;
+  text-align: left;
+  align-items: center;
+  padding: 16px 20px;
+  max-width: 420px;
+  min-height: 70px;
 }
 
 .wa-btn:hover {
@@ -1221,12 +1244,97 @@ a {
   box-shadow: 0 6px 24px rgba(37, 211, 102, 0.3);
 }
 
+.wa-btn-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.wa-btn-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.wa-btn-copy strong {
+  font-family: var(--font-title);
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.wa-btn-copy small {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.35;
+  color: rgba(255,255,255,0.82);
+  font-weight: 500;
+}
+
 .contact-map {
   height: 400px;
   background: var(--surface);
   border: 1px solid var(--steel-light);
   border-radius: 6px;
   overflow: hidden;
+}
+
+/* En alt logo bandı */
+.logo-strip-section {
+  background: #090a0c;
+  border-top: 1px solid var(--steel-light);
+  padding: 56px 0;
+}
+
+.logo-strip-section[hidden] {
+  display: none;
+}
+
+.logo-strip-inner {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.logo-strip-copy h2 {
+  font-size: 24px;
+  letter-spacing: -0.4px;
+  margin-bottom: 10px;
+}
+
+.logo-strip-copy p {
+  font-size: 13.5px;
+  color: var(--steel);
+}
+
+.logo-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 14px;
+}
+
+.logo-strip-item {
+  min-height: 78px;
+  background: var(--surface);
+  border: 1px solid var(--steel-light);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+a.logo-strip-item:hover {
+  border-color: var(--molten);
+  transform: translateY(-2px);
+}
+
+.logo-strip-item img {
+  max-width: 100%;
+  max-height: 46px;
+  object-fit: contain;
+  display: block;
 }
 
 /* Alt Bilgi (Footer) */
@@ -1407,6 +1515,8 @@ body.no-scroll {
   
   .footer-links, .footer-legal { text-align: left; margin-top: 32px; }
   .footer-links a { display: block; margin: 12px 0; }
+  .logo-strip-inner { grid-template-columns: 1fr; gap: 24px; }
+  .logo-strip-grid { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
 }
 
 @media (max-width: 480px) {

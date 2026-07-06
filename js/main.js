@@ -229,12 +229,33 @@ function initTeklifModal() {
   });
 
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      alert((SETTINGS && SETTINGS.form_basarili_mesaj) || 'Teklif talebiniz başarıyla alındı. Uzman ekibimiz en kısa sürede dönüş sağlayacaktır.');
-      overlay.classList.remove('open');
-      document.body.classList.remove('no-scroll');
-      form.reset();
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = (SETTINGS && SETTINGS.form_gonderiliyor_metni) || 'Gönderiliyor...';
+      }
+
+      try {
+        const formData = new FormData(form);
+        if (!formData.get('form-name')) formData.append('form-name', form.getAttribute('name') || 'teklif-talebi');
+        const response = await fetch('/', { method: 'POST', body: formData });
+        if (!response.ok) throw new Error('Form gönderilemedi');
+        alert((SETTINGS && SETTINGS.form_basarili_mesaj) || 'Teklif talebiniz başarıyla alındı. Uzman ekibimiz en kısa sürede dönüş sağlayacaktır.');
+        overlay.classList.remove('open');
+        document.body.classList.remove('no-scroll');
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        alert((SETTINGS && SETTINGS.form_hata_mesaj) || 'Form gönderilirken bir sorun oluştu. Lütfen WhatsApp veya e-posta ile iletişime geçin.');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+      }
     });
   }
 }
@@ -390,7 +411,13 @@ async function loadSettings() {
     if (waButtonInline) {
       waButtonInline.style.display = (s.wa_inline_aktif !== false) ? 'inline-flex' : 'none';
       waButtonInline.href = `https://wa.me/${s.whatsapp_numara}`;
-      waButtonInline.innerHTML = `${whatsappSvg('20')} ${esc(s.wa_inline_metin || 'WhatsApp')}`;
+      waButtonInline.innerHTML = `
+        <span class="wa-btn-icon">${whatsappSvg('22')}</span>
+        <span class="wa-btn-copy">
+          <strong>${esc(s.wa_inline_metin || 'WhatsApp')}</strong>
+          ${s.wa_inline_aciklama ? `<small>${esc(s.wa_inline_aciklama)}</small>` : ''}
+        </span>
+      `;
     }
 
     const waFloatLabel = document.querySelector('#waFloat .wa-float-label');
@@ -452,6 +479,11 @@ async function loadSettings() {
       mapFrame.src = konum ? `https://www.google.com/maps?q=${encodeURIComponent(konum)}&output=embed` : "";
     }
     applySectionCopy(s);
+    renderLogoStrip(s);
+    if (ALL_PRODUCTS.length && document.getElementById('productFilters')) {
+      renderFilters(ALL_PRODUCTS);
+      applyCatalogFilters();
+    }
     
     initAdvancedMoldAnimation(s.hero_animasyon_hizi || 2600);
     if (s.parcacik_efekti_aktif !== false) initParticles();
@@ -576,6 +608,38 @@ function whatsappSvg(size) {
   return `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.6 0-3.1-.42-4.4-1.16l-.31-.18-3.01.79.8-2.93-.2-.3A7.94 7.94 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>`;
 }
 
+function renderLogoStrip(s) {
+  const wrap = document.getElementById('altLogolar');
+  if (!wrap) return;
+  let logos = Array.isArray(s.alt_logolar) ? s.alt_logolar.filter(l => l && l.gorsel) : [];
+  if (!logos.length && s.firma_logosu) {
+    logos = [{ ad: `${s.firma_adi_1 || 'ENTE'} ${s.firma_adi_2 || 'Metal Plastik'}`, gorsel: s.firma_logosu }];
+  }
+  if (!logos.length) {
+    wrap.hidden = true;
+    wrap.innerHTML = '';
+    return;
+  }
+
+  wrap.hidden = false;
+  wrap.innerHTML = `
+    <div class="section-inner logo-strip-inner">
+      <div class="logo-strip-copy">
+        ${s.alt_logo_baslik ? `<h2>${esc(s.alt_logo_baslik)}</h2>` : ''}
+        ${s.alt_logo_aciklama ? `<p>${esc(s.alt_logo_aciklama)}</p>` : ''}
+      </div>
+      <div class="logo-strip-grid">
+        ${logos.map(logo => {
+          const img = `<img src="${esc(logo.gorsel)}" alt="${esc(logo.ad || 'Logo')}">`;
+          return logo.link
+            ? `<a class="logo-strip-item" href="${esc(logo.link)}" target="_blank" rel="noopener" aria-label="${esc(logo.ad || 'Logo')}">${img}</a>`
+            : `<div class="logo-strip-item">${img}</div>`;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
 async function loadProducts() {
   try {
     const res = await fetch('data/products.json');
@@ -669,7 +733,9 @@ function renderFilters(products) {
   const wrap = document.getElementById('productFilters');
   if (!wrap) return;
   const allLabel = (SETTINGS && SETTINGS.filtre_tumu_metni) || 'Tümü';
-  const cats = [allLabel, ...new Set(products.map(p => p.kategori))];
+  const managedCats = getManagedCategories();
+  const productCats = products.map(p => p.kategori).filter(Boolean);
+  const cats = [allLabel, ...new Set([...managedCats, ...productCats])];
   wrap.innerHTML = cats.map((c, i) => `<button class="filter-chip ${i===0 ? 'active' : ''}" data-cat="${esc(c)}">${esc(c)}</button>`).join('');
 
   wrap.querySelectorAll('.filter-chip').forEach(btn => {
@@ -679,6 +745,14 @@ function renderFilters(products) {
       applyCatalogFilters();
     });
   });
+}
+
+function getManagedCategories() {
+  if (!SETTINGS || !Array.isArray(SETTINGS.kategoriler)) return [];
+  return SETTINGS.kategoriler
+    .map(item => typeof item === 'string' ? item : (item.kategori || item.ad || ''))
+    .map(item => String(item).trim())
+    .filter(Boolean);
 }
 
 function initCatalogSearch() {

@@ -3,5 +3,12 @@
   "oneCikanAciklama": "Seçtiğimiz referans projelere göz atın, detay için üzerine tıklayın.",
   "tum_urunler_buton_metni": "Tüm Ürün Kataloğunu Aç",
   "nav_teklif_btn_metni": "Teklif Al",
-  "urun_kartlari_yeni_pencere": false
+  "urun_kartlari_yeni_pencere": false,
+  "kategoriler": [
+    "Plastik Kalıp",
+    "Enjeksiyon Parça",
+    "Otomotiv",
+    "Beyaz Eşya",
+    "Elektronik"
+  ]
 }

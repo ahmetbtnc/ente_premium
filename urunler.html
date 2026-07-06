@@ -107,32 +107,36 @@
       <span class="product-cat-tag" style="color:var(--molten);" id="teklifFormLabel">Talep Formu</span>
       <h3 id="teklifFormTitle">Hızlı Teklif İsteyin</h3>
       <p class="modal-detail-text" id="teklifFormDesc" style="margin-bottom: 24px;">Projenizin detaylarını paylaşın, uzman ekibimiz en kısa sürede fiyatlandırma ile dönüş yapsın.</p>
-      <form id="teklifAlmaFormu" class="teklif-formu">
+      <form id="teklifAlmaFormu" class="teklif-formu" name="teklif-talebi" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+        <input type="hidden" name="form-name" value="teklif-talebi">
+        <p class="hidden-field"><label>Bu alanı boş bırakın <input name="bot-field"></label></p>
         <div class="form-group">
           <label>Adınız / Firma Adınız *</label>
-          <input type="text" required>
+          <input type="text" name="ad_firma" required>
         </div>
         <div class="form-group">
           <label>E-posta Adresiniz *</label>
-          <input type="email" required>
+          <input type="email" name="eposta" required>
         </div>
         <div class="form-group" id="formTelGroup">
           <label>Telefon Numaranız <span id="telZorunluIsaret">*</span></label>
-          <input type="tel" id="formTelInput">
+          <input type="tel" id="formTelInput" name="telefon">
         </div>
         <div class="form-group">
           <label>Proje Detayları &amp; Teknik Özellikler *</label>
-          <textarea required rows="4" placeholder="Malzeme türü, tahmini adet ve ölçüleri belirtebilirsiniz..."></textarea>
+          <textarea required rows="4" name="proje_detayi" placeholder="Malzeme türü, tahmini adet ve ölçüleri belirtebilirsiniz..."></textarea>
         </div>
         <div class="form-group" id="formDosyaGroup">
           <label>Teknik Çizim / Proje Dosyası (DXF, STEP, PDF)</label>
-          <input type="file">
+          <input type="file" name="teknik_dosya">
         </div>
         <button type="submit" class="btn btn-primary" style="justify-content:center; margin-top:8px;">Teklif Talebini Gönder</button>
       </form>
     </div>
   </div>
 </div>
+
+<section class="logo-strip-section" id="altLogolar" hidden></section>
 
 <footer class="footer">
   <div class="section-inner footer-grid">

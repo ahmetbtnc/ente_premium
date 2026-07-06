@@ -179,26 +179,28 @@
     <div class="modal-content">
       <h3 id="teklifFormTitle">Hızlı Teklif İsteyin</h3>
       <p class="modal-detail-text" id="teklifFormDesc" style="margin-bottom: 24px;">Projenize ait verileri veya teknik çizimleri (.step, .iges, .dwg) paylaşarak fiyat teklifi alabilirsiniz.</p>
-      <form id="teklifAlmaFormu" class="teklif-formu">
+      <form id="teklifAlmaFormu" class="teklif-formu" name="teklif-talebi" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+        <input type="hidden" name="form-name" value="teklif-talebi">
+        <p class="hidden-field"><label>Bu alanı boş bırakın <input name="bot-field"></label></p>
         <div class="form-group">
           <label>Ad Soyad / Firma Unvanı *</label>
-          <input type="text" required placeholder="Örn: Ente Plastik Ltd. Şti.">
+          <input type="text" name="ad_firma" required placeholder="Örn: Ente Plastik Ltd. Şti.">
         </div>
         <div class="form-group">
           <label>E-posta Adresiniz *</label>
-          <input type="email" required placeholder="firma@isim.com">
+          <input type="email" name="eposta" required placeholder="firma@isim.com">
         </div>
         <div class="form-group" id="formTelGroup">
           <label>Telefon Numaranız</label>
-          <input type="tel" id="formTelInput" placeholder="05xx xxx xx xx">
+          <input type="tel" id="formTelInput" name="telefon" placeholder="05xx xxx xx xx">
         </div>
         <div class="form-group">
           <label>Proje ve Parça Açıklaması *</label>
-          <textarea required rows="4" placeholder="İstenen hammadde, yıllık baskı adeti ve parça detayları..."></textarea>
+          <textarea required rows="4" name="proje_detayi" placeholder="İstenen hammadde, yıllık baskı adeti ve parça detayları..."></textarea>
         </div>
         <div class="form-group" id="formDosyaGroup">
           <label>Teknik Çizim Dosyası (CAD / 3D)</label>
-          <input type="file">
+          <input type="file" name="teknik_dosya">
         </div>
         <button type="submit" class="btn btn-primary" style="justify-content:center; width: 100%;">Teklif Talebini Sisteme İlet</button>
       </form>
@@ -222,6 +224,8 @@
     </div>
   </div>
 </section>
+
+<section class="logo-strip-section" id="altLogolar" hidden></section>
 
 <footer class="footer">
   <div class="section-inner footer-grid">

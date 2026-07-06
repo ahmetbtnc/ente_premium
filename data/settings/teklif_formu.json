@@ -16,5 +16,7 @@
   "form_tel_placeholder": "05xx xxx xx xx",
   "form_detay_placeholder": "İstenen hammadde, yıllık baskı adeti ve parça detayları...",
   "form_gonder_btn": "Teklif Talebini Sisteme İlet",
-  "form_basarili_mesaj": "Teklif talebiniz başarıyla alındı. Uzman ekibimiz en kısa sürede dönüş sağlayacaktır."
+  "form_gonderiliyor_metni": "Gönderiliyor...",
+  "form_basarili_mesaj": "Teklif talebiniz başarıyla alındı. Uzman ekibimiz en kısa sürede dönüş sağlayacaktır.",
+  "form_hata_mesaj": "Form gönderilirken bir sorun oluştu. Lütfen WhatsApp veya e-posta ile iletişime geçin."
 }

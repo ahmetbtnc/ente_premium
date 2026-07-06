@@ -60,6 +60,17 @@ collections:
           - { label: "Şirket Sloganı (Footer'da görünür)", name: "slogan", widget: "string" }
           - { label: "Kurumsal Ana Renk", name: "kurumsal_renk", widget: "color", hint: "Butonlar, vurgular ve turuncu detaylar bu renkte olur." }
           - { label: "Teknik Detay Rengi", name: "teknik_renk", widget: "color" }
+          - { label: "En Alt Logo Alanı Başlığı", name: "alt_logo_baslik", widget: "string", required: false }
+          - { label: "En Alt Logo Alanı Açıklaması", name: "alt_logo_aciklama", widget: "text", required: false }
+          - label: "En Alt Logo Listesi"
+            name: "alt_logolar"
+            widget: "list"
+            required: false
+            summary: "{{fields.ad}}"
+            fields:
+              - { label: "Logo Adı", name: "ad", widget: "string" }
+              - { label: "Logo Görseli", name: "gorsel", widget: "image" }
+              - { label: "Logo Linki (İsteğe bağlı)", name: "link", widget: "string", required: false }
 
       - file: "data/settings/hero.json"
         label: "2) Ana Sayfa Giriş Bölümü (Hero)"
@@ -150,7 +161,8 @@ collections:
           - { label: "Haritada Görünecek Konum (Firma adı + adres yazmanız yeterli)", name: "firma_konumu", widget: "string", required: false, hint: "Örnek: Muğla Sıtkı Koçman Üniversitesi Teknopark. Google Haritalar linki yapıştırmanıza gerek yok, sadece konum adını/adresini yazın. Boş bırakılırsa yukarıdaki 'Açık Adres' kullanılır." }
           - { label: "Instagram Linki (Boşsa ikon gizlenir)", name: "instagram", widget: "string", required: false }
           - { label: "LinkedIn Linki (Boşsa ikon gizlenir)", name: "linkedin", widget: "string", required: false }
-          - { label: "İletişim Bölümü WhatsApp Buton Yazısı", name: "wa_inline_metin", widget: "string" }
+          - { label: "İletişim Bölümü WhatsApp Başlığı", name: "wa_inline_metin", widget: "string" }
+          - { label: "İletişim Bölümü WhatsApp Açıklaması", name: "wa_inline_aciklama", widget: "text", required: false }
           - { label: "Yüzen WhatsApp Buton Yazısı", name: "wa_float_metin", widget: "string" }
 
       - file: "data/settings/urunler_bolumu.json"
@@ -163,6 +175,12 @@ collections:
           - { label: "'Tüm Ürünler' Buton Metni", name: "tum_urunler_buton_metni", widget: "string" }
           - { label: "Menüdeki 'Teklif Al' Buton Metni", name: "nav_teklif_btn_metni", widget: "string" }
           - { label: "Ürün Kartları Yeni Sekmede mi Açılsın?", name: "urun_kartlari_yeni_pencere", widget: "boolean" }
+          - label: "Katalog Kategori Başlıkları"
+            name: "kategoriler"
+            widget: "list"
+            label_singular: "Kategori"
+            hint: "Örnek: Hediyelik Eşya. Buraya eklediğiniz başlık katalog filtrelerinde görünür. Ürün eklerken kategori alanına aynı adı yazın."
+            field: { label: "Kategori Adı", name: "kategori", widget: "string" }
 
       - file: "data/settings/teklif_formu.json"
         label: "6) Teklif Formu Ayarları"
@@ -186,7 +204,9 @@ collections:
           - { label: "Telefon Placeholder", name: "form_tel_placeholder", widget: "string" }
           - { label: "Proje Detayı Placeholder", name: "form_detay_placeholder", widget: "text" }
           - { label: "Form Gönder Butonu", name: "form_gonder_btn", widget: "string" }
+          - { label: "Form Gönderiliyor Yazısı", name: "form_gonderiliyor_metni", widget: "string" }
           - { label: "Başarılı Gönderim Mesajı", name: "form_basarili_mesaj", widget: "text" }
+          - { label: "Hata Mesajı", name: "form_hata_mesaj", widget: "text" }
 
       - file: "data/settings/ux.json"
         label: "7) Gelişmiş Ayarlar (WhatsApp Butonları)"
@@ -212,7 +232,7 @@ collections:
             fields:
               - { label: "Ürün Benzersiz ID (Küçük harf, İngilizce - Örn: motor-kapagi)", name: "id", widget: "string" }
               - { label: "Ürün Adı", name: "ad", widget: "string" }
-              - { label: "Kategori", name: "kategori", widget: "select", options: ["Plastik Kalıp", "Enjeksiyon Parça", "Otomotiv", "Beyaz Eşya", "Elektronik"] }
+              - { label: "Kategori", name: "kategori", widget: "string", hint: "Admin > Ana Sayfa - Ürünler Bölümü Metinleri kısmındaki kategori başlıklarından biriyle aynı yazın. Yeni bir başlık istiyorsanız önce o listeye ekleyin." }
               - { label: "Ürün Görseli (Fotoğraf)", name: "gorsel", widget: "image" }
               - { label: "Kısa Açıklama (Spoiler Kartında Görünecek)", name: "kisa_aciklama", widget: "string" }
               - { label: "Detaylı Bilgi (Pop-up Açıldığında Görünecek)", name: "detay", widget: "text", required: false }

@@ -83,6 +83,15 @@ buna izin vermiyor. Bunun yerine:
 Admin panelinden **Site Ayarları → İletişim Bilgileri & Konum** kısmından,
 başında + ve boşluk OLMADAN, ülke kodlu numarayı gir. Örnek: `905551112233`
 
+## 3.1) Teklif formu nereye gider?
+Teklif formu Netlify Forms ile çalışır. Müşteri **Teklif Talebini Sisteme İlet**
+butonuna bastığında kayıt Netlify panelinde **Forms → teklif-talebi** bölümüne
+düşer. Netlify panelinden form bildirimleri/e-posta bildirimi açarsan her yeni
+talep seçtiğin mail adresine de gelir.
+
+Yerelde dosyayı çift tıklayarak açınca form gönderimi test edilmez; canlı Netlify
+adresinde test edilmelidir.
+
 ## 4) Google Haritalar konumu
 Artık iframe/embed linki kopyalamaya gerek yok. **Site Ayarları → İletişim
 Bilgileri & Konum** kısmındaki "Haritada Görünecek Konum" alanına firma adını
