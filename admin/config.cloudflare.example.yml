@@ -1,0 +1,21 @@
+backend:
+  name: github
+  repo: ahmetbtnc/ente_premium
+  branch: main
+  # Cloudflare'da Decap CMS icin GitHub OAuth proxy kurulduktan sonra acilir.
+  # Ornek: https://ente-admin-oauth.<hesap-adin>.workers.dev
+  # base_url: https://OAUTH-PROXY-ADRESIN
+  # auth_endpoint: auth
+
+local_backend: true
+
+site_url: https://ente-premium.pages.dev
+display_url: https://ente-premium.pages.dev
+
+media_folder: "images"
+public_folder: "images"
+
+# Not:
+# Bu dosya Cloudflare/GitHub backend ornegidir. Canliya gecirirken bu dosyadaki
+# backend blogunu admin/config.yml dosyasinin en ustundeki backend blogu ile
+# degistir. Koleksiyon alanlari admin/config.yml icinde aynen kalmaya devam eder.

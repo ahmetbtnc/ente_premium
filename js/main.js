@@ -241,8 +241,14 @@ function initTeklifModal() {
       try {
         const formData = new FormData(form);
         if (!formData.get('form-name')) formData.append('form-name', form.getAttribute('name') || 'teklif-talebi');
-        const response = await fetch('/', { method: 'POST', body: formData });
-        if (!response.ok) throw new Error('Form gönderilemedi');
+        const endpoint = form.dataset.submitEndpoint || form.getAttribute('action') || '/api/teklif';
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || result.ok === false) throw new Error(result.message || 'Form gönderilemedi');
         alert((SETTINGS && SETTINGS.form_basarili_mesaj) || 'Teklif talebiniz başarıyla alındı. Uzman ekibimiz en kısa sürede dönüş sağlayacaktır.');
         overlay.classList.remove('open');
         document.body.classList.remove('no-scroll');

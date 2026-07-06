@@ -10,7 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
@@ -179,7 +178,7 @@
     <div class="modal-content">
       <h3 id="teklifFormTitle">Hızlı Teklif İsteyin</h3>
       <p class="modal-detail-text" id="teklifFormDesc" style="margin-bottom: 24px;">Projenize ait verileri veya teknik çizimleri (.step, .iges, .dwg) paylaşarak fiyat teklifi alabilirsiniz.</p>
-      <form id="teklifAlmaFormu" class="teklif-formu" name="teklif-talebi" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+      <form id="teklifAlmaFormu" class="teklif-formu" name="teklif-talebi" method="POST" action="/api/teklif" data-submit-endpoint="/api/teklif" enctype="multipart/form-data">
         <input type="hidden" name="form-name" value="teklif-talebi">
         <p class="hidden-field"><label>Bu alanı boş bırakın <input name="bot-field"></label></p>
         <div class="form-group">
@@ -251,16 +250,5 @@
 </a>
 
 <script src="js/main.js"></script>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", function (user) {
-      if (!user) {
-        window.netlifyIdentity.on("login", function () {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
 </body>
 </html>

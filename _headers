@@ -1,0 +1,13 @@
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/admin/config.yml
+  Content-Type: text/yaml; charset=utf-8
+
+/admin/preview.css
+  Content-Type: text/css; charset=utf-8
+
+/api/*
+  Cache-Control: no-store

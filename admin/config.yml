@@ -1,9 +1,13 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: ahmetbtnc/ente_premium
   branch: main
+  # Cloudflare'da admin girisi icin GitHub OAuth proxy adresi gerekir.
+  # Hazir olunca asagidaki iki satiri ac:
+  # base_url: https://OAUTH-PROXY-ADRESIN
+  # auth_endpoint: auth
 
 # Yerel geliştirme için: terminalde "npm run cms" çalıştırın (decap-server).
-# Canlı sitede (Netlify) git-gateway + Identity kullanılır; bu satır zararsızdır.
 local_backend: true
 
 # Domain bağladıktan sonra aşağıdaki iki satırın başındaki # işaretini kaldırın:

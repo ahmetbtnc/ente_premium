@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ENTE Metal Plastik | Yönetim Paneli</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
     /* CMS kendi layout'unu kullanır — body'ye flex/center VERME */
     html, body { margin: 0; padding: 0; height: 100%; background: #fff; }
@@ -60,7 +59,6 @@
 
     var loader = document.getElementById('adminLoader');
     var loaderGone = false;
-    var isLocal = /localhost|127\.0\.0\.1|^$/i.test(window.location.hostname);
 
     function removeLoader() {
       if (loaderGone || !loader) return;
@@ -346,20 +344,6 @@
     setTimeout(removeLoader, 2000);
 
     /* Netlify Identity — giriş sonrası admin'e dön */
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', function (user) {
-        removeLoader();
-        if (!user) {
-          window.netlifyIdentity.on('login', function () {
-            document.location.href = '/admin/';
-          });
-          if (!isLocal) {
-            setTimeout(function () { window.netlifyIdentity.open('login'); }, 300);
-          }
-        }
-      });
-    }
-
   })();
   </script>
 </body>
