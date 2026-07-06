@@ -513,14 +513,36 @@ function setMeta(name, content) {
   meta.content = content;
 }
 
+function setPropertyMeta(property, content) {
+  if (!content) return;
+  let meta = document.querySelector(`meta[property="${property}"]`);
+  if (!meta) {
+    meta = document.createElement('meta');
+    meta.setAttribute('property', property);
+    document.head.appendChild(meta);
+  }
+  meta.content = content;
+}
+
 function brandMarkup(s) {
   return `${esc(s.firma_adi_1 || 'ENTE')} <em>${esc(s.firma_adi_2 || 'Metal Plastik')}</em>`;
 }
 
 function applySiteChrome(s) {
   const isCatalog = !!document.getElementById('productGrid');
-  document.title = isCatalog ? (s.katalog_site_baslik || document.title) : (s.site_baslik || document.title);
-  setMeta('description', isCatalog ? s.katalog_site_aciklama : s.site_aciklama);
+  const pageTitle = isCatalog ? (s.katalog_site_baslik || document.title) : (s.site_baslik || document.title);
+  const pageDesc = isCatalog ? s.katalog_site_aciklama : s.site_aciklama;
+  document.title = pageTitle;
+  setMeta('description', pageDesc);
+  setPropertyMeta('og:title', pageTitle);
+  setPropertyMeta('og:description', pageDesc);
+  setPropertyMeta('og:type', 'website');
+  setPropertyMeta('og:image', absoluteAssetUrl(s.paylasim_gorseli));
+  setMeta('twitter:card', 'summary_large_image');
+  setMeta('twitter:title', pageTitle);
+  setMeta('twitter:description', pageDesc);
+  setMeta('twitter:image', absoluteAssetUrl(s.paylasim_gorseli));
+  renderAnnouncementBar(s);
 
   document.querySelectorAll('.brand-text, .footer-brand').forEach(el => {
     el.innerHTML = brandMarkup(s);
@@ -549,6 +571,32 @@ function applySiteChrome(s) {
     if (!label) return;
     document.querySelectorAll(`a[href="${href}"]`).forEach(a => { a.textContent = label; });
   });
+}
+
+function absoluteAssetUrl(path) {
+  if (!path) return '';
+  try {
+    return new URL(path, window.location.href).href;
+  } catch (err) {
+    return path;
+  }
+}
+
+function renderAnnouncementBar(s) {
+  const existing = document.getElementById('siteAnnouncement');
+  if (existing) existing.remove();
+  document.body.classList.remove('has-announcement');
+  if (!s.ust_duyuru_aktif || !s.ust_duyuru_metni) return;
+
+  const bar = document.createElement('div');
+  bar.className = 'announcement-bar';
+  bar.id = 'siteAnnouncement';
+  const link = s.ust_duyuru_link && s.ust_duyuru_link_metni
+    ? `<a href="${esc(s.ust_duyuru_link)}">${esc(s.ust_duyuru_link_metni)}</a>`
+    : '';
+  bar.innerHTML = `<span>${esc(s.ust_duyuru_metni)}</span>${link}`;
+  document.body.prepend(bar);
+  document.body.classList.add('has-announcement');
 }
 
 function applySectionCopy(s) {
@@ -630,7 +678,7 @@ function renderLogoStrip(s) {
       </div>
       <div class="logo-strip-grid">
         ${logos.map(logo => {
-          const img = `<img src="${esc(logo.gorsel)}" alt="${esc(logo.ad || 'Logo')}">`;
+          const img = `<img src="${esc(logo.gorsel)}" alt="${esc(logo.ad || 'Logo')}" loading="lazy">`;
           return logo.link
             ? `<a class="logo-strip-item" href="${esc(logo.link)}" target="_blank" rel="noopener" aria-label="${esc(logo.ad || 'Logo')}">${img}</a>`
             : `<div class="logo-strip-item">${img}</div>`;
@@ -681,7 +729,7 @@ function renderFeatured(products) {
   wrap.innerHTML = products.map((p, i) => `
     <div class="spoiler-card reveal" style="--stagger:${i}" data-id="${p.id}">
       <button class="spoiler-head" data-toggle="${p.id}">
-          <div class="spoiler-thumb"><img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}"></div>
+          <div class="spoiler-thumb"><img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}" loading="lazy"></div>
         <div class="spoiler-info">
           <span class="spoiler-cat">${esc(p.kategori)}</span>
           <h3>${esc(p.ad)}</h3>
@@ -694,7 +742,7 @@ function renderFeatured(products) {
       </button>
       <div class="spoiler-body">
         <div class="spoiler-body-inner">
-          <div class="spoiler-img"><img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}"></div>
+          <div class="spoiler-img"><img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}" loading="lazy"></div>
           <div class="spoiler-text">
             <p>${esc(p.kisa_aciklama)}</p>
             <div class="spoiler-meta">
@@ -790,7 +838,7 @@ function renderProducts(products) {
     <div class="product-card reveal" style="--stagger:${i % 6}" data-id="${p.id}">
       <div class="product-thumb">
         <span class="product-cat">${esc(p.kategori)}</span>
-        <img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}">
+        <img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}" loading="lazy">
       </div>
       <div class="product-body">
         <h3>${esc(p.ad)}</h3>
@@ -827,7 +875,7 @@ function openModal(id) {
   document.getElementById('modalContent').innerHTML = `
     <span class="product-cat-tag">${esc(p.kategori)}</span>
     <h3>${esc(p.ad)}</h3>
-    <div class="modal-img"><img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}"></div>
+    <div class="modal-img"><img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}" loading="lazy"></div>
     <div class="spec-sheet">
       <div class="spec-cell"><div class="k">Boyutlar</div><div class="v">${esc(p.uzunluk_mm)}x${esc(p.genislik_mm)}x${esc(p.yukseklik_mm)} mm</div></div>
       <div class="spec-cell"><div class="k">Malzeme / Hammadde</div><div class="v">${esc(p.malzeme)}</div></div>

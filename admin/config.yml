@@ -34,6 +34,7 @@ collections:
           - { label: "Firma Adı - İkinci Kısım", name: "firma_adi_2", widget: "string" }
           - { label: "Ana Sayfa Tarayıcı Başlığı", name: "site_baslik", widget: "string" }
           - { label: "Ana Sayfa Google Açıklaması", name: "site_aciklama", widget: "text" }
+          - { label: "Paylaşım Görseli (WhatsApp / Sosyal Medya)", name: "paylasim_gorseli", widget: "image", required: false, hint: "Link paylaşıldığında görünecek kapak görseli." }
           - { label: "Katalog Sayfası Tarayıcı Başlığı", name: "katalog_site_baslik", widget: "string" }
           - { label: "Katalog Sayfası Google Açıklaması", name: "katalog_site_aciklama", widget: "text" }
           - { label: "Ana Sayfa Yükleme Yazısı", name: "ana_sayfa_yukleme", widget: "string" }
@@ -215,6 +216,10 @@ collections:
         fields:
           - { label: "Sağ Altta Yüzen WhatsApp Butonu Aktif mi?", name: "wa_float_aktif", widget: "boolean" }
           - { label: "İletişim Bölümündeki WhatsApp Butonu Aktif mi?", name: "wa_inline_aktif", widget: "boolean" }
+          - { label: "Üst Duyuru Bandı Aktif mi?", name: "ust_duyuru_aktif", widget: "boolean" }
+          - { label: "Üst Duyuru Metni", name: "ust_duyuru_metni", widget: "string" }
+          - { label: "Üst Duyuru Link Metni", name: "ust_duyuru_link_metni", widget: "string", required: false }
+          - { label: "Üst Duyuru Linki", name: "ust_duyuru_link", widget: "string", required: false, hint: "Örnek: #iletisim veya urunler.html" }
 
   - name: "products"
     label: "Ürün Kataloğu Yönetimi"

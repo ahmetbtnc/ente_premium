@@ -177,6 +177,46 @@ a {
   transition: width 0.1s ease-out;
 }
 
+.announcement-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 40px;
+  z-index: 950;
+  background: #101317;
+  border-bottom: 1px solid rgba(255, 90, 31, 0.28);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 8px 24px;
+  font-size: 13px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.announcement-bar span {
+  color: var(--text-dim);
+}
+
+.announcement-bar a {
+  color: var(--molten);
+  font-family: var(--font-title);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+body.has-announcement .nav {
+  top: 40px;
+}
+
+body.has-announcement .hero,
+body.has-announcement .catalog-header {
+  padding-top: 200px;
+}
+
 /* Premium Navigasyon Çubuğu */
 .nav {
   position: fixed;
@@ -1456,6 +1496,11 @@ body.no-scroll {
 
 @media (max-width: 768px) {
   .section { padding: 80px 0; }
+  .announcement-bar { min-height: 52px; flex-direction: column; gap: 2px; padding: 8px 18px; }
+  body.has-announcement .nav { top: 52px; }
+  body.has-announcement .nav-links.open-mobile { top: 132px; height: calc(100vh - 132px); }
+  body.has-announcement .hero,
+  body.has-announcement .catalog-header { padding-top: 188px; }
   .nav-links, .nav-cta-wrapper { display: none; }
   .nav-burger { display: inline-block; position: absolute; right: 24px; top: 22px; }
   
