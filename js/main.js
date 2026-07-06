@@ -6,6 +6,8 @@
 
 let SETTINGS = null;
 let ALL_PRODUCTS = [];
+let CATALOG_PAGE = 1;
+const PRODUCTS_PER_PAGE = 12;
 
 // Admin panelinden gelen düz metinleri HTML içine güvenli şekilde yerleştirmek
 // için basit bir kaçış (escape) yardımcı fonksiyonu.
@@ -862,6 +864,7 @@ function renderFilters(products) {
     btn.addEventListener('click', () => {
       wrap.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      CATALOG_PAGE = 1;
       applyCatalogFilters();
     });
   });
@@ -878,7 +881,10 @@ function getManagedCategories() {
 function initCatalogSearch() {
   const input = document.getElementById('productSearch');
   if (!input) return;
-  input.addEventListener('input', () => applyCatalogFilters());
+  input.addEventListener('input', () => {
+    CATALOG_PAGE = 1;
+    applyCatalogFilters();
+  });
 }
 
 function applyCatalogFilters() {
@@ -898,15 +904,26 @@ function applyCatalogFilters() {
 function renderProducts(products) {
   const grid = document.getElementById('productGrid');
   if (!grid) return;
+  const pagination = ensureCatalogPagination(grid);
   const countEl = document.getElementById('catalogCount');
-  if (countEl) countEl.textContent = `${products.length} ${((SETTINGS && SETTINGS.katalog_sayac_eki) || 'ürün listeleniyor')}`;
+  const totalPages = Math.max(1, Math.ceil(products.length / PRODUCTS_PER_PAGE));
+  CATALOG_PAGE = Math.min(Math.max(CATALOG_PAGE, 1), totalPages);
+  const start = (CATALOG_PAGE - 1) * PRODUCTS_PER_PAGE;
+  const pageProducts = products.slice(start, start + PRODUCTS_PER_PAGE);
+  if (countEl) {
+    const rangeText = products.length > PRODUCTS_PER_PAGE
+      ? `${start + 1}-${Math.min(start + PRODUCTS_PER_PAGE, products.length)} / ${products.length}`
+      : `${products.length}`;
+    countEl.textContent = `${rangeText} ${((SETTINGS && SETTINGS.katalog_sayac_eki) || 'ürün listeleniyor')}`;
+  }
 
   if (products.length === 0) {
     grid.innerHTML = `<div class="no-results" style="grid-column:1/-1; text-align:center; padding:60px; color:var(--steel); font-family:var(--font-mono); font-size:14px;">${esc((SETTINGS && SETTINGS.katalog_bos_mesaj) || 'Arama kriterlerine uygun ürün bulunamadı.')}</div>`;
+    renderCatalogPagination([], totalPages, pagination);
     return;
   }
   
-  grid.innerHTML = products.map((p, i) => `
+  grid.innerHTML = pageProducts.map((p, i) => `
     <div class="product-card reveal" style="--stagger:${i % 6}" data-id="${p.id}">
       <div class="product-thumb">
         <span class="product-cat">${esc(p.kategori)}</span>
@@ -924,7 +941,55 @@ function renderProducts(products) {
   `).join('');
 
   grid.querySelectorAll('.product-card').forEach(card => card.addEventListener('click', () => openModal(card.dataset.id)));
+  renderCatalogPagination(products, totalPages, pagination);
   initReveal();
+}
+
+function ensureCatalogPagination(grid) {
+  let pagination = document.getElementById('catalogPagination');
+  if (!pagination) {
+    pagination = document.createElement('nav');
+    pagination.id = 'catalogPagination';
+    pagination.className = 'catalog-pagination';
+    pagination.setAttribute('aria-label', 'Ürün sayfaları');
+    grid.insertAdjacentElement('afterend', pagination);
+  }
+  return pagination;
+}
+
+function renderCatalogPagination(products, totalPages, pagination) {
+  if (!pagination) return;
+  if (!products.length || totalPages <= 1) {
+    pagination.hidden = true;
+    pagination.innerHTML = '';
+    return;
+  }
+
+  pagination.hidden = false;
+  const maxButtons = 7;
+  let startPage = Math.max(1, CATALOG_PAGE - Math.floor(maxButtons / 2));
+  let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+  startPage = Math.max(1, endPage - maxButtons + 1);
+  const pages = [];
+  for (let i = startPage; i <= endPage; i++) pages.push(i);
+
+  pagination.innerHTML = `
+    <button type="button" class="page-btn page-nav" data-page="${CATALOG_PAGE - 1}" ${CATALOG_PAGE === 1 ? 'disabled' : ''}>Önceki</button>
+    ${startPage > 1 ? `<button type="button" class="page-btn" data-page="1">1</button><span class="page-dots">...</span>` : ''}
+    ${pages.map(page => `<button type="button" class="page-btn ${page === CATALOG_PAGE ? 'active' : ''}" data-page="${page}" aria-label="Sayfa ${page}">${page}</button>`).join('')}
+    ${endPage < totalPages ? `<span class="page-dots">...</span><button type="button" class="page-btn" data-page="${totalPages}">${totalPages}</button>` : ''}
+    <button type="button" class="page-btn page-nav" data-page="${CATALOG_PAGE + 1}" ${CATALOG_PAGE === totalPages ? 'disabled' : ''}>Sonraki</button>
+  `;
+
+  pagination.querySelectorAll('[data-page]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const page = Number(btn.dataset.page);
+      if (!Number.isFinite(page) || page < 1 || page > totalPages || page === CATALOG_PAGE) return;
+      CATALOG_PAGE = page;
+      applyCatalogFilters();
+      document.querySelector('.catalog-meta')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 }
 
 function openModalFromQuery() {
