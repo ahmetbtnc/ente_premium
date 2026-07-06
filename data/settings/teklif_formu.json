@@ -10,7 +10,7 @@
   "teklif_formu_aktif": true,
   "form_dosya_label": "Teknik Çizim Dosyası (CAD / 3D)",
   "teklif_formu_aciklama": "Projenize ait verileri veya teknik çizimleri paylaşarak fiyat teklifi alabilirsiniz.",
-  "form_eposta_placeholder": "ahmet.bt00@gmail.com",
+  "form_eposta_placeholder": "firma@mail.com",
   "form_eposta_label": "E-posta Adresiniz",
   "form_ad_placeholder": "Örn: Ente Plastik Ltd. Şti.",
   "form_ad_label": "Ad Soyad / Firma Unvanı",
