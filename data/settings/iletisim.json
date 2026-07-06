@@ -1,13 +1,13 @@
 {
   "telefon_goruntu": "0531 287 85 05",
+  "calisma_saatleri": "Pazartesi - Cuma: 08:30 - 18:00 / Cumartesi: 09:00 - 18:00",
+  "wa_float_metin": "WhatsApp",
+  "firma_konumu": "İOSB, Çevre Sanayi Sitesi No:9 BLOK NO:32, 34490 Başakşehir/İstanbul",
+  "wa_inline_metin": "WhatsApp'tan ürün bilgisi alın",
+  "instagram": "",
   "whatsapp_numara": "905312878505",
   "eposta": "entemetal@gmail.com",
   "adres": "İOSB, Çevre Sanayi Sitesi No:9 BLOK NO:32, 34490 Başakşehir/İstanbul",
-  "calisma_saatleri": "Pazartesi - Cuma: 08:30 - 18:00 / Cumartesi: 09:00 - 14:00",
-  "firma_konumu": "İOSB, Çevre Sanayi Sitesi No:9 BLOK NO:32, 34490 Başakşehir/İstanbul",
-  "instagram": "",
   "linkedin": "",
-  "wa_inline_metin": "WhatsApp'tan ürün bilgisi alın",
-  "wa_inline_aciklama": "İlgilendiğiniz ürün başlığını, adet bilgisini veya görselinizi paylaşın; size hızlıca dönüş yapalım.",
-  "wa_float_metin": "WhatsApp"
+  "wa_inline_aciklama": "İlgilendiğiniz ürün başlığını, adet bilgisini veya görselinizi paylaşın; size hızlıca dönüş yapalım."
 }
