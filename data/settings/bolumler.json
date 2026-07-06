@@ -1,0 +1,22 @@
+{
+  "hero_animasyon_baslik": "Akıllı Kalıp Enjeksiyon Döngüsü",
+  "hakkimizda_eyebrow": "Biz Kimiz?",
+  "hizmetler_eyebrow": "Üretim Yeteneklerimiz",
+  "hizmetler_baslik": "Kalıptan parçaya, tek elden yüksek kapasite.",
+  "neden_biz_eyebrow": "Endüstriyel Avantajlarımız",
+  "neden_biz_baslik": "Maksimum kalite, sıfır hata toleransı.",
+  "neden_biz_maddeler": [
+    { "deger": "±0.02mm", "aciklama": "Mekanik Tolerans Sınırı" },
+    { "deger": "7/24", "aciklama": "Kesintisiz Üretim Vardiyası" },
+    { "deger": "%100", "aciklama": "Numune Analiz Onayı" },
+    { "deger": "600+", "aciklama": "Aktif Kalıp Portföyü" }
+  ],
+  "urunler_eyebrow": "Katalog Özetimiz",
+  "iletisim_eyebrow": "Bize Ulaşın",
+  "iletisim_baslik": "Yeni bir projeye mi başlıyorsunuz?",
+  "katalog_eyebrow": "Gelişmiş Üretim Portföyü",
+  "katalog_baslik": "Ürün ve Kalıp Kataloğu",
+  "katalog_aciklama": "Sektör standartlarında, yüksek hassasiyetle imal ettiğimiz parça ve kalıp referanslarımızı inceleyin.",
+  "arama_placeholder": "Ürün adı, malzeme veya açıklama ara...",
+  "katalog_meta_sol": "Katalog Görünümü"
+}

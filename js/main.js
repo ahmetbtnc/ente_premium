@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollSpy();
   initScrollProgress();
   initReveal();
-  initCounters();
   initMagneticButtons();
   loadSettings();
   loadProducts();
@@ -232,7 +231,7 @@ function initTeklifModal() {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      alert('Teklif talebiniz başarıyla alındı. Uzman ekibimiz en kısa sürede dönüş sağlayacaktır.');
+      alert((SETTINGS && SETTINGS.form_basarili_mesaj) || 'Teklif talebiniz başarıyla alındı. Uzman ekibimiz en kısa sürede dönüş sağlayacaktır.');
       overlay.classList.remove('open');
       document.body.classList.remove('no-scroll');
       form.reset();
@@ -251,12 +250,13 @@ async function loadSettings() {
     // çekilip tek bir SETTINGS nesnesinde birleştiriliyor — sitenin geri kalanı
     // hiç değişmeden aynı alan adlarıyla (s.telefon_goruntu, s.slogan vb.)
     // çalışmaya devam ediyor.
-    const dosyalar = ['marka', 'hero', 'hakkimizda', 'iletisim', 'urunler_bolumu', 'teklif_formu', 'ux'];
+    const dosyalar = ['site', 'marka', 'hero', 'hakkimizda', 'iletisim', 'urunler_bolumu', 'teklif_formu', 'ux', 'bolumler'];
     const sonuclar = await Promise.all(
       dosyalar.map(d => fetch(`data/settings/${d}.json`).then(r => r.json()))
     );
     const s = Object.assign({}, ...sonuclar);
     SETTINGS = s;
+    applySiteChrome(s);
     
     // Dinamik Tema Renk Atamaları
     if (s.kurumsal_renk) document.documentElement.style.setProperty('--molten', s.kurumsal_renk);
@@ -291,6 +291,8 @@ async function loadSettings() {
 
     const heroUrunlerBtn = document.querySelector('.hero-actions .btn-primary');
     if (heroUrunlerBtn && s.hero_urunler_btn_metni) heroUrunlerBtn.textContent = s.hero_urunler_btn_metni;
+    const heroTeklifBtn = document.querySelector('.hero-actions .js-teklif-tetikleyici');
+    if (heroTeklifBtn && s.hero_teklif_btn_metni) heroTeklifBtn.textContent = s.hero_teklif_btn_metni;
 
     // Hero Başlık ve Alt Metin Yönetimi
     if (s.hero_ust_baslik) {
@@ -331,6 +333,7 @@ async function loadSettings() {
     }
     const abBody = document.querySelector('.about-body p');
     if (abBody && s.hakkimizda_aciklama) abBody.textContent = s.hakkimizda_aciklama;
+    setText('.about-tag .eyebrow', s.hakkimizda_eyebrow);
     
     const abPointsWrap = document.querySelector('.about-points');
     if (abPointsWrap && s.vizyon_maddeleri) {
@@ -343,6 +346,8 @@ async function loadSettings() {
     // Hizmet Kartları Dinamik Yönetimi
     const serviceSection = document.getElementById('hizmetler');
     if (serviceSection && s.hizmetler_listesi) {
+      setText('#hizmetler .eyebrow', s.hizmetler_eyebrow);
+      setText('#hizmetler .section-title', s.hizmetler_baslik);
       const cardsWrap = serviceSection.querySelector('.service-cards');
       if (cardsWrap) {
         cardsWrap.innerHTML = s.hizmetler_listesi.map(srv => `
@@ -360,6 +365,7 @@ async function loadSettings() {
     if (teklifTitle) teklifTitle.textContent = s.teklif_formu_baslik || "Hızlı Teklif İsteyin";
     const teklifDesc = document.getElementById('teklifFormDesc');
     if (teklifDesc) teklifDesc.textContent = s.teklif_formu_aciklama || "";
+    applyTeklifFormSettings(s);
 
     const telInput = document.getElementById('formTelInput');
     if (telInput) {
@@ -384,9 +390,15 @@ async function loadSettings() {
     if (waButtonInline) {
       waButtonInline.style.display = (s.wa_inline_aktif !== false) ? 'inline-flex' : 'none';
       waButtonInline.href = `https://wa.me/${s.whatsapp_numara}`;
+      waButtonInline.innerHTML = `${whatsappSvg('20')} ${esc(s.wa_inline_metin || 'WhatsApp')}`;
     }
 
+    const waFloatLabel = document.querySelector('#waFloat .wa-float-label');
+    if (waFloatLabel) waFloatLabel.textContent = s.wa_float_metin || 'WhatsApp';
+    if (waFloat) waFloat.title = s.wa_float_metin || 'WhatsApp';
+
     // Öne Çıkan Ürün Başlıkları
+    setText('#urunler .eyebrow', s.urunler_eyebrow);
     const ocb = document.getElementById('oneCikanBaslik');
     if (ocb) ocb.textContent = s.oneCikanBaslik || "Öne Çıkan Üretimlerimiz";
     const oca = document.getElementById('oneCikanAciklama');
@@ -439,14 +451,129 @@ async function loadSettings() {
       const konum = s.firma_konumu || s.adres || "";
       mapFrame.src = konum ? `https://www.google.com/maps?q=${encodeURIComponent(konum)}&output=embed` : "";
     }
+    applySectionCopy(s);
     
     initAdvancedMoldAnimation(s.hero_animasyon_hizi || 2600);
     if (s.parcacik_efekti_aktif !== false) initParticles();
+    initCounters();
     initReveal();
   } catch (err) { 
     console.error(err); 
     initAdvancedMoldAnimation(2600); 
+    initCounters();
   }
+}
+
+function setText(selector, value) {
+  if (!value) return;
+  const el = document.querySelector(selector);
+  if (el) el.textContent = value;
+}
+
+function setMeta(name, content) {
+  if (!content) return;
+  let meta = document.querySelector(`meta[name="${name}"]`);
+  if (!meta) {
+    meta = document.createElement('meta');
+    meta.name = name;
+    document.head.appendChild(meta);
+  }
+  meta.content = content;
+}
+
+function brandMarkup(s) {
+  return `${esc(s.firma_adi_1 || 'ENTE')} <em>${esc(s.firma_adi_2 || 'Metal Plastik')}</em>`;
+}
+
+function applySiteChrome(s) {
+  const isCatalog = !!document.getElementById('productGrid');
+  document.title = isCatalog ? (s.katalog_site_baslik || document.title) : (s.site_baslik || document.title);
+  setMeta('description', isCatalog ? s.katalog_site_aciklama : s.site_aciklama);
+
+  document.querySelectorAll('.brand-text, .footer-brand').forEach(el => {
+    el.innerHTML = brandMarkup(s);
+  });
+
+  const loaderText = document.querySelector('.loader-text');
+  if (loaderText) {
+    loaderText.textContent = isCatalog ? (s.katalog_yukleme || loaderText.textContent) : (s.ana_sayfa_yukleme || loaderText.textContent);
+  }
+
+  const footerLegal = document.querySelector('.footer-legal p');
+  if (footerLegal && s.footer_telif) footerLegal.innerHTML = `&copy; <span id="footerYear">${new Date().getFullYear()}</span> ${esc(s.footer_telif)}`;
+
+  const navMap = [
+    ['#hakkimizda', s.nav_hakkimizda],
+    ['index.html#hakkimizda', s.nav_hakkimizda],
+    ['#hizmetler', s.nav_hizmetler],
+    ['index.html#hizmetler', s.nav_hizmetler],
+    ['urunler.html', s.nav_urunler],
+    ['#neden-biz', s.nav_neden_biz],
+    ['index.html#neden-biz', s.nav_neden_biz],
+    ['#iletisim', s.nav_iletisim],
+    ['index.html#iletisim', s.nav_iletisim]
+  ];
+  navMap.forEach(([href, label]) => {
+    if (!label) return;
+    document.querySelectorAll(`a[href="${href}"]`).forEach(a => { a.textContent = label; });
+  });
+}
+
+function applySectionCopy(s) {
+  setText('.visual-caption', s.hero_animasyon_baslik);
+  setText('#neden-biz .eyebrow', s.neden_biz_eyebrow);
+  setText('#neden-biz .section-title', s.neden_biz_baslik);
+
+  const whyGrid = document.querySelector('.why-grid');
+  if (whyGrid && Array.isArray(s.neden_biz_maddeler)) {
+    whyGrid.innerHTML = s.neden_biz_maddeler.map((item, i) => `
+      <div class="why-item reveal" style="--stagger:${i}">
+        <span class="why-num">${esc(item.deger)}</span>
+        <p>${esc(item.aciklama)}</p>
+      </div>
+    `).join('');
+  }
+
+  setText('.contact-info .eyebrow', s.iletisim_eyebrow);
+  setText('.contact-info h2', s.iletisim_baslik);
+  setText('.catalog-header .eyebrow', s.katalog_eyebrow);
+  setText('.catalog-header .section-title', s.katalog_baslik);
+  setText('.catalog-header .section-desc', s.katalog_aciklama);
+  setText('.catalog-meta span:first-child', s.katalog_meta_sol);
+
+  const searchInput = document.getElementById('productSearch');
+  if (searchInput && s.arama_placeholder) searchInput.placeholder = s.arama_placeholder;
+}
+
+function applyTeklifFormSettings(s) {
+  document.querySelectorAll('#teklifAlmaFormu').forEach(form => {
+    const groups = form.querySelectorAll('.form-group');
+    const setGroup = (idx, label, placeholder, required) => {
+      const group = groups[idx];
+      if (!group) return;
+      const labelEl = group.querySelector('label');
+      const field = group.querySelector('input, textarea');
+      if (labelEl && label) labelEl.textContent = label + (required ? ' *' : '');
+      if (field && placeholder) field.placeholder = placeholder;
+      if (field) {
+        if (required) field.setAttribute('required', 'true');
+        else field.removeAttribute('required');
+      }
+    };
+
+    setGroup(0, s.form_ad_label, s.form_ad_placeholder, true);
+    setGroup(1, s.form_eposta_label, s.form_eposta_placeholder, true);
+    setGroup(2, s.form_tel_label, s.form_tel_placeholder, s.form_tel_zorunlu !== false);
+    setGroup(3, s.form_detay_label, s.form_detay_placeholder, true);
+    setGroup(4, s.form_dosya_label, '', false);
+
+    const submit = form.querySelector('button[type="submit"]');
+    if (submit && s.form_gonder_btn) submit.textContent = s.form_gonder_btn;
+  });
+}
+
+function whatsappSvg(size) {
+  return `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.6 0-3.1-.42-4.4-1.16l-.31-.18-3.01.79.8-2.93-.2-.3A7.94 7.94 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>`;
 }
 
 async function loadProducts() {
@@ -490,10 +617,10 @@ function renderFeatured(products) {
   wrap.innerHTML = products.map((p, i) => `
     <div class="spoiler-card reveal" style="--stagger:${i}" data-id="${p.id}">
       <button class="spoiler-head" data-toggle="${p.id}">
-        <div class="spoiler-thumb"><img src="${p.gorsel || 'images/placeholder.png'}" alt="${p.ad}"></div>
+          <div class="spoiler-thumb"><img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}"></div>
         <div class="spoiler-info">
-          <span class="spoiler-cat">${p.kategori}</span>
-          <h3>${p.ad}</h3>
+          <span class="spoiler-cat">${esc(p.kategori)}</span>
+          <h3>${esc(p.ad)}</h3>
         </div>
         <div class="spoiler-chevron-cell">
           <span class="spoiler-chevron">
@@ -503,18 +630,18 @@ function renderFeatured(products) {
       </button>
       <div class="spoiler-body">
         <div class="spoiler-body-inner">
-          <div class="spoiler-img"><img src="${p.gorsel || 'images/placeholder.png'}" alt="${p.ad}"></div>
+          <div class="spoiler-img"><img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}"></div>
           <div class="spoiler-text">
-            <p>${p.kisa_aciklama}</p>
+            <p>${esc(p.kisa_aciklama)}</p>
             <div class="spoiler-meta">
-              <span>Hammadde: ${p.malzeme}</span>
-              <span>Tolerans: ${p.tolerans_mm || '±0.02mm'}</span>
-              <span>Boyutlar: ${p.uzunluk_mm}x${p.genislik_mm}x${p.yukseklik_mm} mm</span>
-              <span>Kalıp Ağırlığı: ${p.agirlik_g || '—'} g</span>
+              <span>Hammadde: ${esc(p.malzeme)}</span>
+              <span>Tolerans: ${esc(p.tolerans_mm || '±0.02mm')}</span>
+              <span>Boyutlar: ${esc(p.uzunluk_mm)}x${esc(p.genislik_mm)}x${esc(p.yukseklik_mm)} mm</span>
+              <span>Kalıp Ağırlığı: ${esc(p.agirlik_g || '—')} g</span>
             </div>
             <div class="spoiler-actions">
-              <button class="btn btn-primary js-open-modal" data-id="${p.id}">Detayları Gör</button>
-              <a class="btn btn-ghost" href="urunler.html?id=${p.id}" ${targetAttr}>Katalogda Aç</a>
+              <button class="btn btn-primary js-open-modal" data-id="${esc(p.id)}">${esc((SETTINGS && SETTINGS.urun_detay_btn_metni) || 'Detayları Gör')}</button>
+              <a class="btn btn-ghost" href="urunler.html?id=${encodeURIComponent(p.id)}" ${targetAttr}>${esc((SETTINGS && SETTINGS.urun_katalog_btn_metni) || 'Katalogda Aç')}</a>
             </div>
           </div>
         </div>
@@ -541,8 +668,9 @@ function renderFeatured(products) {
 function renderFilters(products) {
   const wrap = document.getElementById('productFilters');
   if (!wrap) return;
-  const cats = ['Tümü', ...new Set(products.map(p => p.kategori))];
-  wrap.innerHTML = cats.map((c, i) => `<button class="filter-chip ${i===0 ? 'active' : ''}" data-cat="${c}">${c}</button>`).join('');
+  const allLabel = (SETTINGS && SETTINGS.filtre_tumu_metni) || 'Tümü';
+  const cats = [allLabel, ...new Set(products.map(p => p.kategori))];
+  wrap.innerHTML = cats.map((c, i) => `<button class="filter-chip ${i===0 ? 'active' : ''}" data-cat="${esc(c)}">${esc(c)}</button>`).join('');
 
   wrap.querySelectorAll('.filter-chip').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -561,11 +689,12 @@ function initCatalogSearch() {
 
 function applyCatalogFilters() {
   const activeChip = document.querySelector('.filter-chip.active');
-  const cat = activeChip ? activeChip.dataset.cat : 'Tümü';
+  const allLabel = (SETTINGS && SETTINGS.filtre_tumu_metni) || 'Tümü';
+  const cat = activeChip ? activeChip.dataset.cat : allLabel;
   const searchInput = document.getElementById('productSearch');
   const q = searchInput ? searchInput.value.trim().toLowerCase() : '';
 
-  let filtered = cat === 'Tümü' ? ALL_PRODUCTS : ALL_PRODUCTS.filter(p => p.kategori === cat);
+  let filtered = cat === allLabel ? ALL_PRODUCTS : ALL_PRODUCTS.filter(p => p.kategori === cat);
   if (q) {
     filtered = filtered.filter(p => p.ad.toLowerCase().includes(q) || p.kisa_aciklama.toLowerCase().includes(q) || p.malzeme.toLowerCase().includes(q));
   }
@@ -576,25 +705,25 @@ function renderProducts(products) {
   const grid = document.getElementById('productGrid');
   if (!grid) return;
   const countEl = document.getElementById('catalogCount');
-  if (countEl) countEl.textContent = `${products.length} ürün listeleniyor`;
+  if (countEl) countEl.textContent = `${products.length} ${((SETTINGS && SETTINGS.katalog_sayac_eki) || 'ürün listeleniyor')}`;
 
   if (products.length === 0) {
-    grid.innerHTML = '<div class="no-results" style="grid-column:1/-1; text-align:center; padding:60px; color:var(--steel); font-family:var(--font-mono); font-size:14px;">Arama kriterlerine uygun ürün bulunamadı.</div>';
+    grid.innerHTML = `<div class="no-results" style="grid-column:1/-1; text-align:center; padding:60px; color:var(--steel); font-family:var(--font-mono); font-size:14px;">${esc((SETTINGS && SETTINGS.katalog_bos_mesaj) || 'Arama kriterlerine uygun ürün bulunamadı.')}</div>`;
     return;
   }
   
   grid.innerHTML = products.map((p, i) => `
     <div class="product-card reveal" style="--stagger:${i % 6}" data-id="${p.id}">
       <div class="product-thumb">
-        <span class="product-cat">${p.kategori}</span>
-        <img src="${p.gorsel || 'images/placeholder.png'}" alt="${p.ad}">
+        <span class="product-cat">${esc(p.kategori)}</span>
+        <img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}">
       </div>
       <div class="product-body">
-        <h3>${p.ad}</h3>
-        <p>${p.kisa_aciklama}</p>
+        <h3>${esc(p.ad)}</h3>
+        <p>${esc(p.kisa_aciklama)}</p>
         <div class="product-meta">
-          <span>${p.uzunluk_mm}×${p.genislik_mm}×${p.yukseklik_mm} mm</span>
-          <span>${p.malzeme}</span>
+          <span>${esc(p.uzunluk_mm)}×${esc(p.genislik_mm)}×${esc(p.yukseklik_mm)} mm</span>
+          <span>${esc(p.malzeme)}</span>
         </div>
       </div>
     </div>
@@ -622,16 +751,16 @@ function openModal(id) {
   const p = ALL_PRODUCTS.find(x => x.id === id); 
   if (!p) return;
   document.getElementById('modalContent').innerHTML = `
-    <span class="product-cat-tag">${p.kategori}</span>
-    <h3>${p.ad}</h3>
-    <div class="modal-img"><img src="${p.gorsel || 'images/placeholder.png'}" alt="${p.ad}"></div>
+    <span class="product-cat-tag">${esc(p.kategori)}</span>
+    <h3>${esc(p.ad)}</h3>
+    <div class="modal-img"><img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}"></div>
     <div class="spec-sheet">
-      <div class="spec-cell"><div class="k">Boyutlar</div><div class="v">${p.uzunluk_mm}x${p.genislik_mm}x${p.yukseklik_mm} mm</div></div>
-      <div class="spec-cell"><div class="k">Malzeme / Hammadde</div><div class="v">${p.malzeme}</div></div>
-      <div class="spec-cell"><div class="k">Ürün Ağırlığı</div><div class="v">${p.agirlik_g} g</div></div>
-      <div class="spec-cell"><div class="k">Üretim Toleransı</div><div class="v">${p.tolerans_mm || '±0.02mm'}</div></div>
+      <div class="spec-cell"><div class="k">Boyutlar</div><div class="v">${esc(p.uzunluk_mm)}x${esc(p.genislik_mm)}x${esc(p.yukseklik_mm)} mm</div></div>
+      <div class="spec-cell"><div class="k">Malzeme / Hammadde</div><div class="v">${esc(p.malzeme)}</div></div>
+      <div class="spec-cell"><div class="k">Ürün Ağırlığı</div><div class="v">${esc(p.agirlik_g)} g</div></div>
+      <div class="spec-cell"><div class="k">Üretim Toleransı</div><div class="v">${esc(p.tolerans_mm || '±0.02mm')}</div></div>
     </div>
-    <p class="modal-detail-text">${p.detay || p.kisa_aciklama}</p>
+    <p class="modal-detail-text">${esc(p.detay || p.kisa_aciklama)}</p>
   `;
   document.getElementById('productModal').classList.add('open');
   document.body.classList.add('no-scroll');
