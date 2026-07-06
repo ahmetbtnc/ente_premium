@@ -1,0 +1,52 @@
+{
+  "urunler": [
+    {
+      "id": "p1",
+      "ad": "Muhafaza Kapağı - Tip A",
+      "kategori": "Enjeksiyon Parça",
+      "gorsel": "images/pexels-daniel-smyth-83914874-8865187.jpg",
+      "kisa_aciklama": "Elektronik ekipmanlar için darbeye dayanıklı dış muhafaza kapağı.",
+      "detay": "Yüksek darbe dayanımı için takviyeli ABS kullanılarak üretilmiştir. Yüzey kaplamaya uygun, UV dayanımlı versiyonu da mevcuttur. Seri üretime uygun tek parça kalıp tasarımı.",
+      "malzeme": "ABS",
+      "tolerans_mm": "±0.05",
+      "uzunluk_mm": 148,
+      "genislik_mm": 96,
+      "yukseklik_mm": 22,
+      "agirlik_g": 64,
+      "sira": 1,
+      "on_anasayfa": true
+    },
+    {
+      "id": "p2",
+      "ad": "Çok Gözlü Enjeksiyon Kalıbı - 8 Göz",
+      "kategori": "Plastik Kalıp",
+      "gorsel": "images/placeholder.png",
+      "kisa_aciklama": "Yüksek hacimli seri üretim için 8 gözlü hassas enjeksiyon kalıbı.",
+      "detay": "CNC hassas işleme ile üretilen, sıcak yolluklu (hot runner) sistem içeren 8 gözlü kalıp. 500.000+ baskı ömrüne uygun sertleştirilmiş çelik gövde.",
+      "malzeme": "P20 Kalıp Çeliği",
+      "tolerans_mm": "±0.02",
+      "uzunluk_mm": 420,
+      "genislik_mm": 320,
+      "yukseklik_mm": 280,
+      "agirlik_g": 185000,
+      "sira": 2,
+      "on_anasayfa": true
+    },
+    {
+      "id": "p3",
+      "ad": "Dişli Kutusu Gövdesi",
+      "kategori": "Enjeksiyon Parça",
+      "gorsel": "images/placeholder.png",
+      "kisa_aciklama": "Otomotiv yan sanayi için yüksek mukavemetli dişli kutusu gövdesi.",
+      "detay": "Yüksek sıcaklık ve mekanik yüke dayanıklı cam elyaf takviyeli poliamid. Sızdırmazlık contası için özel oluk tasarımı içerir.",
+      "malzeme": "PA66 + %30 Cam Elyaf",
+      "tolerans_mm": "±0.03",
+      "uzunluk_mm": 210,
+      "genislik_mm": 140,
+      "yukseklik_mm": 85,
+      "agirlik_g": 310,
+      "sira": 3,
+      "on_anasayfa": true
+    }
+  ]
+}

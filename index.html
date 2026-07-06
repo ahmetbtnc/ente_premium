@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ente Metal Plastik | Plastik Kalıp Üretimi ve Enjeksiyon</title>
+<meta name="description" content="Ente Metal Plastik - Uzun yıllardır plastik kalıp üretimi ve enjeksiyon çözümleri. Hassas, güvenilir, seri üretime hazır.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='4' fill='%23121418' stroke='%23ff5a1f' stroke-width='2'/%3E%3Cpath d='M6 16h20M16 6v20' stroke='%23ff5a1f' stroke-dasharray='2 2' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='6' stroke='%23ff5a1f' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+<div class="page-loader" id="pageLoader">
+  <div class="loader-mark" aria-hidden="true"></div>
+  <p class="loader-text">Sistem Motoru Yükleniyor</p>
+</div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <div class="brand-logo-wrap" id="brandLogoContainer">
+        <svg class="brand-logo-svg" viewBox="0 0 32 32">
+          <rect x="2" y="2" width="28" height="28" rx="4" />
+          <path d="M6 16h20M16 6v20" stroke-dasharray="2 2" />
+          <circle cx="16" cy="16" r="6" stroke-width="2" />
+        </svg>
+      </div>
+      <span class="brand-text">ENTE <em>Metal Plastik</em></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#hakkimizda">Hakkımızda</a>
+      <a href="#hizmetler">Hizmetler</a>
+      <a href="urunler.html">Ürünler</a>
+      <a href="#neden-biz">Neden Biz</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+    <div class="nav-cta-wrapper">
+      <button class="nav-cta js-teklif-tetikleyici">Teklif Al</button>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Menüyü aç" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-particles" id="heroParticles" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow">Kalıp Üretimi &amp; Enjeksiyon Çözümleri</p>
+      <h1>Fikrinizi <span class="molten-text">mikron</span> hassasiyetle<br> parçaya dönüştürüyoruz.</h1>
+      <p class="hero-sub" id="heroSub">1998'den bu yana plastik kalıp tasarımı ve seri enjeksiyon üretiminde; otomotiv, elektronik ve beyaz eşya sektörlerine hizmet veriyoruz.</p>
+      <div class="hero-actions">
+        <a href="urunler.html" class="btn btn-primary">Ürünlerimizi İncele</a>
+        <button class="btn btn-ghost js-teklif-tetikleyici">Teklif Al</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" data-count="27">0</span><span class="stat-label">Yıllık Tecrübe</span></div>
+        <div class="stat"><span class="stat-num" data-count="600">0</span><span class="stat-label">Tamamlanan Kalıp</span></div>
+        <div class="stat"><span class="stat-num" data-count="0.02" data-decimal="true">0</span><span class="stat-label">mm Hassasiyet</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 420 420" class="mold-svg">
+        <defs>
+          <linearGradient id="moltenGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="var(--molten-light)" />
+            <stop offset="100%" stop-color="var(--molten)" />
+          </linearGradient>
+        </defs>
+        <rect x="40" y="40" width="340" height="340" rx="6" class="mold-body"/>
+        <rect x="40" y="40" width="340" height="340" rx="6" class="mold-body-outline"/>
+        <clipPath id="cavityClip">
+          <path d="M130 120 h160 a20 20 0 0 1 20 20 v50 a40 40 0 0 1 -30 38 v54 a20 20 0 0 1 -20 20 h-100 a20 20 0 0 1 -20 -20 v-54 a40 40 0 0 1 -30 -38 v-50 a20 20 0 0 1 20 -20 z"/>
+        </clipPath>
+        <path d="M130 120 h160 a20 20 0 0 1 20 20 v50 a40 40 0 0 1 -30 38 v54 a20 20 0 0 1 -20 20 h-100 a20 20 0 0 1 -20 -20 v-54 a40 40 0 0 1 -30 -38 v-50 a20 20 0 0 1 20 -20 z" class="mold-glow"/>
+        <path d="M130 120 h160 a20 20 0 0 1 20 20 v50 a40 40 0 0 1 -30 38 v54 a20 20 0 0 1 -20 20 h-100 a20 20 0 0 1 -20 -20 v-54 a40 40 0 0 1 -30 -38 v-50 a20 20 0 0 1 20 -20 z" class="cavity-outline"/>
+        <rect id="meltFill" x="90" y="330" width="240" height="0" clip-path="url(#cavityClip)" class="melt"/>
+        <path d="M210 40 L210 120" class="sprue"/>
+        <circle cx="210" cy="40" r="7" class="sprue-dot"/>
+        <g class="dim-lines">
+          <line x1="40" y1="400" x2="380" y2="400"/>
+          <line x1="40" y1="392" x2="40" y2="408"/>
+          <line x1="380" y1="392" x2="380" y2="408"/>
+          <text x="210" y="416" text-anchor="middle">148.00 mm</text>
+        </g>
+      </svg>
+      <p class="visual-caption">Akıllı Kalıp Enjeksiyon Döngüsü</p>
+    </div>
+  </div>
+</section>
+
+<section class="section about" id="hakkimizda">
+  <div class="section-inner about-grid">
+    <div class="about-tag reveal">
+      <p class="eyebrow">Biz Kimiz?</p>
+      <h2>Sektörde <span id="yearsSpan">27</span> yıllık tecrübe.</h2>
+    </div>
+    <div class="about-body reveal">
+      <p>Ente Metal Plastik olarak, plastik enjeksiyon kalıbı tasarımından seri imalata kadar uzanan tüm endüstriyel süreci kendi entegre tesislerimizde tek çatı altında yürütüyoruz.</p>
+      <div class="about-points">
+        <div class="point"><span class="dot"></span>Yüksek standartlı ISO üretim süreç entegrasyonu</div>
+        <div class="point"><span class="dot"></span>Bünyemizde CAD/CAM destekli kalıp tasarım laboratuvarı</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section services" id="hizmetler">
+  <div class="section-inner">
+    <p class="eyebrow center">Üretim Yeteneklerimiz</p>
+    <h2 class="section-title center">Kalıptan parçaya, tek elden yüksek kapasite.</h2>
+    <div class="service-cards">
+      <article class="service-card reveal">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12h32v6H8zM8 22h32v6H8zM8 32h20v6H8z"/></svg>
+        </div>
+        <h3>Plastik Kalıp Üretimi</h3>
+        <p>Hassas CNC dik işleme merkezlerimizde, çelik blokları mikron düzeyinde işleyerek uzun ömürlü seris üretim kalıpları üretiyoruz.</p>
+      </article>
+      <article class="service-card reveal">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M24 6v14M14 20h20l4 8v10H10V28z"/></svg>
+        </div>
+        <h3>Enjeksiyon Üretimi</h3>
+        <p>Yüksek tonajlı modern enjeksiyon preslerimizle; mühendislik plastikleri, ABS, PA, PC ve PP hammaddelerini hatasız basıyoruz.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div id="dynamicBlocksContainer"></div>
+
+<section class="section why" id="neden-biz">
+  <div class="section-inner">
+    <p class="eyebrow center">Endüstriyel Avantajlarımız</p>
+    <h2 class="section-title center">Maksimum kalite, sıfır hata toleransı.</h2>
+    <div class="why-grid">
+      <div class="why-item reveal"><span class="why-num">±0.02mm</span><p>Mekanik Tolerans Sınırı</p></div>
+      <div class="why-item reveal"><span class="why-num">7/24</span><p>Kesintisiz Üretim Vardiyası</p></div>
+      <div class="why-item reveal"><span class="why-num">%100</span><p>Numune Analiz Onayı</p></div>
+      <div class="why-item reveal"><span class="why-num">600+</span><p>Aktif Kalıp Portföyü</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section products" id="urunler">
+  <div class="section-inner">
+    <p class="eyebrow center">Katalog Özetimiz</p>
+    <h2 class="section-title center" id="oneCikanBaslik">Öne Çıkan Üretimlerimiz</h2>
+    <p class="section-desc center" id="oneCikanAciklama">Fabrikamızda seri üretimi gerçekleştirilen bazı parçaları ve kalıp detaylarını aşağıdan inceleyebilirsiniz.</p>
+    
+    <div class="featured-list" id="featuredList"></div>
+    
+    <div class="products-cta reveal">
+      <a href="urunler.html" class="btn btn-primary" id="tumUrunlerBtn">Tüm Ürün Kataloğunu Aç</a>
+    </div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="productModal">
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose" aria-label="Kapat">&times;</button>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="teklifModal">
+  <div class="modal-box" style="max-width: 580px;" role="dialog" aria-modal="true">
+    <button class="modal-close" id="teklifModalClose" aria-label="Kapat">&times;</button>
+    <div class="modal-content">
+      <h3 id="teklifFormTitle">Hızlı Teklif İsteyin</h3>
+      <p class="modal-detail-text" id="teklifFormDesc" style="margin-bottom: 24px;">Projenize ait verileri veya teknik çizimleri (.step, .iges, .dwg) paylaşarak fiyat teklifi alabilirsiniz.</p>
+      <form id="teklifAlmaFormu" class="teklif-formu">
+        <div class="form-group">
+          <label>Ad Soyad / Firma Unvanı *</label>
+          <input type="text" required placeholder="Örn: Ente Plastik Ltd. Şti.">
+        </div>
+        <div class="form-group">
+          <label>E-posta Adresiniz *</label>
+          <input type="email" required placeholder="firma@isim.com">
+        </div>
+        <div class="form-group" id="formTelGroup">
+          <label>Telefon Numaranız</label>
+          <input type="tel" id="formTelInput" placeholder="05xx xxx xx xx">
+        </div>
+        <div class="form-group">
+          <label>Proje ve Parça Açıklaması *</label>
+          <textarea required rows="4" placeholder="İstenen hammadde, yıllık baskı adeti ve parça detayları..."></textarea>
+        </div>
+        <div class="form-group" id="formDosyaGroup">
+          <label>Teknik Çizim Dosyası (CAD / 3D)</label>
+          <input type="file">
+        </div>
+        <button type="submit" class="btn btn-primary" style="justify-content:center; width: 100%;">Teklif Talebini Sisteme İlet</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<section class="section contact" id="iletisim">
+  <div class="section-inner contact-grid">
+    <div class="contact-info reveal">
+      <p class="eyebrow">Bize Ulaşın</p>
+      <h2>Yeni bir projeye mi başlıyorsunuz?</h2>
+      <div class="info-rows" id="infoRows"></div>
+      <a href="#" id="waButtonInline" class="btn btn-primary wa-btn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.6 0-3.1-.42-4.4-1.16l-.31-.18-3.01.79.8-2.93-.2-.3A7.94 7.94 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
+        WhatsApp Mühendislik Hattı
+      </a>
+    </div>
+    <div class="contact-map reveal">
+      <iframe id="mapFrame" src="" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="section-inner footer-grid">
+    <div>
+      <span class="brand-text footer-brand">ENTE <em>Metal Plastik</em></span>
+      <p class="footer-slogan" id="footerSlogan">Kalıp imalatında yüksek hassasiyetli sanayi çözümleri.</p>
+      <div class="footer-social" id="footerSocial"></div>
+    </div>
+    <div class="footer-links">
+      <a href="#hakkimizda">Hakkımızda</a>
+      <a href="#hizmetler">Hizmetler</a>
+      <a href="urunler.html">Ürünler</a>
+      <a href="#iletisim">İletişim</a>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; <span id="footerYear"></span> Ente Metal Plastik. Tüm Hakları Saklıdır.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="#" id="waFloat" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp ile İletişime Geçin">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.6 0-3.1-.42-4.4-1.16l-.31-.18-3.01.79.8-2.93-.2-.3A7.94 7.94 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.36-5.6c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.17-.7-.63-1.18-1.4-1.32-1.64-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+</a>
+
+<script src="js/main.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", function (user) {
+      if (!user) {
+        window.netlifyIdentity.on("login", function () {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+</body>
+</html>

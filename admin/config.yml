@@ -1,0 +1,173 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Yerel geliştirme için: terminalde "npm run cms" çalıştırın (decap-server).
+# Canlı sitede (Netlify) git-gateway + Identity kullanılır; bu satır zararsızdır.
+local_backend: true
+
+# Domain bağladıktan sonra aşağıdaki iki satırın başındaki # işaretini kaldırın:
+# site_url: https://siteniz.com
+# display_url: https://siteniz.com
+
+media_folder: "images"
+public_folder: "images"
+
+collections:
+  # ==========================================================================
+  # DÜZELTME: Eskiden burası TEK dev bir form olan "Genel Site Ayarları" idi
+  # (40+ alan üst üste, ayrıca içinde <span>, <br> gibi HTML kodları vardı).
+  # Şimdi konularına göre 7 ayrı, küçük ve isimlendirilmiş bölüme ayrıldı.
+  # Sol menüde "Site Ayarları" altında 7 ayrı kart olarak görünecek.
+  # HTML kodu içeren hiçbir metin alanı kalmadı; başlıklar parçalara bölünüp
+  # site tarafında otomatik birleştiriliyor.
+  # ==========================================================================
+  - name: "settings"
+    label: "Site Ayarları"
+    files:
+      - file: "data/settings/marka.json"
+        label: "1) Marka & Görünüm (Logo, Renkler)"
+        name: "marka"
+        fields:
+          - { label: "Firma Logosu — Sitenin sol üstündeki logo", name: "firma_logosu", widget: "image", required: false, hint: "Boş bırakılırsa varsayılan çizgi logo kullanılır." }
+          - { label: "Tarayıcı Sekmesi İkonu (Favicon)", name: "favicon_resmi", widget: "image", required: false }
+          - { label: "Şirket Sloganı (Footer'da görünür)", name: "slogan", widget: "string" }
+          - { label: "Kurumsal Ana Renk", name: "kurumsal_renk", widget: "color", hint: "Butonlar, vurgular ve turuncu detaylar bu renkte olur." }
+          - { label: "Teknik Detay Rengi", name: "teknik_renk", widget: "color" }
+
+      - file: "data/settings/hero.json"
+        label: "2) Ana Sayfa Giriş Bölümü (Hero)"
+        name: "hero"
+        fields:
+          - { label: "Küçük Üst Başlık", name: "hero_ust_baslik", widget: "string" }
+          - { label: "Büyük Başlık — 1. Bölüm (vurgudan önceki kısım)", name: "hero_baslik_on", widget: "string", hint: "Örnek: Fikrinizi" }
+          - { label: "Büyük Başlık — Vurgulanacak Kelime (turuncu/parlak gösterilir)", name: "hero_baslik_vurgu", widget: "string", hint: "Örnek: mikron" }
+          - { label: "Büyük Başlık — 2. Bölüm (vurgudan sonraki kısım)", name: "hero_baslik_orta", widget: "string", hint: "Örnek: hassasiyetle" }
+          - { label: "Büyük Başlık — Alt Satırı", name: "hero_baslik_alt_satir", widget: "string", hint: "Örnek: parçaya dönüştürüyoruz." }
+          - { label: "Açıklama Metni", name: "hero_alt_aciklama", widget: "text" }
+          - { label: "Katalog Buton Metni", name: "hero_urunler_btn_metni", widget: "string" }
+          - { label: "Kalıp Animasyonu Hızı (ms — büyük sayı = yavaş)", name: "hero_animasyon_hizi", widget: "number" }
+          - { label: "Arka Plan Kıvılcım Efekti", name: "parcacik_efekti_aktif", widget: "boolean" }
+          - { label: "1. Sayaç Başlığı", name: "sayac_1_isim", widget: "string" }
+          - { label: "1. Sayaç Sayısı", name: "sayac_1_deger", widget: "number" }
+          - { label: "2. Sayaç Başlığı", name: "sayac_2_isim", widget: "string" }
+          - { label: "2. Sayaç Sayısı", name: "sayac_2_deger", widget: "number" }
+          - { label: "3. Sayaç Başlığı", name: "sayac_3_isim", widget: "string" }
+          - { label: "3. Sayaç Sayısı", name: "sayac_3_deger", widget: "number", value_type: "float" }
+          - { label: "3. Sayaç Ondalıklı mı? (örn: 0.02)", name: "sayac_3_ondalikli", widget: "boolean" }
+
+      - file: "data/settings/hakkimizda.json"
+        label: "3) Hakkımızda & Hizmetlerimiz"
+        name: "hakkimizda"
+        fields:
+          - { label: "Kuruluş Yılı", name: "kurulus_yili", widget: "number", hint: "Sitedeki 'kaç yıllık tecrübe' yazısı bu yıla göre otomatik hesaplanır." }
+          - { label: "Başlık — Yıl Sayısından Önceki Kısım", name: "hakkimizda_baslik_on", widget: "string", hint: "Örnek: Sektörde" }
+          - { label: "Başlık — Yıl Sayısından Sonraki Kısım", name: "hakkimizda_baslik_son", widget: "string", hint: "Örnek: yıllık tecrübe. (Ekranda: Sektörde 27 yıllık tecrübe.)" }
+          - { label: "Açıklama Metni", name: "hakkimizda_aciklama", widget: "text" }
+          - label: "Vizyon Maddeleri (Her satır ayrı madde olur)"
+            name: "vizyon_maddeleri"
+            widget: "list"
+            label_singular: "Madde"
+            field: { label: "Madde Metni", name: "madde", widget: "string" }
+          - name: "hizmetler_listesi"
+            label: "Hizmet Kartları"
+            widget: "list"
+            summary: "{{fields.baslik}}"
+            fields:
+              - { label: "Hizmet Başlığı", name: "baslik", widget: "string" }
+              - { label: "Hizmet Açıklaması", name: "aciklama", widget: "text" }
+              - { label: "İkon SVG Kodu (Teknik alan — boş bırakabilirsiniz)", name: "ikon_svg", widget: "text", required: false }
+
+      - file: "data/settings/iletisim.json"
+        label: "4) İletişim Bilgileri & Konum"
+        name: "iletisim"
+        fields:
+          - { label: "Telefon Numarası (Sitede yazı olarak görünecek)", name: "telefon_goruntu", widget: "string" }
+          - { label: "WhatsApp Numarası (Boşluksuz, başında + olmadan — Örn: 905551112233)", name: "whatsapp_numara", widget: "string" }
+          - { label: "E-posta Adresi", name: "eposta", widget: "string" }
+          - { label: "Açık Adres (Sitede yazı olarak görünür)", name: "adres", widget: "text" }
+          - { label: "Çalışma Saatleri", name: "calisma_saatleri", widget: "string", required: false }
+          # DÜZELTME: Eskiden burada Google Haritalar'dan uzun bir "embed link"
+          # kopyalayıp yapıştırmak gerekiyordu — kod bilmeyen biri için çok
+          # karışıktı. Artık sadece adres/konum adı yazmak yeterli, harita
+          # otomatik oluşuyor.
+          - { label: "Haritada Görünecek Konum (Firma adı + adres yazmanız yeterli)", name: "firma_konumu", widget: "string", required: false, hint: "Örnek: Muğla Sıtkı Koçman Üniversitesi Teknopark. Google Haritalar linki yapıştırmanıza gerek yok, sadece konum adını/adresini yazın. Boş bırakılırsa yukarıdaki 'Açık Adres' kullanılır." }
+          - { label: "Instagram Linki (Boşsa ikon gizlenir)", name: "instagram", widget: "string", required: false }
+          - { label: "LinkedIn Linki (Boşsa ikon gizlenir)", name: "linkedin", widget: "string", required: false }
+
+      - file: "data/settings/urunler_bolumu.json"
+        label: "5) Ana Sayfa - Ürünler Bölümü Metinleri"
+        name: "urunler_bolumu"
+        fields:
+          - { label: "Öne Çıkanlar Başlığı", name: "oneCikanBaslik", widget: "string" }
+          - { label: "Öne Çıkanlar Açıklaması", name: "oneCikanAciklama", widget: "text" }
+          - { label: "'Tüm Ürünler' Buton Metni", name: "tum_urunler_buton_metni", widget: "string" }
+          - { label: "Menüdeki 'Teklif Al' Buton Metni", name: "nav_teklif_btn_metni", widget: "string" }
+          - { label: "Ürün Kartları Yeni Sekmede mi Açılsın?", name: "urun_kartlari_yeni_pencere", widget: "boolean" }
+
+      - file: "data/settings/teklif_formu.json"
+        label: "6) Teklif Formu Ayarları"
+        name: "teklif_formu"
+        fields:
+          - { label: "Teklif Formu Aktif mi?", name: "teklif_formu_aktif", widget: "boolean" }
+          - { label: "Form Başlığı", name: "teklif_formu_baslik", widget: "string" }
+          - { label: "Form Açıklaması", name: "teklif_formu_aciklama", widget: "text" }
+          - { label: "Telefon Alanı Gösterilsin mi?", name: "form_tel_aktif", widget: "boolean" }
+          - { label: "Telefon Alanı Zorunlu mu?", name: "form_tel_zorunlu", widget: "boolean" }
+          - { label: "Dosya Yükleme Alanı Gösterilsin mi?", name: "form_dosya_aktif", widget: "boolean" }
+
+      - file: "data/settings/ux.json"
+        label: "7) Gelişmiş Ayarlar (WhatsApp Butonları)"
+        name: "ux"
+        fields:
+          - { label: "Sağ Altta Yüzen WhatsApp Butonu Aktif mi?", name: "wa_float_aktif", widget: "boolean" }
+          - { label: "İletişim Bölümündeki WhatsApp Butonu Aktif mi?", name: "wa_inline_aktif", widget: "boolean" }
+
+  - name: "products"
+    label: "Ürün Kataloğu Yönetimi"
+    files:
+      - file: "data/products.json"
+        label: "Tüm Ürünler"
+        name: "urunler_dosyasi"
+        fields:
+          - name: "urunler"
+            label: "Ürünler"
+            widget: "list"
+            label_singular: "Ürün"
+            summary: "{{fields.ad}} — {{fields.kategori}}"
+            fields:
+              - { label: "Ürün Benzersiz ID (Küçük harf, İngilizce - Örn: motor-kapagi)", name: "id", widget: "string" }
+              - { label: "Ürün Adı", name: "ad", widget: "string" }
+              - { label: "Kategori", name: "kategori", widget: "select", options: ["Plastik Kalıp", "Enjeksiyon Parça", "Otomotiv", "Beyaz Eşya", "Elektronik"] }
+              - { label: "Ürün Görseli (Fotoğraf)", name: "gorsel", widget: "image" }
+              - { label: "Kısa Açıklama (Spoiler Kartında Görünecek)", name: "kisa_aciklama", widget: "string" }
+              - { label: "Detaylı Bilgi (Pop-up Açıldığında Görünecek)", name: "detay", widget: "text", required: false }
+              - { label: "Kullanılan Malzeme / Hammadde", name: "malzeme", widget: "string", default: "ABS / Polikarbonat" }
+              - { label: "Üretim Tolerans Değeri", name: "tolerans_mm", widget: "string", default: "±0.02mm" }
+              - { label: "Uzunluk (mm)", name: "uzunluk_mm", widget: "number", value_type: "float" }
+              - { label: "Genişlik (mm)", name: "genislik_mm", widget: "number", value_type: "float" }
+              - { label: "Yükseklik (mm)", name: "yukseklik_mm", widget: "number", value_type: "float" }
+              - { label: "Kalıp/Parça Ağırlığı (gram)", name: "agirlik_g", widget: "number", value_type: "float" }
+              - { label: "Sıralama (Küçük sayı önce gösterilir)", name: "sira", widget: "number", default: 10 }
+              - { label: "Ana Sayfada (Öne Çıkanlarda) Gösterilsin mi?", name: "on_anasayfa", widget: "boolean", default: false }
+
+  - name: "page_blocks"
+    label: "Esnek Sayfa Blokları"
+    files:
+      - file: "data/page_blocks.json"
+        label: "Dinamik Reklam ve Duyuru Blokları"
+        name: "blocks_list"
+        fields:
+          - name: "bloklar"
+            label: "Blok Ekle/Düzenle"
+            widget: "list"
+            types:
+              - name: "cta_blogu"
+                label: "Harekete Geçirici Mesaj (CTA) Reklam Bloğu"
+                widget: "object"
+                fields:
+                  - { label: "Blok Başlığı", name: "baslik", widget: "string" }
+                  - { label: "Açıklama Metni", name: "aciklama", widget: "text" }
+                  - { label: "Buton Metni", name: "btn_metni", widget: "string" }
+                  - { label: "Buton Linki (Yönlendirme URL)", name: "btn_link", widget: "string" }
+                  - { label: "Link Yeni Sekmede mi Açılsın?", name: "yeni_pencere", widget: "boolean", default: false }

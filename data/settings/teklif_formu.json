@@ -1,0 +1,8 @@
+{
+  "teklif_formu_aktif": true,
+  "teklif_formu_baslik": "Hızlı Teklif İsteyin",
+  "teklif_formu_aciklama": "Projenize ait verileri veya teknik çizimleri paylaşarak fiyat teklifi alabilirsiniz.",
+  "form_tel_aktif": true,
+  "form_tel_zorunlu": true,
+  "form_dosya_aktif": true
+}

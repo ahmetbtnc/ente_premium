@@ -1,0 +1,22 @@
+{
+  "kurulus_yili": 1998,
+  "hakkimizda_baslik_on": "Sektörde",
+  "hakkimizda_baslik_son": "yıllık tecrübe.",
+  "hakkimizda_aciklama": "Ente Metal Plastik olarak, plastik enjeksiyon kalıbı tasarımından seri imalata kadar uzanan tüm endüstriyel süreci kendi entegre tesislerimizde tek çatı altında yürütüyoruz.",
+  "vizyon_maddeleri": [
+    "Yüksek standartlı ISO üretim süreç entegrasyonu",
+    "Bünyemizde CAD/CAM destekli kalıp tasarım laboratuvarı"
+  ],
+  "hizmetler_listesi": [
+    {
+      "baslik": "Plastik Kalıp Üretimi",
+      "aciklama": "Hassas CNC dik işleme merkezlerimizde, çelik blokları mikron düzeyinde işleyerek uzun ömürlü seri üretim kalıpları üretiyoruz.",
+      "ikon_svg": ""
+    },
+    {
+      "baslik": "Enjeksiyon Üretimi",
+      "aciklama": "Yüksek tonajlı modern enjeksiyon preslerimizle; mühendislik plastikleri, ABS, PA, PC ve PP hammaddelerini hatasız basıyoruz.",
+      "ikon_svg": ""
+    }
+  ]
+}

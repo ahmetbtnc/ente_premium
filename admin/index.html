@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ENTE Metal Plastik | Yönetim Paneli</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    body { background: #14161a; color: #fff; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; font-family: 'Inter', sans-serif; }
+    .loader-wrap { text-align: center; }
+    .loader { border: 3px solid #1f2328; border-top: 3px solid #ff5a1f; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+    .loader-text { font-size: 14px; letter-spacing: 2px; color: #9aa2ab; text-transform: uppercase; }
+    .loader-hint { font-size: 12px; color: #666; margin-top: 12px; max-width: 320px; line-height: 1.5; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="loader-wrap" id="adminLoader">
+    <div class="loader"></div>
+    <div class="loader-text">Panel Yükleniyor...</div>
+    <p class="loader-hint" id="loaderHint">Giriş penceresi açılmazsa sayfayı yenileyin veya Netlify Identity davetinizi kontrol edin.</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.1.0/dist/decap-cms.js"></script>
+
+  <script>
+    (function () {
+      var loader = document.getElementById('adminLoader');
+      var isLocal = /localhost|127\.0\.0\.1/.test(window.location.hostname);
+
+      function hideLoader() {
+        if (loader) loader.style.display = 'none';
+      }
+
+      function guzelEtiket(key) {
+        return key.replace(/_/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+      }
+
+      function degerMetni(val) {
+        if (val === null || val === undefined || val === '') return '(boş)';
+        if (typeof val === 'boolean') return val ? '✓ Aktif' : '✗ Pasif';
+        if (typeof val === 'object') return JSON.stringify(val, null, 2);
+        return String(val);
+      }
+
+      function initPreviews() {
+        if (!window.CMS || !CMS.React) return;
+        var React = CMS.React;
+
+        function Onizleme(props) {
+          var data = props.entry.get('data').toJS();
+          var keys = Object.keys(data);
+          return React.createElement('div', {
+            style: {
+              background: '#0b0c0e', color: '#e8e8e8', minHeight: '100%',
+              padding: '32px', fontFamily: 'Inter, sans-serif'
+            }
+          },
+            React.createElement('div', {
+              style: {
+                fontSize: '13px', letterSpacing: '2px', textTransform: 'uppercase',
+                color: '#ff5a1f', marginBottom: '24px'
+              }
+            }, 'ENTE METAL PLASTİK — Önizleme'),
+            keys.map(function (key) {
+              return React.createElement('div', {
+                key: key,
+                style: {
+                  marginBottom: '20px', paddingBottom: '20px',
+                  borderBottom: '1px solid rgba(255,255,255,0.08)'
+                }
+              },
+                React.createElement('div', {
+                  style: { fontSize: '12px', color: '#00e5ff', marginBottom: '8px', fontWeight: '600' }
+                }, guzelEtiket(key)),
+                React.createElement('pre', {
+                  style: {
+                    whiteSpace: 'pre-wrap', fontSize: '13px', margin: 0,
+                    background: 'rgba(255,255,255,0.05)', padding: '10px', borderRadius: '6px'
+                  }
+                }, degerMetni(data[key]))
+              );
+            })
+          );
+        }
+
+        ['marka', 'hero', 'hakkimizda', 'iletisim', 'urunler_bolumu', 'teklif_formu', 'ux', 'urunler_dosyasi', 'blocks_list']
+          .forEach(function (ad) { CMS.registerPreviewTemplate(ad, Onizleme); });
+      }
+
+      if (window.CMS) {
+        CMS.registerEventListener({
+          init: function () {
+            hideLoader();
+            initPreviews();
+          }
+        });
+        initPreviews();
+      }
+
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', function (user) {
+          if (!user) {
+            window.netlifyIdentity.on('login', function () {
+              document.location.href = '/admin/';
+            });
+            if (!isLocal) {
+              window.netlifyIdentity.open('login');
+            } else {
+              var hint = document.getElementById('loaderHint');
+              if (hint) {
+                hint.textContent = 'Yerel test: başka terminalde "npm run cms" çalıştırın, ardından sayfayı yenileyin.';
+              }
+            }
+          } else {
+            hideLoader();
+          }
+        });
+      } else if (isLocal) {
+        setTimeout(hideLoader, 1500);
+      }
+    })();
+  </script>
+</body>
+</html>
