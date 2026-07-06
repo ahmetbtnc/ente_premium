@@ -75,6 +75,13 @@ GitHub OAuth ayarı gerekir.
 hazırdır. OAuth adresi hazır olduğunda bu backend ayarı `admin/config.yml` içine
 taşınır.
 
+Admin arayüzünü giriş yapmadan gezmek için test paneli vardır:
+
+- `https://ente-premium.pages.dev/admin-test/`
+
+Bu test paneli siteye yayın yapmaz; sadece alanları, formları ve önizleme düzenini
+kontrol etmek içindir. Canlı düzenleme için `/admin/` kullanılacaktır.
+
 ## Yerel test
 
 Statik siteyi dosyaya çift tıklayarak açmak yerine küçük bir yerel sunucu ile aç:
