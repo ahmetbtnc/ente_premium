@@ -249,20 +249,21 @@ body.has-announcement .catalog-header {
 .brand {
   text-decoration: none;
   color: #ffffff;
-  width: 300px;
+  width: 340px;
+  white-space: nowrap;
 }
 
 .brand-logo-wrap {
   display: inline-block;
   vertical-align: middle;
-  width: 44px;
-  height: 44px;
-  margin-right: 12px;
+  width: 48px;
+  height: 48px;
+  margin-right: 14px;
   position: relative;
-  border-radius: 11px;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
-  background: #0b0c0e;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32), 0 0 0 1px rgba(255,255,255,0.06);
+  background: linear-gradient(145deg, #11151b, #08090b);
 }
 
 .brand-logo-img {
@@ -270,6 +271,7 @@ body.has-announcement .catalog-header {
   height: 100%;
   object-fit: contain;
   display: block;
+  padding: 0;
 }
 
 .brand-logo-svg {
@@ -283,17 +285,17 @@ body.has-announcement .catalog-header {
 .brand-text {
   display: inline-block;
   vertical-align: middle;
-  font-size: 18px;
-  letter-spacing: 0.5px;
+  font-size: 21px;
+  letter-spacing: 0;
   line-height: 1.05;
 }
 
 .brand-text em {
   font-style: normal;
   color: var(--text-dim);
-  font-weight: 400;
-  font-size: 14px;
-  margin-left: 4px;
+  font-weight: 600;
+  font-size: 16px;
+  margin-left: 7px;
 }
 
 .nav-links {
@@ -1338,9 +1340,9 @@ body.has-announcement .catalog-header {
 
 /* En alt logo bandı */
 .logo-strip-section {
-  background: #090a0c;
+  background: linear-gradient(180deg, #090a0c 0%, #07080a 100%);
   border-top: 1px solid var(--steel-light);
-  padding: 56px 0;
+  padding: 64px 0;
 }
 
 .logo-strip-section[hidden] {
@@ -1349,50 +1351,92 @@ body.has-announcement .catalog-header {
 
 .logo-strip-inner {
   display: grid;
-  grid-template-columns: minmax(220px, 320px) 1fr;
-  gap: 36px;
+  grid-template-columns: minmax(260px, 390px) 1fr;
+  gap: 44px;
   align-items: center;
 }
 
 .logo-strip-copy h2 {
-  font-size: 24px;
-  letter-spacing: -0.4px;
+  font-size: 26px;
+  letter-spacing: 0;
   margin-bottom: 10px;
 }
 
 .logo-strip-copy p {
-  font-size: 13.5px;
+  font-size: 14.5px;
   color: var(--steel);
+  line-height: 1.7;
 }
 
 .logo-strip-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
 }
 
 .logo-strip-item {
-  min-height: 78px;
-  background: var(--surface);
+  min-height: 104px;
+  background: linear-gradient(135deg, rgba(20,22,26,0.96), rgba(11,12,14,0.98));
   border: 1px solid var(--steel-light);
-  border-radius: 6px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  padding: 20px;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 a.logo-strip-item:hover {
   border-color: var(--molten);
   transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.22);
 }
 
 .logo-strip-item img {
   max-width: 100%;
-  max-height: 46px;
+  max-height: 68px;
   object-fit: contain;
   display: block;
+}
+
+.logo-strip-item.is-primary {
+  justify-content: flex-start;
+  gap: 18px;
+  min-height: 118px;
+}
+
+.logo-strip-item.is-primary img {
+  width: 72px;
+  height: 72px;
+  max-width: 72px;
+  max-height: 72px;
+  flex: 0 0 auto;
+}
+
+.logo-strip-name {
+  display: block;
+  color: #fff;
+  font-family: var(--font-title);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+
+.logo-strip-name em {
+  color: var(--text-dim);
+  font-style: normal;
+  font-size: 15px;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+.logo-strip-note {
+  display: block;
+  margin-top: 7px;
+  color: var(--steel);
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 /* Alt Bilgi (Footer) */
@@ -1525,6 +1569,10 @@ body.no-scroll {
   body.has-announcement .catalog-header { padding-top: 188px; }
   .nav-links, .nav-cta-wrapper { display: none; }
   .nav-burger { display: inline-block; position: absolute; right: 24px; top: 22px; }
+  .brand { width: auto; }
+  .brand-logo-wrap { width: 42px; height: 42px; margin-right: 10px; border-radius: 12px; }
+  .brand-text { font-size: 18px; }
+  .brand-text em { font-size: 13px; margin-left: 5px; }
   
   .nav-links.open-mobile {
     display: flex;
@@ -1583,10 +1631,18 @@ body.no-scroll {
   .footer-links, .footer-legal { text-align: left; margin-top: 32px; }
   .footer-links a { display: block; margin: 12px 0; }
   .logo-strip-inner { grid-template-columns: 1fr; gap: 24px; }
-  .logo-strip-grid { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
+  .logo-strip-grid { grid-template-columns: 1fr; }
+  .logo-strip-item.is-primary { min-height: auto; }
 }
 
 @media (max-width: 480px) {
+  .brand-logo-wrap { width: 38px; height: 38px; }
+  .brand-text { font-size: 16px; }
+  .brand-text em { display: block; margin-left: 0; margin-top: 2px; font-size: 12px; }
+  .logo-strip-item.is-primary { align-items: flex-start; gap: 14px; }
+  .logo-strip-item.is-primary img { width: 58px; height: 58px; max-width: 58px; max-height: 58px; }
+  .logo-strip-name { font-size: 17px; }
+  .logo-strip-name em { display: block; margin-left: 0; margin-top: 2px; }
   .hero-copy h1 { font-size: 34px; }
   .hero-actions { flex-direction: column; gap: 12px; }
   .hero-stats { gap: 24px; flex-wrap: wrap; }

@@ -709,7 +709,11 @@ function renderLogoStrip(s) {
   if (!wrap) return;
   let logos = Array.isArray(s.alt_logolar) ? s.alt_logolar.filter(l => l && l.gorsel) : [];
   if (!logos.length && s.firma_logosu) {
-    logos = [{ ad: `${s.firma_adi_1 || 'ENTE'} ${s.firma_adi_2 || 'Metal Plastik'}`, gorsel: s.firma_logosu }];
+    logos = [{
+      ad: `${s.firma_adi_1 || 'ENTE'} ${s.firma_adi_2 || 'Metal Plastik'}`,
+      gorsel: s.firma_logosu,
+      primary: true
+    }];
   }
   if (!logos.length) {
     wrap.hidden = true;
@@ -726,10 +730,18 @@ function renderLogoStrip(s) {
       </div>
       <div class="logo-strip-grid">
         ${logos.map(logo => {
+          const isPrimary = logo.primary || logos.length === 1;
           const img = `<img src="${esc(logo.gorsel)}" alt="${esc(logo.ad || 'Logo')}" loading="lazy">`;
+          const primaryCopy = isPrimary ? `
+            <span class="logo-strip-meta">
+              <span class="logo-strip-name">${brandMarkup(s)}</span>
+              <span class="logo-strip-note">${esc(s.slogan || 'Güvenilir üretim ve pratik ürün çözümleri.')}</span>
+            </span>
+          ` : '';
+          const content = `${img}${primaryCopy}`;
           return logo.link
-            ? `<a class="logo-strip-item" href="${esc(logo.link)}" target="_blank" rel="noopener" aria-label="${esc(logo.ad || 'Logo')}">${img}</a>`
-            : `<div class="logo-strip-item">${img}</div>`;
+            ? `<a class="logo-strip-item ${isPrimary ? 'is-primary' : ''}" href="${esc(logo.link)}" target="_blank" rel="noopener" aria-label="${esc(logo.ad || 'Logo')}">${content}</a>`
+            : `<div class="logo-strip-item ${isPrimary ? 'is-primary' : ''}">${content}</div>`;
         }).join('')}
       </div>
     </div>
