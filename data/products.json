@@ -1,22 +1,6 @@
 {
   "urunler": [
     {
-      "kisa_aciklama": "Farklı kullanım alanları için hediyelik eşya seçenekleri.",
-      "ad": "Hediyelik Eşya Ürünleri",
-      "sira": 2,
-      "kategori": "Hediyelik Eşya",
-      "agirlik_g": 65,
-      "genislik_mm": 45,
-      "detay": "Hediyelik eşya taleplerinizde ürün tipi, adet ve varsa örnek görsel paylaşarak hızlı bilgi alabilirsiniz. Katalog içeriği admin panelinden kolayca güncellenebilir.",
-      "gorsel": "images/placeholder.png",
-      "on_anasayfa": true,
-      "tolerans_mm": "Talebe göre",
-      "uzunluk_mm": 15,
-      "id": "hediyelik-esya",
-      "yukseklik_mm": 80,
-      "malzeme": "Ürüne göre değişir"
-    },
-    {
       "kisa_aciklama": "Koltuk sistemleri için PVC körük ürün talepleri.",
       "ad": "PVC Koltuk Körüğü",
       "sira": 1,
@@ -33,26 +17,10 @@
       "malzeme": "PVC"
     },
     {
-      "kisa_aciklama": "Katalogda yer almayan ürünler için özel talep alanı.",
-      "ad": "Diğer Ürün Talepleri",
-      "sira": 99,
-      "kategori": "Diğer",
-      "agirlik_g": 0,
-      "genislik_mm": 0,
-      "detay": "Aradığınız ürün katalogda yoksa ürün adı, görsel, ölçü veya adet bilgisini paylaşarak bize ulaşabilirsiniz. Size uygun yönlendirme yapılır.",
-      "gorsel": "images/placeholder.png",
-      "on_anasayfa": true,
-      "tolerans_mm": "Talebe göre",
-      "uzunluk_mm": 0,
-      "id": "diger-urunler",
-      "yukseklik_mm": 0,
-      "malzeme": "Talebe göre değişir"
-    },
-    {
       "kisa_aciklama": "Deodorant kapak, gövde ve özel plastik parça talepleri için üretim çözümleri.",
-      "ad": "Deodorant Ürünleri",
+      "ad": "Deodorant Başlığı",
       "sira": 3,
-      "kategori": "Deodorant",
+      "kategori": "Deodorant Başlığı",
       "agirlik_g": 0,
       "genislik_mm": 0,
       "detay": "Deodorant ürün grubu için kapak, gövde, numune, ölçü veya adet bilgisini paylaşarak hızlı teklif alabilirsiniz. Yeni ürün çeşitleri admin panelinden bu başlık altında yönetilebilir.",
@@ -63,6 +31,22 @@
       "id": "deodorant-urunleri",
       "yukseklik_mm": 0,
       "malzeme": "Talebe göre değişir"
+    },
+    {
+      "kisa_aciklama": "Farklı kullanım alanları için hediyelik eşya seçenekleri.",
+      "ad": "Hediyelik Eşya Ürünleri",
+      "sira": 2,
+      "kategori": "Hediyelik Eşya",
+      "agirlik_g": 65,
+      "genislik_mm": 45,
+      "detay": "Hediyelik eşya taleplerinizde ürün tipi, adet ve varsa örnek görsel paylaşarak hızlı bilgi alabilirsiniz. Katalog içeriği admin panelinden kolayca güncellenebilir.",
+      "gorsel": "images/placeholder.png",
+      "on_anasayfa": true,
+      "tolerans_mm": "Talebe göre",
+      "uzunluk_mm": 15,
+      "id": "hediyelik-esya",
+      "yukseklik_mm": 80,
+      "malzeme": "Ürüne göre değişir"
     },
     {
       "kisa_aciklama": "Yeni ürün ve özel parça projeleri için kalıp üretimi desteği.",
@@ -95,6 +79,22 @@
       "id": "enjeksiyon-baski-uretimi",
       "yukseklik_mm": 0,
       "malzeme": "ABS / PP / PE / PVC / Projeye göre"
+    },
+    {
+      "kisa_aciklama": "Katalogda yer almayan ürünler için özel talep alanı.",
+      "ad": "Diğer Ürün Talepleri",
+      "sira": 99,
+      "kategori": "Diğer Ürünler",
+      "agirlik_g": 0,
+      "genislik_mm": 0,
+      "detay": "Aradığınız ürün katalogda yoksa ürün adı, görsel, ölçü veya adet bilgisini paylaşarak bize ulaşabilirsiniz. Size uygun yönlendirme yapılır.",
+      "gorsel": "images/placeholder.png",
+      "on_anasayfa": true,
+      "tolerans_mm": "Talebe göre",
+      "uzunluk_mm": 0,
+      "id": "diger-urunler",
+      "yukseklik_mm": 0,
+      "malzeme": "Talebe göre değişir"
     },
     {
       "kisa_aciklama": "Katalog dışı özel plastik parça ve proje bazlı üretim talepleri.",
