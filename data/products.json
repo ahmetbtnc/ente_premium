@@ -35,7 +35,7 @@
     {
       "kisa_aciklama": "Katalogda yer almayan ürünler için özel talep alanı.",
       "ad": "Diğer Ürün Talepleri",
-      "sira": 3,
+      "sira": 4,
       "kategori": "Diğer",
       "agirlik_g": 0,
       "genislik_mm": 0,
@@ -45,6 +45,22 @@
       "tolerans_mm": "Talebe göre",
       "uzunluk_mm": 0,
       "id": "diger-urunler",
+      "yukseklik_mm": 0,
+      "malzeme": "Talebe göre değişir"
+    },
+    {
+      "kisa_aciklama": "Deodorant kapak, gövde ve özel plastik parça talepleri için üretim çözümleri.",
+      "ad": "Deodorant Ürünleri",
+      "sira": 3,
+      "kategori": "Deodorant",
+      "agirlik_g": 0,
+      "genislik_mm": 0,
+      "detay": "Deodorant ürün grubu için kapak, gövde, numune, ölçü veya adet bilgisini paylaşarak hızlı teklif alabilirsiniz. Yeni ürün çeşitleri admin panelinden bu başlık altında yönetilebilir.",
+      "gorsel": "images/placeholder.png",
+      "on_anasayfa": true,
+      "tolerans_mm": "Talebe göre",
+      "uzunluk_mm": 0,
+      "id": "deodorant-urunleri",
       "yukseklik_mm": 0,
       "malzeme": "Talebe göre değişir"
     }

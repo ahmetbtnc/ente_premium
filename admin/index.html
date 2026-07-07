@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ENTE Metal Plastik | Yönetim Paneli</title>
+  <title>ENTE Metal Plastik | YÃ¶netim Paneli</title>
   <style>
-    /* CMS kendi layout'unu kullanır — body'ye flex/center VERME */
+    /* CMS kendi layout'unu kullanÄ±r â€” body'ye flex/center VERME */
     html, body { margin: 0; padding: 0; height: 100%; background: #fff; }
 
-    /* Yükleme ekranı: sabit katman, CMS hazır olunca tamamen kaldırılır */
+    /* YÃ¼kleme ekranÄ±: sabit katman, CMS hazÄ±r olunca tamamen kaldÄ±rÄ±lÄ±r */
     #adminLoader {
       position: fixed;
       inset: 0;
@@ -26,7 +26,7 @@
     .loader-box { text-align: center; padding: 24px; }
     .loader-spin {
       border: 3px solid #1f2328;
-      border-top: 3px solid #ff5a1f;
+      border-top: 3px solid #00b7ff;
       border-radius: 50%;
       width: 48px; height: 48px;
       animation: spin 0.9s linear infinite;
@@ -46,7 +46,7 @@
   <div id="adminLoader" aria-live="polite" aria-busy="true">
     <div class="loader-box">
       <div class="loader-spin"></div>
-      <div class="loader-title">Panel Yükleniyor</div>
+      <div class="loader-title">Panel YÃ¼kleniyor</div>
     </div>
   </div>
 
@@ -71,7 +71,7 @@
       }, 400);
     }
 
-    /* ---- Önizleme stilleri ---- */
+    /* ---- Ã–nizleme stilleri ---- */
     if (window.CMS) {
       CMS.registerPreviewStyle('/admin/preview.css');
     }
@@ -105,15 +105,15 @@
       return val;
     }
 
-    /* Her alan tipine göre zengin görsel önizleme */
+    /* Her alan tipine gÃ¶re zengin gÃ¶rsel Ã¶nizleme */
     function degerGoster(val, getAsset) {
       if (val === null || val === undefined || val === '') {
-        return h('span', { className: 'preview-empty' }, '(boş)');
+        return h('span', { className: 'preview-empty' }, '(boÅŸ)');
       }
       if (typeof val === 'boolean') {
         return h('span', {
           className: 'preview-badge ' + (val ? 'on' : 'off')
-        }, val ? '✓ Aktif' : '✗ Pasif');
+        }, val ? 'âœ“ Aktif' : 'âœ— Pasif');
       }
       if (renkMi(val)) {
         return h('div', { className: 'preview-color-row' },
@@ -123,10 +123,10 @@
       }
       if (gorselMi(val)) {
         var src = gorselSrc(val, getAsset);
-        return h('img', { src: src, className: 'preview-img', alt: 'Önizleme' });
+        return h('img', { src: src, className: 'preview-img', alt: 'Ã–nizleme' });
       }
       if (Array.isArray(val)) {
-        if (val.length === 0) return h('span', { className: 'preview-empty' }, '(liste boş)');
+        if (val.length === 0) return h('span', { className: 'preview-empty' }, '(liste boÅŸ)');
         if (typeof val[0] === 'object' && val[0] !== null) {
           return h('div', {},
             val.map(function (item, i) {
@@ -157,7 +157,7 @@
       return h('div', { className: 'preview-text' }, String(val));
     }
 
-    /* Genel önizleme — tüm ayar dosyaları */
+    /* Genel Ã¶nizleme â€” tÃ¼m ayar dosyalarÄ± */
     var GenelOnizleme = createClass({
       render: function () {
         var entry = this.props.entry;
@@ -166,7 +166,7 @@
         var keys = Object.keys(dataJS);
 
         return h('div', { className: 'preview-root' },
-          h('div', { className: 'preview-brand' }, 'Canlı Önizleme — Değişiklikleriniz'),
+          h('div', { className: 'preview-brand' }, 'CanlÄ± Ã–nizleme â€” DeÄŸiÅŸiklikleriniz'),
           keys.map(function (key) {
             return h('div', { key: key, className: 'preview-field' },
               h('div', { className: 'preview-label' }, guzelEtiket(key)),
@@ -177,7 +177,7 @@
       }
     });
 
-    /* Hero bölümü — siteye benzer mockup */
+    /* Hero bÃ¶lÃ¼mÃ¼ â€” siteye benzer mockup */
     var HeroOnizleme = createClass({
       render: function () {
         var d = this.props.entry.get('data').toJS();
@@ -187,7 +187,7 @@
           (d.hero_baslik_orta || '') + ' ' + (d.hero_baslik_alt_satir || '');
 
         return h('div', { className: 'preview-root' },
-          h('div', { className: 'preview-brand' }, 'Ana Sayfa Hero Önizlemesi'),
+          h('div', { className: 'preview-brand' }, 'Ana Sayfa Hero Ã–nizlemesi'),
           h('div', { className: 'preview-hero-mock' },
             d.hero_ust_baslik && h('div', { className: 'eyebrow' }, d.hero_ust_baslik),
             h('h1', {},
@@ -214,7 +214,7 @@
             )
           ),
           h('div', { style: { marginTop: '24px' } },
-            h('div', { className: 'preview-label' }, 'Tüm Alanlar'),
+            h('div', { className: 'preview-label' }, 'TÃ¼m Alanlar'),
             Object.keys(d).map(function (key) {
               return h('div', { key: key, className: 'preview-field' },
                 h('div', { className: 'preview-label' }, guzelEtiket(key)),
@@ -226,13 +226,13 @@
       }
     });
 
-    /* Marka — logo ve renkler */
+    /* Marka â€” logo ve renkler */
     var MarkaOnizleme = createClass({
       render: function () {
         var d = this.props.entry.get('data').toJS();
         var getAsset = this.props.getAsset;
         return h('div', { className: 'preview-root' },
-          h('div', { className: 'preview-brand' }, 'Marka & Görünüm Önizlemesi'),
+          h('div', { className: 'preview-brand' }, 'Marka & GÃ¶rÃ¼nÃ¼m Ã–nizlemesi'),
           d.firma_logosu && h('div', { className: 'preview-field' },
             h('div', { className: 'preview-label' }, 'Logo'),
             degerGoster(d.firma_logosu, getAsset)
@@ -258,7 +258,7 @@
       }
     });
 
-    /* Ürün kataloğu — kart grid */
+    /* ÃœrÃ¼n kataloÄŸu â€” kart grid */
     var UrunlerOnizleme = createClass({
       render: function () {
         var d = this.props.entry.get('data').toJS();
@@ -266,9 +266,9 @@
         var urunler = d.urunler || [];
 
         return h('div', { className: 'preview-root' },
-          h('div', { className: 'preview-brand' }, 'Ürün Kataloğu Önizlemesi (' + urunler.length + ' ürün)'),
+          h('div', { className: 'preview-brand' }, 'ÃœrÃ¼n KataloÄŸu Ã–nizlemesi (' + urunler.length + ' Ã¼rÃ¼n)'),
           urunler.length === 0
-            ? h('span', { className: 'preview-empty' }, 'Henüz ürün eklenmedi.')
+            ? h('span', { className: 'preview-empty' }, 'HenÃ¼z Ã¼rÃ¼n eklenmedi.')
             : h('div', { className: 'preview-product-grid' },
                 urunler.map(function (p, i) {
                   var imgSrc = gorselSrc(p.gorsel, getAsset) || '/images/placeholder.png';
@@ -276,8 +276,8 @@
                     h('img', { src: imgSrc, alt: p.ad || '' }),
                     h('div', { className: 'body' },
                       h('div', { className: 'cat' }, p.kategori || ''),
-                      h('h4', {}, p.ad || 'İsimsiz'),
-                      p.on_anasayfa && h('span', { className: 'preview-badge on', style: { marginTop: '6px' } }, 'Öne Çıkan')
+                      h('h4', {}, p.ad || 'Ä°simsiz'),
+                      p.on_anasayfa && h('span', { className: 'preview-badge on', style: { marginTop: '6px' } }, 'Ã–ne Ã‡Ä±kan')
                     )
                   );
                 })
@@ -286,16 +286,16 @@
       }
     });
 
-    /* CTA blokları */
+    /* CTA bloklarÄ± */
     var BloklarOnizleme = createClass({
       render: function () {
         var d = this.props.entry.get('data').toJS();
         var bloklar = d.bloklar || [];
 
         return h('div', { className: 'preview-root' },
-          h('div', { className: 'preview-brand' }, 'Dinamik Blok Önizlemesi'),
+          h('div', { className: 'preview-brand' }, 'Dinamik Blok Ã–nizlemesi'),
           bloklar.length === 0
-            ? h('span', { className: 'preview-empty' }, 'Henüz blok eklenmedi.')
+            ? h('span', { className: 'preview-empty' }, 'HenÃ¼z blok eklenmedi.')
             : bloklar.map(function (b, i) {
                 if (b.type !== 'cta_blogu') return null;
                 return h('div', { key: i, className: 'preview-cta-mock', style: { marginBottom: '16px' } },
@@ -326,10 +326,10 @@
 
     registerAllPreviews();
     } else {
-      console.warn('[ENTE Admin] Önizleme yardımcıları yüklenemedi — panel yine de çalışır.');
+      console.warn('[ENTE Admin] Ã–nizleme yardÄ±mcÄ±larÄ± yÃ¼klenemedi â€” panel yine de Ã§alÄ±ÅŸÄ±r.');
     }
 
-    /* nc-root DOM'a eklenince de kaldır (yedek) */
+    /* nc-root DOM'a eklenince de kaldÄ±r (yedek) */
     var domObs = new MutationObserver(function () {
       if (document.getElementById('nc-root') || document.querySelector('.css-1q2txqj-AppMainContainer, [class*="AppHeader"]')) {
         removeLoader();
@@ -340,11 +340,12 @@
       domObs.observe(document.body, { childList: true, subtree: true });
     }
 
-    /* En geç 2 saniye sonra loader gitsin */
+    /* En geÃ§ 2 saniye sonra loader gitsin */
     setTimeout(removeLoader, 2000);
 
-    /* Netlify Identity — giriş sonrası admin'e dön */
+    /* Netlify Identity â€” giriÅŸ sonrasÄ± admin'e dÃ¶n */
   })();
   </script>
 </body>
 </html>
+

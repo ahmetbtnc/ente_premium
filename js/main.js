@@ -14,6 +14,16 @@ function esc(str) {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+function applyAccentColor(color) {
+  if (!color) return;
+  const root = document.documentElement;
+  root.style.setProperty('--molten', color);
+  root.style.setProperty('--molten-light', `color-mix(in srgb, ${color} 58%, #ffffff 42%)`);
+  root.style.setProperty('--accent-soft', `color-mix(in srgb, ${color} 10%, transparent)`);
+  root.style.setProperty('--accent-mid', `color-mix(in srgb, ${color} 26%, transparent)`);
+  root.style.setProperty('--accent-strong', `color-mix(in srgb, ${color} 45%, transparent)`);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initPageLoader();
   initNav();
@@ -298,7 +308,7 @@ async function loadSettings() {
     applySiteChrome(s);
     
     // Dinamik Tema Renk Atamaları
-    if (s.kurumsal_renk) document.documentElement.style.setProperty('--molten', s.kurumsal_renk);
+    if (s.kurumsal_renk) applyAccentColor(s.kurumsal_renk);
     if (s.teknik_renk) document.documentElement.style.setProperty('--spec', s.teknik_renk);
 
     // Üst Seviye Dinamik Logo Enjeksiyonu

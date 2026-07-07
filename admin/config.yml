@@ -62,7 +62,7 @@ collections:
           - { label: "Firma Logosu — Sitenin sol üstündeki logo", name: "firma_logosu", widget: "image", required: false, hint: "Boş bırakılırsa varsayılan çizgi logo kullanılır." }
           - { label: "Tarayıcı Sekmesi İkonu (Favicon)", name: "favicon_resmi", widget: "image", required: false }
           - { label: "Şirket Sloganı (Footer'da görünür)", name: "slogan", widget: "string" }
-          - { label: "Kurumsal Ana Renk", name: "kurumsal_renk", widget: "color", hint: "Butonlar, vurgular ve turuncu detaylar bu renkte olur." }
+          - { label: "Kurumsal Ana Renk", name: "kurumsal_renk", widget: "color", hint: "Butonlar, vurgular ve neon detaylar bu renkte olur." }
           - { label: "Teknik Detay Rengi", name: "teknik_renk", widget: "color" }
           - { label: "En Alt Logo Alanı Başlığı", name: "alt_logo_baslik", widget: "string", required: false }
           - { label: "En Alt Logo Alanı Açıklaması", name: "alt_logo_aciklama", widget: "text", required: false }
@@ -83,7 +83,7 @@ collections:
         fields:
           - { label: "Küçük Üst Başlık", name: "hero_ust_baslik", widget: "string" }
           - { label: "Büyük Başlık — 1. Bölüm (vurgudan önceki kısım)", name: "hero_baslik_on", widget: "string", hint: "Örnek: Fikrinizi" }
-          - { label: "Büyük Başlık — Vurgulanacak Kelime (turuncu/parlak gösterilir)", name: "hero_baslik_vurgu", widget: "string", hint: "Örnek: mikron" }
+          - { label: "Büyük Başlık — Vurgulanacak Kelime (renkli/parlak gösterilir)", name: "hero_baslik_vurgu", widget: "string", hint: "Örnek: mikron" }
           - { label: "Büyük Başlık — 2. Bölüm (vurgudan sonraki kısım)", name: "hero_baslik_orta", widget: "string", hint: "Örnek: hassasiyetle" }
           - { label: "Büyük Başlık — Alt Satırı", name: "hero_baslik_alt_satir", widget: "string", hint: "Örnek: parçaya dönüştürüyoruz." }
           - { label: "Açıklama Metni", name: "hero_alt_aciklama", widget: "text" }

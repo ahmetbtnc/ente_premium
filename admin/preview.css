@@ -1,4 +1,4 @@
-/* Admin önizleme paneli — site temasıyla uyumlu */
+﻿/* Admin Ã¶nizleme paneli â€” site temasÄ±yla uyumlu */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 .preview-root {
@@ -15,10 +15,10 @@
   font-size: 12px;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: #ff5a1f;
+  color: #00b7ff;
   margin-bottom: 28px;
   padding-bottom: 16px;
-  border-bottom: 1px solid rgba(255, 90, 31, 0.25);
+  border-bottom: 1px solid rgba(0, 183, 255, 0.25);
 }
 
 .preview-field {
@@ -92,7 +92,7 @@
 
 .preview-hero-mock {
   background: linear-gradient(135deg, #14161a 0%, #1a1d24 100%);
-  border: 1px solid rgba(255, 90, 31, 0.2);
+  border: 1px solid rgba(0, 183, 255, 0.2);
   border-radius: 12px;
   padding: 28px;
   margin-top: 8px;
@@ -115,7 +115,7 @@
 }
 
 .preview-hero-mock .molten {
-  color: #ff5a1f;
+  color: #00b7ff;
 }
 
 .preview-hero-mock p {
@@ -178,7 +178,7 @@
   display: block;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 22px;
-  color: #ff5a1f;
+  color: #00b7ff;
   font-weight: 700;
 }
 
@@ -188,8 +188,8 @@
 }
 
 .preview-cta-mock {
-  background: linear-gradient(135deg, rgba(255, 90, 31, 0.12), rgba(0, 229, 255, 0.06));
-  border: 1px solid rgba(255, 90, 31, 0.25);
+  background: linear-gradient(135deg, rgba(0, 183, 255, 0.12), rgba(0, 229, 255, 0.06));
+  border: 1px solid rgba(0, 183, 255, 0.25);
   border-radius: 12px;
   padding: 24px;
   text-align: center;
@@ -211,7 +211,7 @@
 
 .preview-btn {
   display: inline-block;
-  background: #ff5a1f;
+  background: #00b7ff;
   color: #fff;
   padding: 10px 20px;
   border-radius: 4px;
@@ -245,3 +245,4 @@
   font-size: 14px;
   color: #d0d4da;
 }
+

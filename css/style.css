@@ -8,8 +8,11 @@
   --bg: #0b0c0e;
   --surface: #121418;
   --surface-card: #181b21;
-  --molten: #ff5a1f;
-  --molten-light: #ff7d4d;
+  --molten: #00b7ff;
+  --molten-light: color-mix(in srgb, var(--molten) 58%, #ffffff 42%);
+  --accent-soft: color-mix(in srgb, var(--molten) 10%, transparent);
+  --accent-mid: color-mix(in srgb, var(--molten) 26%, transparent);
+  --accent-strong: color-mix(in srgb, var(--molten) 45%, transparent);
   --spec: #00e5ff;
   --text: #ffffff;
   --text-dim: #b3b9c1;
@@ -185,7 +188,7 @@ a {
   min-height: 40px;
   z-index: 950;
   background: #101317;
-  border-bottom: 1px solid rgba(255, 90, 31, 0.28);
+  border-bottom: 1px solid var(--accent-mid);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -353,7 +356,7 @@ body.has-announcement .catalog-header {
 
 .nav-cta:hover {
   background: var(--molten);
-  box-shadow: 0 0 20px rgba(255, 90, 31, 0.35);
+  box-shadow: 0 0 20px var(--accent-strong);
 }
 
 .mobile-nav-cta {
@@ -408,7 +411,7 @@ body.has-announcement .catalog-header {
 .btn-primary:hover {
   background: var(--molten-light);
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(255, 90, 31, 0.3);
+  box-shadow: 0 6px 24px var(--accent-mid), 0 0 34px var(--accent-soft);
 }
 
 .btn-ghost {
@@ -549,7 +552,7 @@ body.has-announcement .catalog-header {
 .sprue-dot { fill: var(--steel-light); }
 .sprue-dot.flowing { fill: var(--molten); }
 .mold-glow { fill: none; stroke: transparent; stroke-width: 4; transition: all 0.3s; }
-.mold-glow.active { stroke: rgba(255,90,31,0.35); filter: drop-shadow(0 0 12px var(--molten)); }
+.mold-glow.active { stroke: var(--accent-strong); filter: drop-shadow(0 0 12px var(--molten)); }
 .dim-lines { fill: var(--steel); font-family: var(--font-mono); font-size: 10px; }
 .dim-lines line { stroke: rgba(85,97,112,0.25); stroke-width: 1; stroke-dasharray: 3 3; }
 .visual-caption { font-family: var(--font-mono); font-size: 11px; color: var(--steel); text-align: center; margin-top: 16px; letter-spacing: 0.5px; }
@@ -622,7 +625,7 @@ body.has-announcement .catalog-header {
 }
 
 .service-card:hover {
-  border-color: rgba(255, 90, 31, 0.25);
+  border-color: var(--accent-mid);
 }
 
 .service-icon {
@@ -690,7 +693,7 @@ body.has-announcement .catalog-header {
 }
 
 .spoiler-card:hover {
-  border-color: rgba(255, 90, 31, 0.3);
+  border-color: var(--accent-mid);
 }
 
 .spoiler-card.open {
@@ -870,34 +873,43 @@ body.has-announcement .catalog-header {
 .filter-chips {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 10px;
 }
 
 .filter-chip {
-  background: var(--surface);
+  background: linear-gradient(135deg, rgba(18, 20, 24, 0.92), rgba(9, 12, 15, 0.95));
   border: 1px solid var(--steel-light);
   color: var(--text-dim);
-  padding: 10px 20px;
-  border-radius: 4px;
+  min-height: 42px;
+  max-width: 100%;
+  padding: 10px 18px;
+  border-radius: 999px;
   font-size: 13px;
   font-weight: 500;
+  line-height: 1.2;
+  white-space: normal;
+  overflow-wrap: anywhere;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .filter-chip:hover, .filter-chip.active {
   border-color: var(--molten);
   color: #ffffff;
-  background: rgba(255, 90, 31, 0.05);
+  background: linear-gradient(135deg, var(--accent-soft), rgba(18, 20, 24, 0.94));
+  box-shadow: 0 0 0 1px var(--accent-soft), 0 10px 26px rgba(0, 0, 0, 0.24), 0 0 24px var(--accent-soft);
+  transform: translateY(-1px);
 }
 
 .filter-chips-wrap,
 .filter-chips {
   max-width: 100%;
-  max-height: 148px;
+  max-height: 172px;
   overflow-y: auto;
+  padding-right: 4px;
   scrollbar-width: thin;
-  scrollbar-color: var(--steel) transparent;
+  scrollbar-color: var(--molten) transparent;
 }
 
 .search-wrapper {
@@ -1217,7 +1229,7 @@ body.has-announcement .catalog-header {
 .form-group input:focus, .form-group textarea:focus {
   outline: none;
   border-color: var(--molten);
-  box-shadow: 0 0 0 3px rgba(255, 90, 31, 0.1);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .hidden-field {
@@ -1280,7 +1292,7 @@ body.has-announcement .catalog-header {
 
 .info-link {
   text-decoration: underline;
-  text-decoration-color: rgba(228, 88, 31, 0.45);
+  text-decoration-color: var(--accent-strong);
   text-underline-offset: 4px;
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
@@ -1499,7 +1511,7 @@ a.logo-strip-item:hover {
 .footer-social a:hover {
   color: #fff;
   border-color: var(--molten);
-  background: rgba(255, 90, 31, 0.12);
+  background: var(--accent-soft);
 }
 
 .footer-social svg {
