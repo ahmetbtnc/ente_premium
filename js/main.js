@@ -574,6 +574,17 @@ function setPropertyMeta(property, content) {
   meta.content = content;
 }
 
+function setCanonical(href) {
+  if (!href) return;
+  let link = document.querySelector('link[rel="canonical"]');
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'canonical';
+    document.head.appendChild(link);
+  }
+  link.href = href;
+}
+
 function brandMarkup(s) {
   return `${esc(s.firma_adi_1 || 'ENTE')} <em>${esc(s.firma_adi_2 || 'Metal Plastik')}</em>`;
 }
@@ -582,11 +593,15 @@ function applySiteChrome(s) {
   const isCatalog = !!document.getElementById('productGrid');
   const pageTitle = isCatalog ? (s.katalog_site_baslik || document.title) : (s.site_baslik || document.title);
   const pageDesc = isCatalog ? s.katalog_site_aciklama : s.site_aciklama;
+  const pageUrl = isCatalog ? 'https://entemetalplastik.com/urunler/' : 'https://entemetalplastik.com/';
   document.title = pageTitle;
   setMeta('description', pageDesc);
+  setCanonical(pageUrl);
   setPropertyMeta('og:title', pageTitle);
   setPropertyMeta('og:description', pageDesc);
   setPropertyMeta('og:type', 'website');
+  setPropertyMeta('og:url', pageUrl);
+  setPropertyMeta('og:site_name', 'Ente Metal Plastik');
   setPropertyMeta('og:image', absoluteAssetUrl(s.paylasim_gorseli));
   setMeta('twitter:card', 'summary_large_image');
   setMeta('twitter:title', pageTitle);
