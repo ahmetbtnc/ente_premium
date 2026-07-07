@@ -9,8 +9,8 @@ backend:
 
 local_backend: true
 
-site_url: https://ente-premium.pages.dev
-display_url: https://ente-premium.pages.dev
+site_url: https://entemetalplastik.com
+display_url: https://entemetalplastik.com
 
 media_folder: "images"
 public_folder: "images"

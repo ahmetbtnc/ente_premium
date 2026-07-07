@@ -14,9 +14,9 @@ Cloudflare panelinde proje ayarları şöyle olmalı:
 
 Kısa linkler:
 
-- Ana sayfa: `https://ente-premium.pages.dev`
-- Ürünler: `https://ente-premium.pages.dev/urunler`
-- Admin: `https://ente-premium.pages.dev/admin`
+- Ana sayfa: `https://entemetalplastik.com`
+- Ürünler: `https://entemetalplastik.com/urunler`
+- Admin: `https://entemetalplastik.com/admin`
 
 ## 2. Teklif formunun direkt mail atması
 
@@ -61,8 +61,8 @@ Cloudflare Pages Function olarak `/api/auth` ve `/api/callback` hazırdır.
 
 GitHub'da OAuth App oluştur:
 
-- Homepage URL: `https://ente-premium.pages.dev`
-- Authorization callback URL: `https://ente-premium.pages.dev/api/callback`
+- Homepage URL: `https://entemetalplastik.com`
+- Authorization callback URL: `https://entemetalplastik.com/api/callback`
 
 Sonra Cloudflare Pages > Settings > Variables and secrets bölümüne ekle:
 
@@ -71,7 +71,7 @@ Sonra Cloudflare Pages > Settings > Variables and secrets bölümüne ekle:
 
 Kaydettikten sonra yeni deploy başlat. Admin adresi:
 
-- `https://ente-premium.pages.dev/admin/`
+- `https://entemetalplastik.com/admin/`
 
 Not: Giriş yapan GitHub hesabının `ahmetbtnc/ente_premium` reposuna yazma yetkisi
 olmalıdır.

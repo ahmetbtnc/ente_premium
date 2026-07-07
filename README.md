@@ -43,9 +43,9 @@ Cloudflare Pages ayarları:
 
 Canlı kısa linkler:
 
-- Ana sayfa: `https://ente-premium.pages.dev`
-- Ürünler: `https://ente-premium.pages.dev/urunler`
-- Admin: `https://ente-premium.pages.dev/admin`
+- Ana sayfa: `https://entemetalplastik.com`
+- Ürünler: `https://entemetalplastik.com/urunler`
+- Admin: `https://entemetalplastik.com/admin`
 
 Detaylı adımlar için `CLOUDFLARE_KURULUM.md` dosyasına bak.
 
@@ -73,12 +73,12 @@ GitHub OAuth ayarı gerekir.
 
 Gerçek admin adresi:
 
-- `https://ente-premium.pages.dev/admin/`
+- `https://entemetalplastik.com/admin/`
 
 GitHub girişini aktif etmek için GitHub'da OAuth App oluştur:
 
-- Homepage URL: `https://ente-premium.pages.dev`
-- Authorization callback URL: `https://ente-premium.pages.dev/api/callback`
+- Homepage URL: `https://entemetalplastik.com`
+- Authorization callback URL: `https://entemetalplastik.com/api/callback`
 
 GitHub'ın verdiği değerleri Cloudflare Pages > Settings > Variables and secrets
 bölümüne ekle:
@@ -92,7 +92,7 @@ GitHub hesabınla giriş yapabilirsin. Giriş yapan GitHub hesabının
 
 Admin arayüzünü giriş yapmadan gezmek için test paneli vardır:
 
-- `https://ente-premium.pages.dev/admin-test/`
+- `https://entemetalplastik.com/admin-test/`
 
 Bu test paneli siteye yayın yapmaz; sadece alanları, formları ve önizleme düzenini
 kontrol etmek içindir. Canlı düzenleme için `/admin/` kullanılacaktır.

@@ -2,16 +2,16 @@ backend:
   name: github
   repo: ahmetbtnc/ente_premium
   branch: main
-  site_domain: https://ente-premium-last.pages.dev
-  base_url: https://ente-premium-last.pages.dev
+  site_domain: https://entemetalplastik.com
+  base_url: https://entemetalplastik.com
   auth_endpoint: /api/auth
 
 # Yerel geliştirme için: terminalde "npm run cms" çalıştırın (decap-server).
 local_backend: true
 
 # Domain bağladıktan sonra aşağıdaki iki satırın başındaki # işaretini kaldırın:
-# site_url: https://siteniz.com
-# display_url: https://siteniz.com
+site_url: https://entemetalplastik.com
+display_url: https://entemetalplastik.com
 
 media_folder: "images"
 public_folder: "images"
