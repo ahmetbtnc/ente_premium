@@ -169,7 +169,7 @@ collections:
           - { label: "Yüzen WhatsApp Buton Yazısı", name: "wa_float_metin", widget: "string" }
 
       - file: "data/settings/urunler_bolumu.json"
-        label: "5) Ana Sayfa - Ürünler Bölümü Metinleri"
+        label: "5) Ürün Başlıkları, Katalog ve Ana Sayfa Ürün Alanı"
         name: "urunler_bolumu"
         editor: { preview: true }
         fields:
@@ -178,12 +178,12 @@ collections:
           - { label: "'Tüm Ürünler' Buton Metni", name: "tum_urunler_buton_metni", widget: "string" }
           - { label: "Menüdeki 'Teklif Al' Buton Metni", name: "nav_teklif_btn_metni", widget: "string" }
           - { label: "Ürün Kartları Yeni Sekmede mi Açılsın?", name: "urun_kartlari_yeni_pencere", widget: "boolean" }
-          - label: "Katalog Kategori Başlıkları"
+          - label: "Ürün Başlıkları / Katalog Kategorileri"
             name: "kategoriler"
             widget: "list"
-            label_singular: "Kategori"
-            hint: "Örnek: Hediyelik Eşya. Buraya eklediğiniz başlık katalog filtrelerinde görünür. Ürün eklerken kategori alanına aynı adı yazın."
-            field: { label: "Kategori Adı", name: "kategori", widget: "string" }
+            label_singular: "Ürün Başlığı"
+            hint: "Örnek: Hediyelik Eşya. Buraya eklediğiniz başlık ürünler sayfasındaki filtrelerde görünür. Ürün eklerken kategori alanına aynı adı yazın."
+            field: { label: "Başlık Adı", name: "kategori", widget: "string" }
 
       - file: "data/settings/teklif_formu.json"
         label: "6) Teklif Formu Ayarları"
@@ -224,7 +224,7 @@ collections:
           - { label: "Üst Duyuru Linki", name: "ust_duyuru_link", widget: "string", required: false, hint: "Örnek: #iletisim veya urunler.html" }
 
   - name: "products"
-    label: "Ürün Kataloğu Yönetimi"
+    label: "Ürün Ekle / Çıkar / Düzenle"
     files:
       - file: "data/products.json"
         label: "Tüm Ürünler"
