@@ -1,26 +1,32 @@
 {
   "kurulus_yili": 1986,
   "hakkimizda_baslik_on": "Sektörde",
-  "hakkimizda_baslik_son": "+ yıllık deneyim.",
-  "hakkimizda_aciklama": "Ente Metal olarak 40 yılı aşan tecrübemizle hediyelik eşya, PVC koltuk körüğü ve farklı ürün taleplerinde müşterilerimize düzenli, ulaşılabilir ve güvenilir hizmet sunuyoruz.",
+  "hakkimizda_baslik_son": "+ yıllık üretim deneyimi.",
+  "hakkimizda_aciklama": "Ente Metal Plastik, 40 yılı aşan saha tecrübesiyle plastik kalıp üretimi ve enjeksiyon baskı alanında hizmet verir. Kendi kalıplarımızla ürün üretiminin yanında, müşteriye ait mevcut kalıplarla baskı alabilir; yeni ürün, numune, özel parça ve seri üretim süreçlerinde proje bazlı çözüm sunarız.",
   "vizyon_maddeleri": [
-    "Ürün gruplarını sade ve anlaşılır katalog yapısıyla sunma",
-    "Talebe göre hızlı dönüş ve doğru ürün yönlendirmesi"
+    "Kalıp üretimi, baskı ve ürün teslim süreçlerini aynı teknik disiplinle yönetmek",
+    "Müşteri kalıbı, mevcut ürün veya yeni proje fark etmeksizin doğru üretim yolunu belirlemek",
+    "Ölçü, adet, hammadde ve kullanım alanına göre sürdürülebilir üretim planı oluşturmak"
   ],
   "hizmetler_listesi": [
     {
-      "baslik": "Hediyelik Eşya",
-      "aciklama": "Farklı kullanım alanlarına uygun hediyelik ürün seçenekleri için düzenli katalog ve hızlı teklif desteği sunuyoruz.",
+      "baslik": "Plastik Kalıp Üretimi",
+      "aciklama": "Yeni ürünler için kalıp tasarımı, kalıp imalatı ve üretime hazırlık süreçlerinde teknik destek sağlıyoruz.",
       "ikon_svg": ""
     },
     {
-      "baslik": "PVC Koltuk Körüğü",
-      "aciklama": "PVC koltuk körüğü ihtiyaçlarında ölçü, adet ve kullanım alanına göre iletişim kurarak doğru çözümü belirliyoruz.",
+      "baslik": "Enjeksiyon Baskı Üretimi",
+      "aciklama": "Kendi kalıplarımız veya müşteriye ait kalıplarla plastik enjeksiyon baskı üretimi yapıyoruz.",
       "ikon_svg": ""
     },
     {
-      "baslik": "Diğer Ürün Talepleri",
-      "aciklama": "Katalogda yer almayan ürünler için de WhatsApp veya teklif formu üzerinden talebinizi iletebilirsiniz.",
+      "baslik": "Özel Ürün ve Numune Çalışmaları",
+      "aciklama": "Katalog dışı ürün, ölçüye özel parça, numune ve proje bazlı plastik parça taleplerini değerlendiriyoruz.",
+      "ikon_svg": ""
+    },
+    {
+      "baslik": "Ürün Grupları ve Katalog Yönetimi",
+      "aciklama": "Hediyelik eşya, PVC koltuk körüğü, deodorant ve farklı ürün başlıkları admin panelden güncellenebilir katalog yapısıyla sunulur.",
       "ikon_svg": ""
     }
   ]

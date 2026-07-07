@@ -87,13 +87,15 @@ collections:
           - { label: "Katalog Buton Metni", name: "hero_urunler_btn_metni", widget: "string" }
           - { label: "Kalıp Animasyonu Hızı (ms — büyük sayı = yavaş)", name: "hero_animasyon_hizi", widget: "number" }
           - { label: "Arka Plan Kıvılcım Efekti", name: "parcacik_efekti_aktif", widget: "boolean" }
-          - { label: "1. Sayaç Başlığı", name: "sayac_1_isim", widget: "string" }
-          - { label: "1. Sayaç Sayısı", name: "sayac_1_deger", widget: "number" }
-          - { label: "2. Sayaç Başlığı", name: "sayac_2_isim", widget: "string" }
-          - { label: "2. Sayaç Sayısı", name: "sayac_2_deger", widget: "number" }
-          - { label: "3. Sayaç Başlığı", name: "sayac_3_isim", widget: "string" }
-          - { label: "3. Sayaç Sayısı", name: "sayac_3_deger", widget: "number", value_type: "float" }
-          - { label: "3. Sayaç Ondalıklı mı? (örn: 0.02)", name: "sayac_3_ondalikli", widget: "boolean" }
+          - label: "Hero Kabiliyet Kartları"
+            name: "hero_kabiliyetler"
+            widget: "list"
+            required: false
+            summary: "{{fields.baslik}}"
+            hint: "Ana sayfadaki Kalıp / Baskı / Proje gibi kartlar. 3 veya 4 kart ideal görünür."
+            fields:
+              - { label: "Başlık", name: "baslik", widget: "string" }
+              - { label: "Açıklama", name: "aciklama", widget: "text" }
 
       - file: "data/settings/bolumler.json"
         label: "2.5) Sayfa Bölümleri & Katalog Metinleri"

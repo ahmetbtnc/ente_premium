@@ -1,6 +1,7 @@
 {
   "name": "entemetal",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "npx serve .",
     "cms": "npx decap-server"

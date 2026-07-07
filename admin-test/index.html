@@ -199,18 +199,12 @@
             ),
             d.hero_alt_aciklama && h('p', {}, d.hero_alt_aciklama),
             h('div', { className: 'preview-stats' },
-              d.sayac_1_deger != null && h('div', { className: 'preview-stat' },
-                h('span', { className: 'num' }, String(d.sayac_1_deger)),
-                h('span', { className: 'lbl' }, d.sayac_1_isim || '')
-              ),
-              d.sayac_2_deger != null && h('div', { className: 'preview-stat' },
-                h('span', { className: 'num' }, String(d.sayac_2_deger)),
-                h('span', { className: 'lbl' }, d.sayac_2_isim || '')
-              ),
-              d.sayac_3_deger != null && h('div', { className: 'preview-stat' },
-                h('span', { className: 'num' }, String(d.sayac_3_deger)),
-                h('span', { className: 'lbl' }, d.sayac_3_isim || '')
-              )
+              (d.hero_kabiliyetler || []).map(function (item) {
+                return h('div', { className: 'preview-stat' },
+                  h('span', { className: 'num' }, item.baslik || ''),
+                  h('span', { className: 'lbl' }, item.aciklama || '')
+                );
+              })
             )
           ),
           h('div', { style: { marginTop: '24px' } },

@@ -1,23 +1,30 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
   <title id="title">Ente Metal Plastik Logo</title>
-  <desc id="desc">EMP monogram kurumsal logo</desc>
+  <desc id="desc">EMP monogram, kalıp ve plastik enjeksiyon odaklı kurumsal logo</desc>
   <defs>
-    <linearGradient id="metal" x1="52" y1="40" x2="272" y2="292" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#64e8ff"/>
-      <stop offset=".52" stop-color="#00b7ff"/>
-      <stop offset="1" stop-color="#006dff"/>
+    <linearGradient id="mark" x1="58" y1="44" x2="260" y2="284" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8cf2ff"/>
+      <stop offset=".45" stop-color="#00b7ff"/>
+      <stop offset="1" stop-color="#0864ff"/>
     </linearGradient>
-    <linearGradient id="edge" x1="60" y1="48" x2="252" y2="272" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".18"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity=".02"/>
+    <linearGradient id="steel" x1="38" y1="30" x2="288" y2="296" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1a2028"/>
+      <stop offset="1" stop-color="#090b0f"/>
     </linearGradient>
+    <filter id="glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
-  <rect width="320" height="320" rx="58" fill="#0b0c0e"/>
-  <rect x="28" y="28" width="264" height="264" rx="42" fill="#12161c" stroke="#303844" stroke-width="5"/>
-  <path d="M78 94h164v38H121v35h98v36h-98v85H78V94Z" fill="url(#metal)"/>
-  <path d="M136 94h43l42 74 42-74h35v194h-42V172l-32 56h-12l-34-58v118h-42V94Z" fill="#7cf7ff" opacity=".96"/>
-  <path d="M78 94h164M78 288h180" stroke="url(#edge)" stroke-width="8" stroke-linecap="round"/>
-  <circle cx="251" cy="251" r="18" fill="#00b7ff"/>
-  <circle cx="251" cy="251" r="7" fill="#0b0c0e"/>
+  <rect width="320" height="320" rx="52" fill="#07090d"/>
+  <rect x="26" y="26" width="268" height="268" rx="42" fill="url(#steel)" stroke="#2b3542" stroke-width="4"/>
+  <path d="M76 92h168v35H116v33h102v34H116v36h132v36H76V92Z" fill="url(#mark)" filter="url(#glow)"/>
+  <path d="M137 92h39l43 72 43-72h34v174h-39V166l-31 52h-15l-34-55v103h-40V92Z" fill="#d9fbff" opacity=".92"/>
+  <path d="M72 72h176c20 0 36 16 36 36v108" fill="none" stroke="#8cf2ff" stroke-opacity=".18" stroke-width="8" stroke-linecap="round"/>
+  <path d="M64 248h192" stroke="#8cf2ff" stroke-opacity=".35" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="252" cy="248" r="17" fill="#00b7ff"/>
+  <circle cx="252" cy="248" r="7" fill="#071018"/>
 </svg>
-

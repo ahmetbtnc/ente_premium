@@ -6,6 +6,8 @@
 
 let SETTINGS = null;
 let ALL_PRODUCTS = [];
+let CATALOG_PAGE = 1;
+const CATALOG_PAGE_SIZE = 12;
 
 // Admin panelinden gelen düz metinleri HTML içine güvenli şekilde yerleştirmek
 // için basit bir kaçış (escape) yardımcı fonksiyonu.
@@ -169,12 +171,17 @@ function initAdvancedMoldAnimation(duration) {
 }
 
 function initCounters() {
-  const nums = document.querySelectorAll('.stat-num');
+  const nums = document.querySelectorAll('.stat-num[data-count]');
+  if (!nums.length) return;
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       const el = entry.target;
       const target = parseFloat(el.dataset.count);
+      if (!Number.isFinite(target)) {
+        io.unobserve(el);
+        return;
+      }
       const isDecimal = el.dataset.decimal === 'true';
       const start = performance.now();
       function step(now) {
@@ -188,6 +195,17 @@ function initCounters() {
     });
   }, { threshold: 0.3 });
   nums.forEach(n => io.observe(n));
+}
+
+function renderHeroCapabilities(s) {
+  const wrap = document.getElementById('heroCapabilities');
+  if (!wrap || !Array.isArray(s.hero_kabiliyetler) || s.hero_kabiliyetler.length === 0) return;
+  wrap.innerHTML = s.hero_kabiliyetler.slice(0, 4).map(item => `
+    <div class="stat capability-card">
+      <span class="capability-title">${esc(item.baslik)}</span>
+      <span class="stat-label">${esc(item.aciklama)}</span>
+    </div>
+  `).join('');
 }
 
 function initParticles() {
@@ -362,7 +380,8 @@ async function loadSettings() {
 
     // Sayaç Değerleri Güncellemesi
     const stats = document.querySelectorAll('.hero-stats .stat');
-    if (stats.length >= 3) {
+    renderHeroCapabilities(s);
+    if ((!Array.isArray(s.hero_kabiliyetler) || s.hero_kabiliyetler.length === 0) && stats.length >= 3) {
       if (s.sayac_1_deger) { stats[0].querySelector('.stat-num').dataset.count = s.sayac_1_deger; stats[0].querySelector('.stat-label').textContent = s.sayac_1_isim; }
       if (s.sayac_2_deger) { stats[1].querySelector('.stat-num').dataset.count = s.sayac_2_deger; stats[1].querySelector('.stat-label').textContent = s.sayac_2_isim; }
       if (s.sayac_3_deger) { 
@@ -872,6 +891,7 @@ function renderFilters(products) {
     btn.addEventListener('click', () => {
       wrap.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      CATALOG_PAGE = 1;
       applyCatalogFilters();
     });
   });
@@ -888,7 +908,10 @@ function getManagedCategories() {
 function initCatalogSearch() {
   const input = document.getElementById('productSearch');
   if (!input) return;
-  input.addEventListener('input', () => applyCatalogFilters());
+  input.addEventListener('input', () => {
+    CATALOG_PAGE = 1;
+    applyCatalogFilters();
+  });
 }
 
 function applyCatalogFilters() {
@@ -913,10 +936,16 @@ function renderProducts(products) {
 
   if (products.length === 0) {
     grid.innerHTML = `<div class="no-results" style="grid-column:1/-1; text-align:center; padding:60px; color:var(--steel); font-family:var(--font-mono); font-size:14px;">${esc((SETTINGS && SETTINGS.katalog_bos_mesaj) || 'Arama kriterlerine uygun ürün bulunamadı.')}</div>`;
+    renderCatalogPagination(0);
     return;
   }
   
-  grid.innerHTML = products.map((p, i) => `
+  const totalPages = Math.max(1, Math.ceil(products.length / CATALOG_PAGE_SIZE));
+  if (CATALOG_PAGE > totalPages) CATALOG_PAGE = totalPages;
+  const pageStart = (CATALOG_PAGE - 1) * CATALOG_PAGE_SIZE;
+  const visibleProducts = products.slice(pageStart, pageStart + CATALOG_PAGE_SIZE);
+
+  grid.innerHTML = visibleProducts.map((p, i) => `
     <div class="product-card reveal" style="--stagger:${i % 6}" data-id="${p.id}">
       <div class="product-thumb">
         <span class="product-cat">${esc(p.kategori)}</span>
@@ -934,7 +963,42 @@ function renderProducts(products) {
   `).join('');
 
   grid.querySelectorAll('.product-card').forEach(card => card.addEventListener('click', () => openModal(card.dataset.id)));
+  renderCatalogPagination(totalPages);
   initReveal();
+}
+
+function renderCatalogPagination(totalPages) {
+  const grid = document.getElementById('productGrid');
+  if (!grid) return;
+  let wrap = document.getElementById('catalogPagination');
+  if (!wrap) {
+    wrap = document.createElement('div');
+    wrap.id = 'catalogPagination';
+    wrap.className = 'catalog-pagination';
+    grid.insertAdjacentElement('afterend', wrap);
+  }
+  if (totalPages <= 1) {
+    wrap.innerHTML = '';
+    wrap.hidden = true;
+    return;
+  }
+  wrap.hidden = false;
+  const buttons = [];
+  for (let i = 1; i <= totalPages; i++) {
+    buttons.push(`<button class="pagination-btn ${i === CATALOG_PAGE ? 'active' : ''}" type="button" data-page="${i}" aria-label="Katalog sayfa ${i}">${i}</button>`);
+  }
+  wrap.innerHTML = `
+    <button class="pagination-btn pagination-arrow" type="button" data-page="${Math.max(1, CATALOG_PAGE - 1)}" ${CATALOG_PAGE === 1 ? 'disabled' : ''}>Önceki</button>
+    <div class="pagination-pages">${buttons.join('')}</div>
+    <button class="pagination-btn pagination-arrow" type="button" data-page="${Math.min(totalPages, CATALOG_PAGE + 1)}" ${CATALOG_PAGE === totalPages ? 'disabled' : ''}>Sonraki</button>
+  `;
+  wrap.querySelectorAll('[data-page]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      CATALOG_PAGE = Number(btn.dataset.page) || 1;
+      applyCatalogFilters();
+      document.querySelector('.catalog-meta')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 }
 
 function openModalFromQuery() {

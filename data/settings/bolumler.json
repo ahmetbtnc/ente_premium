@@ -1,22 +1,34 @@
 {
-  "hero_animasyon_baslik": "Düzenli ürün seçimi ve hızlı teklif akışı",
-  "hakkimizda_eyebrow": "Biz Kimiz?",
-  "hizmetler_eyebrow": "Ürün Gruplarımız",
-  "hizmetler_baslik": "İhtiyaca göre sade, ulaşılabilir ve düzenli ürün seçenekleri.",
-  "neden_biz_eyebrow": "Neden Ente Metal?",
-  "neden_biz_baslik": "Net bilgi, hızlı dönüş, düzenli katalog.",
+  "hero_animasyon_baslik": "Kalıp, baskı ve üretim süreci kontrollü ilerler",
+  "hakkimizda_eyebrow": "Üretim Deneyimi",
+  "hizmetler_eyebrow": "Yetkinliklerimiz",
+  "hizmetler_baslik": "Kalıp üretiminden enjeksiyon baskıya kadar esnek üretim altyapısı.",
+  "neden_biz_eyebrow": "Neden Ente Metal Plastik?",
+  "neden_biz_baslik": "Tecrübe, üretim disiplini ve proje bazlı yaklaşım.",
   "neden_biz_maddeler": [
-    { "deger": "3", "aciklama": "Ana Ürün Başlığı" },
-    { "deger": "24s", "aciklama": "Hızlı Geri Dönüş Hedefi" },
-    { "deger": "%100", "aciklama": "Net İletişim" },
-    { "deger": "Güncel", "aciklama": "Katalog Yönetimi" }
+    {
+      "deger": "40+",
+      "aciklama": "Yıllık üretim tecrübesi"
+    },
+    {
+      "deger": "Kalıp",
+      "aciklama": "Yeni kalıp ve mevcut kalıpla üretim"
+    },
+    {
+      "deger": "Baskı",
+      "aciklama": "Plastik enjeksiyon üretimi"
+    },
+    {
+      "deger": "Esnek",
+      "aciklama": "Özel ürün ve seri üretim desteği"
+    }
   ],
-  "urunler_eyebrow": "Katalog Özeti",
-  "iletisim_eyebrow": "Bize Ulaşın",
-  "iletisim_baslik": "Ürün bilgisi veya teklif almak ister misiniz?",
-  "katalog_eyebrow": "Güncel Ürün Portföyü",
-  "katalog_baslik": "Ürün Kataloğu",
-  "katalog_aciklama": "Hediyelik eşya, PVC koltuk körüğü ve diğer ürün başlıklarını buradan inceleyebilirsiniz.",
-  "arama_placeholder": "Ürün adı, kategori veya açıklama ara...",
-  "katalog_meta_sol": "Katalog Görünümü"
+  "urunler_eyebrow": "Katalog ve Ürün Grupları",
+  "iletisim_eyebrow": "Projenizi Konuşalım",
+  "iletisim_baslik": "Kalıp, baskı veya özel ürün talebiniz için bizimle iletişime geçin.",
+  "katalog_eyebrow": "Üretim ve Ürün Portföyü",
+  "katalog_baslik": "Ürün ve Üretim Kataloğu",
+  "katalog_aciklama": "Katalogdaki ürün başlıklarını inceleyebilir, mevcut kalıbınızla baskı veya yeni kalıp üretimi için teklif talebi oluşturabilirsiniz.",
+  "arama_placeholder": "Ürün, kategori, malzeme veya üretim türü ara...",
+  "katalog_meta_sol": "Katalog görünümü"
 }
