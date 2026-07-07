@@ -795,11 +795,6 @@ async function loadProducts() {
     const data = await res.json();
     ALL_PRODUCTS = (data.urunler || []);
 
-    // DÜZELTME: "sira" alanı admin panelinde ve verilerde mevcuttu ama hiçbir
-    // yerde kullanılmıyordu. Artık küçük sayı önce gelecek şekilde sıralanıyor
-    // (README'de vaat edildiği gibi).
-    ALL_PRODUCTS.sort((a, b) => (a.sira ?? 999) - (b.sira ?? 999));
-
     initModal();
     
     const featuredWrap = document.getElementById('featuredList');

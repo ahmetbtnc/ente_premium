@@ -168,23 +168,6 @@ collections:
           - { label: "İletişim Bölümü WhatsApp Açıklaması", name: "wa_inline_aciklama", widget: "text", required: false }
           - { label: "Yüzen WhatsApp Buton Yazısı", name: "wa_float_metin", widget: "string" }
 
-      - file: "data/settings/urunler_bolumu.json"
-        label: "5) Ürün Başlıkları, Katalog ve Ana Sayfa Ürün Alanı"
-        name: "urunler_bolumu"
-        editor: { preview: true }
-        fields:
-          - { label: "Öne Çıkanlar Başlığı", name: "oneCikanBaslik", widget: "string" }
-          - { label: "Öne Çıkanlar Açıklaması", name: "oneCikanAciklama", widget: "text" }
-          - { label: "'Tüm Ürünler' Buton Metni", name: "tum_urunler_buton_metni", widget: "string" }
-          - { label: "Menüdeki 'Teklif Al' Buton Metni", name: "nav_teklif_btn_metni", widget: "string" }
-          - { label: "Ürün Kartları Yeni Sekmede mi Açılsın?", name: "urun_kartlari_yeni_pencere", widget: "boolean" }
-          - label: "Ürün Başlıkları / Katalog Kategorileri"
-            name: "kategoriler"
-            widget: "list"
-            label_singular: "Ürün Başlığı"
-            hint: "Örnek: Hediyelik Eşya. Buraya eklediğiniz başlık ürünler sayfasındaki filtrelerde görünür. Ürün eklerken kategori alanına aynı adı yazın."
-            field: { label: "Başlık Adı", name: "kategori", widget: "string" }
-
       - file: "data/settings/teklif_formu.json"
         label: "6) Teklif Formu Ayarları"
         name: "teklif_formu"
@@ -226,8 +209,24 @@ collections:
   - name: "products"
     label: "Ürün Ekle / Çıkar / Düzenle"
     files:
+      - file: "data/settings/urunler_bolumu.json"
+        label: "1) Ürün Başlıkları ve Katalog Ayarları"
+        name: "urunler_bolumu"
+        editor: { preview: true }
+        fields:
+          - label: "Ürün Başlıkları / Katalog Kategorileri"
+            name: "kategoriler"
+            widget: "list"
+            label_singular: "Ürün Başlığı"
+            hint: "Buraya Hediyelik Eşya, Deodorant gibi başlıklar eklenir. Ürün eklerken kategori alanına aynı başlığı yazarsanız ürün o filtre altında görünür."
+            field: { label: "Başlık Adı", name: "kategori", widget: "string" }
+          - { label: "Ana Sayfadaki Ürün Alanı Başlığı", name: "oneCikanBaslik", widget: "string", hint: "Ana sayfada ürün kartlarının üstünde görünen başlık." }
+          - { label: "Ana Sayfadaki Ürün Alanı Açıklaması", name: "oneCikanAciklama", widget: "text" }
+          - { label: "'Tüm Ürünler' Buton Metni", name: "tum_urunler_buton_metni", widget: "string" }
+          - { label: "Menüdeki 'Teklif Al' Buton Metni", name: "nav_teklif_btn_metni", widget: "string" }
+          - { label: "Ürün Kartları Yeni Sekmede mi Açılsın?", name: "urun_kartlari_yeni_pencere", widget: "boolean" }
       - file: "data/products.json"
-        label: "Tüm Ürünler"
+        label: "2) Ürünler - Sürükle Bırak ile Sırala"
         name: "urunler_dosyasi"
         editor: { preview: true }
         fields:
@@ -235,11 +234,12 @@ collections:
             label: "Ürünler"
             widget: "list"
             label_singular: "Ürün"
+            hint: "Ürünleri listede sürükleyip bırakarak sitedeki sıralamayı değiştirebilirsiniz. En üstteki ürün sitede önce görünür."
             summary: "{{fields.ad}} — {{fields.kategori}}"
             fields:
-              - { label: "Ürün Benzersiz ID (Küçük harf, İngilizce - Örn: motor-kapagi)", name: "id", widget: "string" }
-              - { label: "Ürün Adı", name: "ad", widget: "string" }
-              - { label: "Kategori", name: "kategori", widget: "string", hint: "Admin > Ana Sayfa - Ürünler Bölümü Metinleri kısmındaki kategori başlıklarından biriyle aynı yazın. Yeni bir başlık istiyorsanız önce o listeye ekleyin." }
+              - { label: "Ürün Benzersiz ID", name: "id", widget: "string", hint: "Küçük harf ve tire kullanın. Örnek: deodorant-kapagi" }
+              - { label: "Ürün Adı", name: "ad", widget: "string", hint: "Kart başlığı ve ürün detay penceresinde görünür." }
+              - { label: "Ürün Başlığı / Kategori", name: "kategori", widget: "string", hint: "Üstteki 'Ürün Başlıkları' listesinde yazan başlıklardan biriyle aynı yazın. Örnek: Hediyelik Eşya" }
               - { label: "Ürün Görseli (Fotoğraf)", name: "gorsel", widget: "image" }
               - { label: "Kısa Açıklama (Spoiler Kartında Görünecek)", name: "kisa_aciklama", widget: "string" }
               - { label: "Detaylı Bilgi (Pop-up Açıldığında Görünecek)", name: "detay", widget: "text", required: false }
@@ -249,7 +249,6 @@ collections:
               - { label: "Genişlik (mm)", name: "genislik_mm", widget: "number", value_type: "float" }
               - { label: "Yükseklik (mm)", name: "yukseklik_mm", widget: "number", value_type: "float" }
               - { label: "Kalıp/Parça Ağırlığı (gram)", name: "agirlik_g", widget: "number", value_type: "float" }
-              - { label: "Sıralama (Küçük sayı önce gösterilir)", name: "sira", widget: "number", default: 10 }
               - { label: "Ana Sayfada (Öne Çıkanlarda) Gösterilsin mi?", name: "on_anasayfa", widget: "boolean", default: false }
 
   - name: "page_blocks"

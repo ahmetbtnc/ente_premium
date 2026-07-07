@@ -46,7 +46,7 @@
   <div id="adminLoader" aria-live="polite" aria-busy="true">
     <div class="loader-box">
       <div class="loader-spin"></div>
-      <div class="loader-title">Test Paneli YÃ¼kleniyor</div>
+      <div class="loader-title">Test Paneli Yükleniyor</div>
     </div>
   </div>
 
@@ -108,12 +108,12 @@
     /* Her alan tipine gÃ¶re zengin gÃ¶rsel Ã¶nizleme */
     function degerGoster(val, getAsset) {
       if (val === null || val === undefined || val === '') {
-        return h('span', { className: 'preview-empty' }, '(boÅŸ)');
+        return h('span', { className: 'preview-empty' }, '(boş)');
       }
       if (typeof val === 'boolean') {
         return h('span', {
           className: 'preview-badge ' + (val ? 'on' : 'off')
-        }, val ? 'âœ“ Aktif' : 'âœ— Pasif');
+        }, val ? '✓ Aktif' : '✕ Pasif');
       }
       if (renkMi(val)) {
         return h('div', { className: 'preview-color-row' },
@@ -123,10 +123,10 @@
       }
       if (gorselMi(val)) {
         var src = gorselSrc(val, getAsset);
-        return h('img', { src: src, className: 'preview-img', alt: 'Ã–nizleme' });
+        return h('img', { src: src, className: 'preview-img', alt: 'Önizleme' });
       }
       if (Array.isArray(val)) {
-        if (val.length === 0) return h('span', { className: 'preview-empty' }, '(liste boÅŸ)');
+        if (val.length === 0) return h('span', { className: 'preview-empty' }, '(liste boş)');
         if (typeof val[0] === 'object' && val[0] !== null) {
           return h('div', {},
             val.map(function (item, i) {
@@ -166,7 +166,7 @@
         var keys = Object.keys(dataJS);
 
         return h('div', { className: 'preview-root' },
-          h('div', { className: 'preview-brand' }, 'CanlÄ± Ã–nizleme â€” DeÄŸiÅŸiklikleriniz'),
+          h('div', { className: 'preview-brand' }, 'Canlı Önizleme - Değişiklikleriniz'),
           keys.map(function (key) {
             return h('div', { key: key, className: 'preview-field' },
               h('div', { className: 'preview-label' }, guzelEtiket(key)),
@@ -187,7 +187,7 @@
           (d.hero_baslik_orta || '') + ' ' + (d.hero_baslik_alt_satir || '');
 
         return h('div', { className: 'preview-root' },
-          h('div', { className: 'preview-brand' }, 'Ana Sayfa Hero Ã–nizlemesi'),
+          h('div', { className: 'preview-brand' }, 'Ana Sayfa Hero Önizlemesi'),
           h('div', { className: 'preview-hero-mock' },
             d.hero_ust_baslik && h('div', { className: 'eyebrow' }, d.hero_ust_baslik),
             h('h1', {},
@@ -208,7 +208,7 @@
             )
           ),
           h('div', { style: { marginTop: '24px' } },
-            h('div', { className: 'preview-label' }, 'TÃ¼m Alanlar'),
+            h('div', { className: 'preview-label' }, 'Tüm Alanlar'),
             Object.keys(d).map(function (key) {
               return h('div', { key: key, className: 'preview-field' },
                 h('div', { className: 'preview-label' }, guzelEtiket(key)),
@@ -226,7 +226,7 @@
         var d = this.props.entry.get('data').toJS();
         var getAsset = this.props.getAsset;
         return h('div', { className: 'preview-root' },
-          h('div', { className: 'preview-brand' }, 'Marka & GÃ¶rÃ¼nÃ¼m Ã–nizlemesi'),
+          h('div', { className: 'preview-brand' }, 'Marka & Görünüm Önizlemesi'),
           d.firma_logosu && h('div', { className: 'preview-field' },
             h('div', { className: 'preview-label' }, 'Logo'),
             degerGoster(d.firma_logosu, getAsset)
@@ -260,9 +260,9 @@
         var urunler = d.urunler || [];
 
         return h('div', { className: 'preview-root' },
-          h('div', { className: 'preview-brand' }, 'ÃœrÃ¼n KataloÄŸu Ã–nizlemesi (' + urunler.length + ' Ã¼rÃ¼n)'),
+          h('div', { className: 'preview-brand' }, 'Ürün Kataloğu Önizlemesi (' + urunler.length + ' ürün)'),
           urunler.length === 0
-            ? h('span', { className: 'preview-empty' }, 'HenÃ¼z Ã¼rÃ¼n eklenmedi.')
+            ? h('span', { className: 'preview-empty' }, 'Henüz ürün eklenmedi.')
             : h('div', { className: 'preview-product-grid' },
                 urunler.map(function (p, i) {
                   var imgSrc = gorselSrc(p.gorsel, getAsset) || '/images/placeholder.png';
@@ -270,8 +270,8 @@
                     h('img', { src: imgSrc, alt: p.ad || '' }),
                     h('div', { className: 'body' },
                       h('div', { className: 'cat' }, p.kategori || ''),
-                      h('h4', {}, p.ad || 'Ä°simsiz'),
-                      p.on_anasayfa && h('span', { className: 'preview-badge on', style: { marginTop: '6px' } }, 'Ã–ne Ã‡Ä±kan')
+                      h('h4', {}, p.ad || 'İsimsiz'),
+                      p.on_anasayfa && h('span', { className: 'preview-badge on', style: { marginTop: '6px' } }, 'Öne Çıkan')
                     )
                   );
                 })
@@ -287,9 +287,9 @@
         var bloklar = d.bloklar || [];
 
         return h('div', { className: 'preview-root' },
-          h('div', { className: 'preview-brand' }, 'Dinamik Blok Ã–nizlemesi'),
+          h('div', { className: 'preview-brand' }, 'Dinamik Blok Önizlemesi'),
           bloklar.length === 0
-            ? h('span', { className: 'preview-empty' }, 'HenÃ¼z blok eklenmedi.')
+            ? h('span', { className: 'preview-empty' }, 'Henüz blok eklenmedi.')
             : bloklar.map(function (b, i) {
                 if (b.type !== 'cta_blogu') return null;
                 return h('div', { key: i, className: 'preview-cta-mock', style: { marginBottom: '16px' } },
@@ -320,7 +320,7 @@
 
     registerAllPreviews();
     } else {
-      console.warn('[ENTE Admin] Ã–nizleme yardÄ±mcÄ±larÄ± yÃ¼klenemedi â€” panel yine de Ã§alÄ±ÅŸÄ±r.');
+      console.warn('[ENTE Admin] Önizleme yardımcıları yüklenemedi - panel yine de çalışır.');
     }
 
     /* nc-root DOM'a eklenince de kaldÄ±r (yedek) */
