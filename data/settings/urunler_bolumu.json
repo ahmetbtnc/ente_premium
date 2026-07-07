@@ -5,12 +5,12 @@
   "nav_teklif_btn_metni": "Teklif Al",
   "urun_kartlari_yeni_pencere": false,
   "kategoriler": [
-    "Hediyelik Eşya",
     "PVC Koltuk Körüğü",
-    "Deodorant",
+    "Deodorant Başlığı",
+    "Hediyelik Eşya",
     "Kalıp Üretimi",
     "Enjeksiyon Baskı",
-    "Özel Ürün Talepleri",
-    "Diğer"
+    "Diğer Ürünler",
+    "Özel Ürün Talepleri"
   ]
 }
