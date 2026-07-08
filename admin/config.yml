@@ -60,7 +60,7 @@ collections:
         editor: { preview: true }
         fields:
           - { label: "Firma Logosu — Sitenin sol üstündeki logo", name: "firma_logosu", widget: "image", required: false, hint: "Boş bırakılırsa varsayılan çizgi logo kullanılır." }
-          - { label: "Tarayıcı Sekmesi İkonu (Favicon)", name: "favicon_resmi", widget: "image", required: false }
+          - { label: "Google / Tarayıcı Küçük Logo (Favicon)", name: "favicon_resmi", widget: "image", required: false, hint: "Google arama sonucunda ve tarayıcı sekmesinde görünen küçük logodur. Kare PNG kullanmak en sağlıklısıdır." }
           - { label: "Şirket Sloganı (Footer'da görünür)", name: "slogan", widget: "string" }
           - { label: "Kurumsal Ana Renk", name: "kurumsal_renk", widget: "color", hint: "Butonlar, vurgular ve neon detaylar bu renkte olur." }
           - { label: "Teknik Detay Rengi", name: "teknik_renk", widget: "color" }

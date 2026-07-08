@@ -372,10 +372,17 @@ async function loadSettings() {
     }
 
     // Dinamik Favicon Tanımlama
-    if (s.favicon_resmi) {
-      let fav = document.querySelector("link[rel*='icon']");
-      if (!fav) { fav = document.createElement('link'); fav.rel = 'shortcut icon'; document.head.appendChild(fav); }
-      fav.href = s.favicon_resmi;
+    if (s.favicon_resmi || s.firma_logosu) {
+      const iconHref = s.favicon_resmi || s.firma_logosu;
+      let fav = document.querySelector("link[rel='icon']");
+      if (!fav) { fav = document.createElement('link'); fav.rel = 'icon'; document.head.appendChild(fav); }
+      fav.href = iconHref;
+      fav.type = iconHref.endsWith('.svg') ? 'image/svg+xml' : 'image/png';
+      fav.setAttribute('sizes', iconHref.endsWith('.svg') ? 'any' : '512x512');
+      let apple = document.querySelector("link[rel='apple-touch-icon']");
+      if (!apple) { apple = document.createElement('link'); apple.rel = 'apple-touch-icon'; document.head.appendChild(apple); }
+      apple.href = iconHref;
+      apple.setAttribute('sizes', '192x192');
     }
 
     // Navigasyon ve Buton Metin Atamaları
