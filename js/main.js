@@ -248,6 +248,38 @@ function initMagneticButtons() {
   });
 }
 
+function buildTeklifWhatsappMessage(form) {
+  const formData = new FormData(form);
+  const file = formData.get('teknik_dosya');
+  const lines = [
+    'Yeni teklif talebi',
+    '',
+    `Ad/Firma: ${formData.get('ad_firma') || '-'}`,
+    `E-posta: ${formData.get('eposta') || '-'}`,
+    `Telefon: ${formData.get('telefon') || '-'}`,
+    '',
+    'Talep Detayi:',
+    `${formData.get('proje_detayi') || '-'}`,
+    '',
+    `Sayfa: ${window.location.href}`
+  ];
+
+  if (file && file.name) {
+    lines.push('', `Ek dosya: ${file.name}`, 'Not: Dosya WhatsApp sohbetinden ayrica gonderilebilir.');
+  }
+
+  return lines.join('\n');
+}
+
+function openTeklifWhatsapp(form) {
+  const rawNumber = (SETTINGS && SETTINGS.whatsapp_numara) || '905312878505';
+  const number = String(rawNumber).replace(/[^\d]/g, '');
+  const message = buildTeklifWhatsappMessage(form);
+  const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+  const popup = window.open(url, '_blank', 'noopener');
+  if (!popup) window.location.href = url;
+}
+
 function initTeklifModal() {
   const overlay = document.getElementById('teklifModal');
   const form = document.getElementById('teklifAlmaFormu');
@@ -269,7 +301,7 @@ function initTeklifModal() {
   });
 
   if (form) {
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalText = submitBtn ? submitBtn.textContent : '';
@@ -279,15 +311,9 @@ function initTeklifModal() {
       }
 
       try {
-        const formData = new FormData(form);
-        if (!formData.get('form-name')) formData.append('form-name', form.getAttribute('name') || 'teklif-talebi');
-        const endpoint = form.dataset.submitEndpoint || form.getAttribute('action') || '/api/teklif';
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-        const result = await response.json().catch(() => ({}));
+        const response = { ok: true };
+        const result = {};
+        openTeklifWhatsapp(form);
         if (!response.ok || result.ok === false) throw new Error(result.message || 'Form gönderilemedi');
         alert((SETTINGS && SETTINGS.form_basarili_mesaj) || 'Teklif talebiniz başarıyla alındı. Uzman ekibimiz en kısa sürede dönüş sağlayacaktır.');
         overlay.classList.remove('open');

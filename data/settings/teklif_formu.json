@@ -1,10 +1,10 @@
 {
   "form_tel_zorunlu": true,
-  "form_basarili_mesaj": "Talebiniz başarıyla alındı. Ekibimiz ürün, kalıp veya baskı detayları için en kısa sürede dönüş sağlayacaktır.",
-  "form_gonder_btn": "Talebi Gönder",
+  "form_basarili_mesaj": "WhatsApp mesajınız hazırlandı. Açılan ekranda gönder tuşuna basarak talebinizi iletebilirsiniz.",
+  "form_gonder_btn": "WhatsApp ile Talep Gönder",
   "form_detay_placeholder": "Ürün adı, adet, ölçü, hammadde, mevcut kalıp durumu veya yeni kalıp ihtiyacınızı yazabilirsiniz...",
   "form_detay_label": "Ürün / Kalıp / Baskı Talebi",
-  "form_hata_mesaj": "Form gönderilirken bir sorun oluştu. Lütfen WhatsApp veya e-posta üzerinden iletişime geçin.",
+  "form_hata_mesaj": "WhatsApp açılırken bir sorun oluştu. Lütfen WhatsApp butonundan veya telefon numarasından iletişime geçin.",
   "form_tel_aktif": true,
   "hero_teklif_btn_metni": "Teklif Al",
   "teklif_formu_aktif": true,
@@ -15,7 +15,7 @@
   "form_ad_placeholder": "Adınız veya firma adınız",
   "form_ad_label": "Ad Soyad / Firma",
   "form_tel_placeholder": "05xx xxx xx xx",
-  "form_gonderiliyor_metni": "Gönderiliyor...",
+  "form_gonderiliyor_metni": "WhatsApp açılıyor...",
   "form_tel_label": "Telefon Numaranız",
   "teklif_formu_baslik": "Üretim ve Teklif Talebi",
   "form_dosya_aktif": true
