@@ -36,38 +36,6 @@
       "malzeme": "."
     },
     {
-      "kisa_aciklama": "Farklı kullanım alanları için hediyelik eşya seçenekleri.",
-      "ad": "Hediyelik Eşya Ürünleri",
-      "sira": 3,
-      "kategori": "Hediyelik Eşya",
-      "agirlik_g": 65,
-      "genislik_mm": 45,
-      "detay": "Hediyelik eşya taleplerinizde ürün tipi, adet ve varsa örnek görsel paylaşarak hızlı bilgi alabilirsiniz. Katalog içeriği admin panelinden kolayca güncellenebilir.",
-      "gorsel": "images/1000158861.png",
-      "on_anasayfa": true,
-      "tolerans_mm": "Talebe göre",
-      "uzunluk_mm": 15,
-      "id": "hediyelik-esya",
-      "yukseklik_mm": 80,
-      "malzeme": "Ürüne göre değişir"
-    },
-    {
-      "kisa_aciklama": "Katalogda yer almayan ürünler için özel talep alanı.",
-      "ad": "Diğer Ürünlerimiz",
-      "sira": 99,
-      "kategori": "Diğer Ürünler",
-      "agirlik_g": 0,
-      "genislik_mm": 0,
-      "detay": "Aradığınız ürün katalogda yoksa ürün adı, görsel, ölçü veya adet bilgisini paylaşarak bize ulaşabilirsiniz. Size uygun yönlendirme yapılır.",
-      "gorsel": "images/1000158861.png",
-      "on_anasayfa": true,
-      "tolerans_mm": "Talebe göre",
-      "uzunluk_mm": 0,
-      "id": "diger-urunler",
-      "yukseklik_mm": 0,
-      "malzeme": "Talebe göre değişir"
-    },
-    {
       "kisa_aciklama": "500 gr ve üstü kahve paketlerinin içinde kullanımlıl premium bir ölçek",
       "ad": "Kahve Ölçeği",
       "kategori": "Kahve Ölçeği",
@@ -80,6 +48,22 @@
       "id": "kahve-olcek",
       "yukseklik_mm": 0.2,
       "malzeme": "Gıda ile temasa uygun (PP)"
+    },
+    {
+      "kisa_aciklama": "Farklı kullanım alanları için hediyelik eşya seçenekleri.",
+      "ad": "Çok yakında",
+      "sira": 3,
+      "kategori": "Hediyelik Eşya Ürünlerimiz ",
+      "agirlik_g": 65,
+      "genislik_mm": 45,
+      "detay": "Hediyelik eşya taleplerinizde ürün tipi, adet ve varsa örnek görsel paylaşarak hızlı bilgi alabilirsiniz. Katalog içeriği admin panelinden kolayca güncellenebilir.",
+      "gorsel": "images/1000158861.png",
+      "on_anasayfa": true,
+      "tolerans_mm": "Talebe göre",
+      "uzunluk_mm": 15,
+      "id": "hediyelik-esya",
+      "yukseklik_mm": 80,
+      "malzeme": "Ürüne göre değişir"
     }
   ]
 }
