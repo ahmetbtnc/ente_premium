@@ -243,7 +243,13 @@ collections:
               - { label: "Ürün Benzersiz ID", name: "id", widget: "string", hint: "Küçük harf ve tire kullanın. Örnek: deodorant-kapagi" }
               - { label: "Ürün Adı", name: "ad", widget: "string", hint: "Kart başlığı ve ürün detay penceresinde görünür." }
               - { label: "Ürün Başlığı / Kategori", name: "kategori", widget: "string", hint: "Üstteki 'Ürün Başlıkları' listesinde yazan başlıklardan biriyle aynı yazın. Örnek: Hediyelik Eşya" }
-              - { label: "Ürün Görseli (Fotoğraf)", name: "gorsel", widget: "image" }
+              - { label: "Ürün Ana Görseli (Fotoğraf)", name: "gorsel", widget: "image", hint: "Tek görsel kullanacaksanız sadece burayı doldurun. Çoklu galeri boşsa bu görsel kullanılır." }
+              - label: "Ürün Galerisi (Birden Fazla Görsel)"
+                name: "gorseller"
+                widget: "list"
+                required: false
+                hint: "Aynı ürün için birden fazla görsel ekleyin. Kart içinde otomatik olarak 2 saniyede bir değişir."
+                field: { label: "Galeri Görseli", name: "gorsel", widget: "image" }
               - { label: "Kısa Açıklama (Spoiler Kartında Görünecek)", name: "kisa_aciklama", widget: "string" }
               - { label: "Detaylı Bilgi (Pop-up Açıldığında Görünecek)", name: "detay", widget: "text", required: false }
               - { label: "Kullanılan Malzeme / Hammadde", name: "malzeme", widget: "string", default: "ABS / Polikarbonat" }

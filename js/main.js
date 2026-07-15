@@ -8,6 +8,7 @@ let SETTINGS = null;
 let ALL_PRODUCTS = [];
 let CATALOG_PAGE = 1;
 const CATALOG_PAGE_SIZE = 12;
+const PRODUCT_GALLERY_INTERVAL_MS = 2000;
 
 // Admin panelinden gelen düz metinleri HTML içine güvenli şekilde yerleştirmek
 // için basit bir kaçış (escape) yardımcı fonksiyonu.
@@ -793,6 +794,80 @@ function productWeight(p) {
   return Number.isFinite(weight) && weight > 0 ? `${esc(p.agirlik_g)} g` : 'Talebe göre';
 }
 
+function productImages(p) {
+  const images = [];
+  const addImage = value => {
+    const src = typeof value === 'string' ? value : (value && (value.gorsel || value.image || value.url));
+    if (!src) return;
+    const clean = String(src).trim();
+    if (clean && !images.includes(clean)) images.push(clean);
+  };
+
+  if (Array.isArray(p.gorseller)) p.gorseller.forEach(addImage);
+  addImage(p.gorsel);
+  if (!images.length) images.push('images/placeholder.png');
+  return images;
+}
+
+function productGalleryMarkup(p, variant = 'card', controls = true) {
+  const images = productImages(p);
+  const hasMultiple = images.length > 1;
+  return `
+    <div class="product-gallery product-gallery-${variant}" data-gallery-index="0" data-gallery-count="${images.length}">
+      <div class="product-gallery-track">
+        ${images.map((src, idx) => `
+          <img class="product-gallery-slide ${idx === 0 ? 'active' : ''}" src="${esc(src)}" alt="${esc(p.ad)}${hasMultiple ? ` - ${idx + 1}` : ''}" loading="lazy">
+        `).join('')}
+      </div>
+      ${hasMultiple && controls ? `
+        <button class="gallery-nav gallery-prev" type="button" aria-label="Onceki gorsel">&lsaquo;</button>
+        <button class="gallery-nav gallery-next" type="button" aria-label="Sonraki gorsel">&rsaquo;</button>
+        <div class="gallery-dots" aria-hidden="true">
+          ${images.map((_, idx) => `<span class="gallery-dot ${idx === 0 ? 'active' : ''}"></span>`).join('')}
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function setProductGalleryIndex(gallery, index) {
+  const slides = Array.from(gallery.querySelectorAll('.product-gallery-slide'));
+  if (!slides.length) return;
+  const nextIndex = (index + slides.length) % slides.length;
+  gallery.dataset.galleryIndex = String(nextIndex);
+  slides.forEach((slide, idx) => slide.classList.toggle('active', idx === nextIndex));
+  gallery.querySelectorAll('.gallery-dot').forEach((dot, idx) => dot.classList.toggle('active', idx === nextIndex));
+}
+
+function initProductGalleries(root = document) {
+  root.querySelectorAll('.product-gallery').forEach(gallery => {
+    if (gallery.dataset.galleryReady === 'true') return;
+    gallery.dataset.galleryReady = 'true';
+    const count = Number(gallery.dataset.galleryCount) || 1;
+    if (count <= 1) return;
+
+    gallery.querySelector('.gallery-prev')?.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      setProductGalleryIndex(gallery, (Number(gallery.dataset.galleryIndex) || 0) - 1);
+    });
+
+    gallery.querySelector('.gallery-next')?.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      setProductGalleryIndex(gallery, (Number(gallery.dataset.galleryIndex) || 0) + 1);
+    });
+
+    const timer = setInterval(() => {
+      if (!gallery.isConnected) {
+        clearInterval(timer);
+        return;
+      }
+      setProductGalleryIndex(gallery, (Number(gallery.dataset.galleryIndex) || 0) + 1);
+    }, PRODUCT_GALLERY_INTERVAL_MS);
+  });
+}
+
 function renderLogoStrip(s) {
   const wrap = document.getElementById('altLogolar');
   if (!wrap) return;
@@ -873,7 +948,7 @@ function renderFeatured(products) {
   wrap.innerHTML = products.map((p, i) => `
     <div class="spoiler-card reveal" style="--stagger:${i}" data-id="${p.id}">
       <button class="spoiler-head" data-toggle="${p.id}">
-          <div class="spoiler-thumb"><img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}" loading="lazy"></div>
+          <div class="spoiler-thumb">${productGalleryMarkup(p, 'thumb', false)}</div>
         <div class="spoiler-info">
           <span class="spoiler-cat">${esc(p.kategori)}</span>
           <h3>${esc(p.ad)}</h3>
@@ -886,7 +961,7 @@ function renderFeatured(products) {
       </button>
       <div class="spoiler-body">
         <div class="spoiler-body-inner">
-          <div class="spoiler-img"><img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}" loading="lazy"></div>
+          <div class="spoiler-img">${productGalleryMarkup(p, 'spoiler', true)}</div>
           <div class="spoiler-text">
             <p>${esc(p.kisa_aciklama)}</p>
             <div class="spoiler-meta">
@@ -918,6 +993,7 @@ function renderFeatured(products) {
     e.stopPropagation(); 
     openModal(btn.dataset.id);
   }));
+  initProductGalleries(wrap);
   initReveal();
 }
 
@@ -992,7 +1068,7 @@ function renderProducts(products) {
     <div class="product-card reveal" style="--stagger:${i % 6}" data-id="${p.id}">
       <div class="product-thumb">
         <span class="product-cat">${esc(p.kategori)}</span>
-        <img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}" loading="lazy">
+        ${productGalleryMarkup(p, 'card', true)}
       </div>
       <div class="product-body">
         <h3>${esc(p.ad)}</h3>
@@ -1007,6 +1083,7 @@ function renderProducts(products) {
 
   grid.querySelectorAll('.product-card').forEach(card => card.addEventListener('click', () => openModal(card.dataset.id)));
   renderCatalogPagination(totalPages);
+  initProductGalleries(grid);
   initReveal();
 }
 
@@ -1064,7 +1141,7 @@ function openModal(id) {
   document.getElementById('modalContent').innerHTML = `
     <span class="product-cat-tag">${esc(p.kategori)}</span>
     <h3>${esc(p.ad)}</h3>
-    <div class="modal-img"><img src="${esc(p.gorsel || 'images/placeholder.png')}" alt="${esc(p.ad)}" loading="lazy"></div>
+    <div class="modal-img">${productGalleryMarkup(p, 'modal', true)}</div>
     <div class="spec-sheet">
       <div class="spec-cell"><div class="k">Boyutlar</div><div class="v">${productDimensions(p)}</div></div>
       <div class="spec-cell"><div class="k">Malzeme / Hammadde</div><div class="v">${esc(p.malzeme)}</div></div>
@@ -1075,6 +1152,7 @@ function openModal(id) {
   `;
   document.getElementById('productModal').classList.add('open');
   document.body.classList.add('no-scroll');
+  initProductGalleries(document.getElementById('modalContent'));
 }
 
 async function loadDynamicPageBlocks() {
