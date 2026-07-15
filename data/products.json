@@ -5,15 +5,15 @@
       "ad": "PVC Koltuk Körüğü",
       "sira": 1,
       "kategori": "PVC Koltuk Körüğü",
-      "agirlik_g": 10,
-      "genislik_mm": 45,
+      "agirlik_g": 1.6,
+      "genislik_mm": 320,
       "detay": "PVC koltuk körüğü için ölçü, adet ve kullanım alanı bilgisiyle iletişime geçebilirsiniz. Uygun ürün ve teklif bilgisi için WhatsApp veya teklif formunu kullanabilirsiniz.",
       "gorsel": "images/1000840237.jpg",
       "on_anasayfa": true,
       "tolerans_mm": "Ölçüye göre",
-      "uzunluk_mm": 65,
+      "uzunluk_mm": 430,
       "id": "pvc-koltuk-korugu",
-      "yukseklik_mm": 35,
+      "yukseklik_mm": 180,
       "malzeme": "PVC"
     },
     {
@@ -29,11 +29,11 @@
       "detay": "Deodorant ürün grubu için kapak, gövde, numune, ölçü veya adet bilgisini paylaşarak hızlı teklif alabilirsiniz. Yeni ürün çeşitleri admin panelinden bu başlık altında yönetilebilir.",
       "gorsel": "images/1000159526.png",
       "on_anasayfa": true,
-      "tolerans_mm": "Talebe göre",
+      "tolerans_mm": ".",
       "uzunluk_mm": 0,
       "id": "deodorant-urunleri",
       "yukseklik_mm": 0,
-      "malzeme": "Talebe göre değişir"
+      "malzeme": "."
     },
     {
       "kisa_aciklama": "Farklı kullanım alanları için hediyelik eşya seçenekleri.",
@@ -43,7 +43,7 @@
       "agirlik_g": 65,
       "genislik_mm": 45,
       "detay": "Hediyelik eşya taleplerinizde ürün tipi, adet ve varsa örnek görsel paylaşarak hızlı bilgi alabilirsiniz. Katalog içeriği admin panelinden kolayca güncellenebilir.",
-      "gorsel": "images/placeholder.png",
+      "gorsel": "images/1000158861.png",
       "on_anasayfa": true,
       "tolerans_mm": "Talebe göre",
       "uzunluk_mm": 15,
@@ -59,13 +59,27 @@
       "agirlik_g": 0,
       "genislik_mm": 0,
       "detay": "Aradığınız ürün katalogda yoksa ürün adı, görsel, ölçü veya adet bilgisini paylaşarak bize ulaşabilirsiniz. Size uygun yönlendirme yapılır.",
-      "gorsel": "images/placeholder.png",
+      "gorsel": "images/1000158861.png",
       "on_anasayfa": true,
       "tolerans_mm": "Talebe göre",
       "uzunluk_mm": 0,
       "id": "diger-urunler",
       "yukseklik_mm": 0,
       "malzeme": "Talebe göre değişir"
+    },
+    {
+      "kisa_aciklama": "500 gr ve üstü kahve paketlerinin içinde kullanımlıl premium bir ölçek",
+      "ad": "Kahve Ölçeği",
+      "kategori": "Kahve Ölçeği",
+      "agirlik_g": 9,
+      "genislik_mm": 0.2,
+      "gorsel": "images/1000839360.png",
+      "on_anasayfa": true,
+      "tolerans_mm": "±0.02mm",
+      "uzunluk_mm": 0.2,
+      "id": "kahve-olcek",
+      "yukseklik_mm": 0.2,
+      "malzeme": "Gıda ile temasa uygun (PP)"
     }
   ]
 }
