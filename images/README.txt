@@ -1,3 +1,0 @@
-Ürün fotoğraflarınızı bu klasöre yükleyin.
-Örnek: urun-1.jpg, urun-2.jpg ...
-Admin panelinden ürün eklerken görsel sürükle-bırak ile otomatik buraya kaydedilir.
