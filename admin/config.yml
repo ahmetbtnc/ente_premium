@@ -37,7 +37,6 @@ collections:
           - { label: "Firma Adı - İkinci Kısım", name: "firma_adi_2", widget: "string" }
           - { label: "Ana Sayfa Tarayıcı Başlığı", name: "site_baslik", widget: "string" }
           - { label: "Ana Sayfa Google Açıklaması", name: "site_aciklama", widget: "text" }
-          - { label: "Paylaşım Görseli (WhatsApp / Sosyal Medya)", name: "paylasim_gorseli", widget: "image", required: false, hint: "Link paylaşıldığında görünecek kapak görseli." }
           - { label: "Katalog Sayfası Tarayıcı Başlığı", name: "katalog_site_baslik", widget: "string" }
           - { label: "Katalog Sayfası Google Açıklaması", name: "katalog_site_aciklama", widget: "text" }
           - { label: "Ana Sayfa Yükleme Yazısı", name: "ana_sayfa_yukleme", widget: "string" }
@@ -59,8 +58,7 @@ collections:
         name: "marka"
         editor: { preview: true }
         fields:
-          - { label: "Firma Logosu — Sitenin sol üstündeki logo", name: "firma_logosu", widget: "image", required: false, hint: "Boş bırakılırsa varsayılan çizgi logo kullanılır." }
-          - { label: "Google / Tarayıcı Küçük Logo (Favicon)", name: "favicon_resmi", widget: "image", required: false, hint: "Google arama sonucunda ve tarayıcı sekmesinde görünen küçük logodur. Kare PNG kullanmak en sağlıklısıdır." }
+          - { label: "Firma Logosu - Tek logo kaynağı", name: "firma_logosu", widget: "image", required: false, hint: "Bu tek logo; site üst logo, footer, Google küçük logo/favicon ve WhatsApp paylaşım görseli için kullanılır. Kare PNG önerilir." }
           - { label: "Şirket Sloganı (Footer'da görünür)", name: "slogan", widget: "string" }
           - { label: "Kurumsal Ana Renk", name: "kurumsal_renk", widget: "color", hint: "Butonlar, vurgular ve neon detaylar bu renkte olur." }
           - { label: "Teknik Detay Rengi", name: "teknik_renk", widget: "color" }

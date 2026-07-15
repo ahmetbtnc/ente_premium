@@ -373,8 +373,8 @@ async function loadSettings() {
     }
 
     // Dinamik Favicon Tanımlama
-    if (s.favicon_resmi || s.firma_logosu) {
-      const iconHref = s.favicon_resmi || s.firma_logosu;
+    if (s.firma_logosu || s.favicon_resmi) {
+      const iconHref = s.firma_logosu || s.favicon_resmi;
       let fav = document.querySelector("link[rel='icon']");
       if (!fav) { fav = document.createElement('link'); fav.rel = 'icon'; document.head.appendChild(fav); }
       fav.href = iconHref;
@@ -636,11 +636,12 @@ function applySiteChrome(s) {
   setPropertyMeta('og:type', 'website');
   setPropertyMeta('og:url', pageUrl);
   setPropertyMeta('og:site_name', 'Ente Metal Plastik');
-  setPropertyMeta('og:image', absoluteAssetUrl(s.paylasim_gorseli));
+  const shareImage = s.firma_logosu || s.favicon_resmi || s.paylasim_gorseli || '/site-logo.png';
+  setPropertyMeta('og:image', absoluteAssetUrl(shareImage));
   setMeta('twitter:card', 'summary_large_image');
   setMeta('twitter:title', pageTitle);
   setMeta('twitter:description', pageDesc);
-  setMeta('twitter:image', absoluteAssetUrl(s.paylasim_gorseli));
+  setMeta('twitter:image', absoluteAssetUrl(shareImage));
   renderAnnouncementBar(s);
 
   document.querySelectorAll('.brand-text, .footer-brand').forEach(el => {
