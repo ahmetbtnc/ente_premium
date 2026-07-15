@@ -3,7 +3,7 @@
   "oneCikanAciklama": "Kendi ürün gruplarımızı, müşteri kalıbıyla baskı taleplerini ve yeni kalıp üretimi projelerini tek katalog yapısında yönetiyoruz.",
   "tum_urunler_buton_metni": "Tüm Kataloğu Aç",
   "nav_teklif_btn_metni": "Teklif Al",
-  "urun_kartlari_yeni_pencere": false,
+  "urun_kartlari_yeni_pencere": true,
   "kategoriler": [
     "PVC Koltuk Körüğü",
     "Deodorant Başlığı",
