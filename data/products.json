@@ -22,6 +22,9 @@
       "sira": 2,
       "kategori": "Deodorant Başlığı",
       "agirlik_g": 0,
+      "gorseller": [
+        "images/1000159533.png"
+      ],
       "genislik_mm": 0,
       "detay": "Deodorant ürün grubu için kapak, gövde, numune, ölçü veya adet bilgisini paylaşarak hızlı teklif alabilirsiniz. Yeni ürün çeşitleri admin panelinden bu başlık altında yönetilebilir.",
       "gorsel": "images/1000159526.png",
