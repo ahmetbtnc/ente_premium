@@ -41,8 +41,13 @@
       "ad": "Kahve Ölçeği",
       "kategori": "Kahve Ölçeği",
       "agirlik_g": 9,
+      "gorseller": [
+        "images/1000841541.png",
+        "images/1000841544.png",
+        "images/1000841540.png"
+      ],
       "genislik_mm": 0.2,
-      "gorsel": "images/1000839360.png",
+      "gorsel": "images/1000841542.png",
       "on_anasayfa": true,
       "tolerans_mm": "±0.02mm",
       "uzunluk_mm": 0.2,
