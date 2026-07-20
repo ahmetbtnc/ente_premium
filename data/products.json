@@ -6,9 +6,14 @@
       "sira": 1,
       "kategori": "PVC Koltuk Körüğü",
       "agirlik_g": 1.6,
+      "gorseller": [
+        "images/1000841559.png",
+        "images/1000841560.png",
+        "images/1000840237.jpg"
+      ],
       "genislik_mm": 320,
       "detay": "PVC koltuk körüğü için ölçü, adet ve kullanım alanı bilgisiyle iletişime geçebilirsiniz. Uygun ürün ve teklif bilgisi için WhatsApp veya teklif formunu kullanabilirsiniz.",
-      "gorsel": "images/1000840237.jpg",
+      "gorsel": "images/1000841552.png",
       "on_anasayfa": true,
       "tolerans_mm": "Ölçüye göre",
       "uzunluk_mm": 430,
