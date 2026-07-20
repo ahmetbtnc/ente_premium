@@ -23,23 +23,23 @@
     },
     {
       "kisa_aciklama": "Deodorant kapak, gövde ve özel plastik parça talepleri için üretim çözümleri.",
-      "ad": "Deodorant Başlığı",
+      "ad": "45lik Deodorant Tüp Başlığı",
       "sira": 2,
       "kategori": "Deodorant Başlığı",
-      "agirlik_g": 0,
+      "agirlik_g": 6,
       "gorseller": [
         "images/1000159533.png",
         "images/1000840578.png"
       ],
-      "genislik_mm": 0,
+      "genislik_mm": 43,
       "detay": "Deodorant ürün grubu için kapak, gövde, numune, ölçü veya adet bilgisini paylaşarak hızlı teklif alabilirsiniz. Yeni ürün çeşitleri admin panelinden bu başlık altında yönetilebilir.",
       "gorsel": "images/1000159526.png",
       "on_anasayfa": true,
-      "tolerans_mm": ".",
-      "uzunluk_mm": 0,
+      "tolerans_mm": "0,01",
+      "uzunluk_mm": 45,
       "id": "deodorant-urunleri",
-      "yukseklik_mm": 0,
-      "malzeme": "."
+      "yukseklik_mm": 45,
+      "malzeme": "PP"
     },
     {
       "kisa_aciklama": "500 gr ve üstü kahve paketlerinin içinde kullanımlıl premium bir ölçek",
